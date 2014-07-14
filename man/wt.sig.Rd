@@ -1,0 +1,70 @@
+\name{wt.sig}
+\alias{wt.sig}
+\title{
+Determine significance of wavelet transform
+}
+\description{
+Determine significance of wavelet transform
+}
+\usage{
+wt.sig (d, dt, scale, sig.test = 0, sig.level = 0.95, dof = 2, 
+        lag1 = NULL, mother = c("morlet", "paul", "dog"), 
+        param = -1, sigma2 = NULL)
+}
+\arguments{
+  \item{d}{time series in matrix format (\code{n} rows x 2 columns). The first column 
+  should contain the time steps and the second column should contain the values.
+}
+  \item{dt}{
+length of a time step.
+}
+  \item{scale}{
+the wavelet scale.
+}
+  \item{sig.test}{
+type of significance test. If set to 0, use a regular \eqn{\chi^2} test. 
+If set to 1, then perform a time-average test. If set to 2, then do a scale-average
+test.
+}
+  \item{sig.level}{
+significance level. Default is 0.95.
+}
+  \item{dof}{
+degrees of freedom for each point in wavelet power.
+}
+  \item{lag1}{
+AR(1) coefficient of time series used to test for significant patterns.
+}
+  \item{mother}{
+type of mother wavelet function to use. Can be set to \code{morlet}, \code{dog}, 
+or \code{paul}. Default is \code{morlet}.
+}
+  \item{param}{
+nondimensional parameter specific to the wavelet function.
+}
+  \item{sigma2}{
+variance of time series}
+}
+
+\value{
+Returns a list containing:
+
+\item{signif }{vector containing significance level for each scale}
+\item{signif }{vector of red-noise spectrum for each period}
+
+}
+\references{
+Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+\emph{Bulletin of the American Meteorological Society} 79:61-78.
+}
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
+
+Code based on wavelet MATLAB program written by Christopher Torrence and
+Gibert P. Compo.
+}
+
+\examples{
+## Not run: wt.sig (d, dt, scale, sig.test, sig.level, lag1, dof=-1, 
+##  mother=morlet, sigma2=1)
+}

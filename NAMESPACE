@@ -1,0 +1,23 @@
+## Export functions
+export (ar1.spectrum,
+	convolve2D,
+	meshgrid,
+	phase.plot,
+	smooth.wavelet,
+	wt.bases,
+	wt,
+	wt.sig,
+	wtc,
+  pwtc,
+  check.data,
+	wtc.sig,
+	xwt,
+	wclust,
+	wdist,
+	plot.biwavelet)
+
+## S3 method for plotting
+S3method(plot, biwavelet)
+
+## Import image.plot function from fields package
+importFrom(fields, image.plot)
