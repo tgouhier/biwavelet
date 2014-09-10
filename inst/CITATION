@@ -2,13 +2,13 @@ bibentry("Manual",
 		title="biwavelet: Conduct univariate and bivariate wavelet analyses",
 		author="Tarik Gouhier",
 		year="2014",
-		note="(Version 0.17.2)",
-		url="http://biwavelet.r-forge.r-project.org",
+		note="(Version 0.17.3)",
+		url="http://github.com/tgouhier/biwavelet",
 
 		textVersion =
 		paste("Gouhier, T. (2014). ",
-				"biwavelet: Conduct univariate and bivariate wavelet analyses (Version 0.14). ",
-				"Available from http://biwavelet.r-forge.r-project.org",
+				"biwavelet: Conduct univariate and bivariate wavelet analyses (Version 0.17.3). ",
+				"Available from http://github.com/tgouhier/biwavelet",
 				sep=""),
 
 		mheader = "To cite biwavelet in publications use:")
