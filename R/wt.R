@@ -23,7 +23,7 @@ function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL,
 
   if (pad) {
     base2 = floor(log(n.obs) / log(2) + 0.5)
-    x = c(x, rep(0, times=2^(base2 + 1) - n.obs))
+    x = c(x, rep(0, 2^ceiling(log2(n.obs)) - n.obs))
   }
   
   n=NROW(x)

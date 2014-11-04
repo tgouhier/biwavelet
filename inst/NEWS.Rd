@@ -2,6 +2,13 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.17.4 (2014-11-04)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Made function wt faster by avoiding excessive padding (thanks Huidong Tang).}
+    }
+}
+
 \section{Changes in biwavelet version 0.17.3 (2014-04-27)}{
   \subsection{fixed}{
     \itemize{
