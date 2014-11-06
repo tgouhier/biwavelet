@@ -14,10 +14,9 @@ Plot \code{biwavelet} objects such as the cwt, cross-wavelet and wavelet coheren
                plot.coi = TRUE, lwd.coi=4, col.coi="white", lty.coi=2,
                plot.sig = TRUE, lwd.sig=4, col.sig="black", lty.sig=1,
                bw = FALSE, legend.loc = NULL, legend.horiz = FALSE, 
-               arrow.size = 0.08, arrow.size.head = 0.05, arrow.lwd = 2, 
+               arrow.len = min(par()$pin[2]/30,par()$pin[1]/40), 
+               arrow.lwd = arrow.len*0.3,
                arrow.cutoff = 0.9, arrow.col="black",
-               arrow.nlocs.x = round(length(x$period)/2), 
-               arrow.nlocs.y = round(NCOL(x$wave)/2),
                xlim = NULL, ylim = NULL, xaxt = "s", yaxt = "s", 
                form='\%Y', \dots)
 }
@@ -86,15 +85,12 @@ legend location coordinates as defined by \code{image.plot}. Default is \code{NU
   \item{legend.horiz}{
 plot a horizontal legend if TRUE. Default is FALSE.
 }
-  \item{arrow.size}{
-size of the arrows. Default is 0.08.
-}
-  \item{arrow.size.head}{
-size of the arrow head. Default is 0.05.
+  \item{arrow.len}{
+size of the arrows. Default is based on plotting region (min(par()$pin[2]/30,par()$pin[1]/40).
 }
 
 \item{arrow.lwd}{
-width/thickness of arrows. Default is 2.
+width/thickness of arrows. Default is arrow.len*0.3.
 }
   \item{arrow.cutoff}{
 cutoff value for plotting arrows. z-values that fall below the \code{arrow.cutoff}
@@ -103,12 +99,6 @@ quantile will not be plotted. Default is 0.9.
   \item{arrow.col}{
 Color of arrows. Default is \code{black}.
 }
-  \item{arrow.nlocs.x}{
-Integer number of x- or time-locations where phase arrows should be plotted. Default is 1/2 of the time-locations
-  }
-  \item{arrow.nlocs.y}{
-Integer number of y- or period-locations where phase arrows should be plotted. Default is 1/2 of the period-locations
-  }
  \item{xlim}{ 
  the x limits. The default is \code{NULL}.
 }

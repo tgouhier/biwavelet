@@ -2,24 +2,31 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.17.5 (2014-11-05)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Improved the implementation of \code{phase.plot} to allow for much better looking phase arrows (thanks Huidong Tang).}
+    }
+}
+
 \section{Changes in biwavelet version 0.17.4 (2014-11-04)}{
   \subsection{fixed}{
     \itemize{
-    \item Made function wt faster by avoiding excessive padding (thanks Huidong Tang).}
+    \item Made function \code{wt} faster by avoiding excessive padding (thanks Huidong Tang).}
     }
 }
 
 \section{Changes in biwavelet version 0.17.3 (2014-04-27)}{
   \subsection{fixed}{
     \itemize{
-    \item Made check.datum tolerate slight inconsistencies in the size of timesteps.}
+    \item Made \code{check.datum} tolerate slight inconsistencies in the size of timesteps.}
     }
 }
 
 \section{Changes in biwavelet version 0.17.2 (2014-04-11)}{
   \subsection{fixed}{
     \itemize{
-    \item Added arguments in plot.biwavelet and phase.plot to control the length
+    \item Added arguments in \code{plot.biwavelet} and \code{phase.plot} to control the length
       of the phase arrows and the size of the arrow heads independently.}
     }
 }
@@ -75,13 +82,13 @@
         using the methods described by Liu et al. (2007) and Veleda et al. (2012). 
         This correction is needed because the traditional approach for computing the power
         spectrum (e.g., Torrence and Compo 1998) leads to an artificial and systematic
-        reduction in power at lower periods
+        reduction in power at lower periods.
     }
   }
   \subsection{fixed}{
     \itemize{
       \item Plotting function now accepts traditional plotting flags such as xaxt and yaxt
-        to control x and y tickmarks
+        to control x and y tickmarks.
     }
   }
 }

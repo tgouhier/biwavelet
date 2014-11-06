@@ -7,10 +7,11 @@ plot.biwavelet <-
             bw=FALSE,
             legend.loc=NULL, 
             legend.horiz=FALSE,
-            arrow.size=0.08, arrow.size.head=0.05, arrow.lwd=2, 
-            arrow.cutoff=0.9, arrow.col="black", 
-            arrow.nlocs.x=round(length(x$period)/2), 
-            arrow.nlocs.y=round(NCOL(x$wave)/2), xlim = NULL, ylim = NULL,
+            arrow.len=min(par()$pin[2]/30,par()$pin[1]/40), 
+            arrow.lwd=arrow.len*0.3, 
+            arrow.cutoff=0.9, 
+            arrow.col="black", 
+            xlim = NULL, ylim = NULL,
             xaxt = "s", yaxt = "s", form='%Y', ...) {
     if (bw) {
       bw.colors <- colorRampPalette(c("black", "white"))
@@ -148,8 +149,8 @@ plot.biwavelet <-
       }
       else {
         tmp=x$rsq/x$signif
-         contour(x$t, yvals, t(tmp), level=tol, col=col.sig, lwd=lwd.sig, 
-                 add=TRUE, drawlabels=FALSE)
+        contour(x$t, yvals, t(tmp), level=tol, col=col.sig, lwd=lwd.sig, 
+                add=TRUE, drawlabels=FALSE)
       }
     }
     ## Plot phases
@@ -158,12 +159,8 @@ plot.biwavelet <-
       ## Remove phases where power is weak
       locs=which (zvals < quantile(zvals, arrow.cutoff))
       a[locs]=NA
-      x.ind=seq(max(floor(x$dt/2),1), length(x$t), 
-                length=round(min(arrow.nlocs.x, NCOL(x$wave))))
-      y.ind=seq(max(floor(1/2),1), length(x$period), 
-                length=round(min(arrow.nlocs.y, length(x$period))))
-      phase.plot(x$t[x.ind], log2(x$period[y.ind]), a[y.ind, x.ind], 
-                 arrow.size=arrow.size, arrow.size.head=arrow.size.head, 
-                 arrow.lwd=arrow.lwd, arrow.col=arrow.col)
+
+      phase.plot(x$t, log2(x$period), a, 
+                 arrow.len=arrow.len, arrow.lwd=arrow.lwd, arrow.col=arrow.col)
     }
   }

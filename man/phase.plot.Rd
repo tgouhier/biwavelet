@@ -7,8 +7,8 @@ Plot phases
 Plot phases with arrows
 }
 \usage{
-phase.plot (x, y, phases, arrow.size = 0.05, arrow.size.head = 0.05, 
-            arrow.lwd = 2, arrow.col="black")
+phase.plot (x, y, phases, arrow.len=min(par()$pin[2]/30,par()$pin[1]/40), 
+            arrow.col="black", arrow.lwd=arrow.len*0.3)
 }
 \arguments{
   \item{x}{
@@ -20,14 +20,11 @@ y-coordinates
   \item{phases}{
 phases
 }
-  \item{arrow.size}{
-arrow size. Default is 0.05
-}
-  \item{arrow.size.head}{
-size of the arrow head. Default is 0.05
+  \item{arrow.len}{
+size of the arrows. Default is based on plotting region (min(par()$pin[2]/30,par()$pin[1]/40).
 }
   \item{arrow.lwd}{
-arrow line width. Default is 2.
+width/thickness of arrows. Default is arrow.len*0.3.
 }
   \item{arrow.col}{
 arrow line color. Default is \code{black}.
@@ -36,7 +33,10 @@ arrow line color. Default is \code{black}.
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)
 
-Code based on WTC MATLAB package written by Aslak Grinsted.
+Huidong Tian provided a much better implementation of the phase.plot function
+that allows for better looking phase arrows.
+
+Original code based on WTC MATLAB package written by Aslak Grinsted.
 }
 \note{
 Arrows pointing to the right mean that \code{x} and \code{y} are in phase.

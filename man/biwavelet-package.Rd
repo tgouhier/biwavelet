@@ -3,7 +3,7 @@
 \alias{biwavelet}
 \docType{package}
 \title{
-Conduct univariate and bivariate wavelet analyses
+Conduct Univariate and Bivariate Wavelet Analyses
 }
 \description{
 This is a port of the WTC MATLAB package written by Aslak Grinsted and the wavelet 
@@ -15,8 +15,8 @@ wavelet analyses.
 \tabular{ll}{
 Package: \tab biwavelet\cr
 Type: \tab Package\cr
-Version: \tab 0.17.4\cr
-Date: \tab 2014-11-04\cr
+Version: \tab 0.17.5\cr
+Date: \tab 2014-11-05\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
