@@ -2,6 +2,13 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.17.6 (2015-05-05)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Added ability to set \code{zlim} in \code{plot.biwavelet}}
+    }
+}
+
 \section{Changes in biwavelet version 0.17.5 (2014-11-05)}{
   \subsection{fixed}{
     \itemize{

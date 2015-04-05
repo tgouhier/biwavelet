@@ -17,7 +17,8 @@ Plot \code{biwavelet} objects such as the cwt, cross-wavelet and wavelet coheren
                arrow.len = min(par()$pin[2]/30,par()$pin[1]/40), 
                arrow.lwd = arrow.len*0.3,
                arrow.cutoff = 0.9, arrow.col="black",
-               xlim = NULL, ylim = NULL, xaxt = "s", yaxt = "s", 
+               xlim = NULL, ylim = NULL, zlim = NULL, 
+               xaxt = "s", yaxt = "s", 
                form='\%Y', \dots)
 }
 \arguments{
@@ -104,6 +105,9 @@ Color of arrows. Default is \code{black}.
 }
  \item{ylim}{ 
  the y limits. The default is \code{NULL}.
+}
+ \item{zlim}{ 
+ the z limits. The default is \code{NULL}.
 }
  \item{xaxt}{ 
  Add x-axis? The default is \code{s}; use \code{n} for none.

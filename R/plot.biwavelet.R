@@ -11,7 +11,7 @@ plot.biwavelet <-
             arrow.lwd=arrow.len*0.3, 
             arrow.cutoff=0.9, 
             arrow.col="black", 
-            xlim = NULL, ylim = NULL,
+            xlim = NULL, ylim = NULL, zlim = NULL,
             xaxt = "s", yaxt = "s", form='%Y', ...) {
     if (bw) {
       bw.colors <- colorRampPalette(c("black", "white"))
@@ -23,7 +23,7 @@ plot.biwavelet <-
                            "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
       fill.colors=jet.colors(ncol)
     }
-    yrange=ylim
+    yrange <- ylim
     y.ticks = 2^(floor(log2(min(x$period, yrange))):floor(log2(max(x$period, yrange))))
     types=c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase")
     type=match.arg(tolower(type), types)
@@ -40,44 +40,56 @@ plot.biwavelet <-
     if (type=="power.norm" | type=="power.corr.norm") {
       if (x$type == "xwt") {
         zvals=log2(x$power)/(x$d1.sigma*x$d2.sigma)
-        zlims=range(c(-1, 1) * max(zvals))
-        zvals [zvals < zlims[1]]=zlims[1]
-        locs=pretty(range(zvals), n=5)
+        if (is.null(zlim))
+          zlim=range(c(-1, 1) * max(zvals))
+        zvals [zvals < zlim[1]]=zlim[1]
+        # locs=pretty(range(zvals), n=5)
+        locs=pretty(range(zlim), n=5)
         leg.lab=2^locs
       }
       else if (x$type == "wtc" | x$type == "pwtc") {
         zvals=x$rsq
         zvals[!is.finite(zvals)]=NA
-        zlims=range(zvals, na.rm=TRUE)
-        zvals [zvals < zlims[1]]=zlims[1]
-        locs=pretty(range(zvals, na.rm=TRUE), n=5)
+        if (is.null(zlim))
+          zlim=range(zvals, na.rm=TRUE)
+        zvals [zvals < zlim[1]]=zlim[1]
+        # locs=pretty(range(zvals, na.rm=TRUE), n=5)
+        locs=pretty(range(zlim), n=5)
         leg.lab=locs
       }      
       else {
         zvals=log2(abs(x$power / x$sigma2))
-        zlims=range(c(-1, 1) * max(zvals))
-        zvals [zvals < zlims[1]]=zlims[1]  
-        locs=pretty(range(zvals), n=5)
+        if (is.null(zlim))
+          zlim=range(c(-1, 1) * max(zvals))
+        zvals [zvals < zlim[1]]=zlim[1]  
+        # locs=pretty(range(zvals), n=5)
+        locs=pretty(range(zlim), n=5)
         leg.lab=2^locs
       }
     }
     else if (type=="power"| type=="power.corr") {
       zvals=log2(x$power)
-      zlims=range(c(-1, 1)*max(zvals))
-      zvals [zvals < zlims[1]]=zlims[1]
-      locs=pretty(range(zvals), n=5)
+      if (is.null(zlim))
+        zlim=range(c(-1, 1)*max(zvals))
+      zvals [zvals < zlim[1]]=zlim[1]
+      # locs=pretty(range(zvals), n=5)
+      locs=pretty(range(zlim), n=5)
       leg.lab=2^locs
     }
     else if (type=="wavelet") {
       zvals=(Re(x$wave))
-      zlims=range(zvals)
-      locs=pretty(range(zvals), n=5)
+      if (is.null(zlim))
+        zlim=range(zvals)
+      # locs=pretty(range(zvals), n=5)
+      locs=pretty(range(zlim), n=5)
       leg.lab=locs
     }
     else if (type=="phase") {
       zvals=x$phase
-      zlims=c(-pi, pi)
-      locs=pretty(range(zvals), n=5)
+      if (is.null(zlim))
+        zlim=c(-pi, pi)
+      # locs=pretty(range(zvals), n=5)
+      locs=pretty(range(zlim), n=5)
       leg.lab=locs        
     }
     else {
@@ -93,7 +105,7 @@ plot.biwavelet <-
     image(x$t,
           yvals, 
           t(zvals), 
-          zlim=zlims,
+          zlim=zlim,
           xlim=xlim,
           ylim=rev(ylim),
           xlab=xlab, 
@@ -125,7 +137,7 @@ plot.biwavelet <-
       image.plot(x$t, 
                  yvals, 
                  t(zvals), 
-                 zlim=zlims,
+                 zlim=zlim,
                  ylim=rev(range(yvals)),
                  xlab=xlab, 
                  ylab=ylab,
@@ -138,10 +150,10 @@ plot.biwavelet <-
                  xpd=NA)
       box()
     }
-    ## COI
+    # COI
     if (plot.coi)
       lines(x$t, log2(x$coi), lty=lty.coi, lwd=lwd.coi, col=col.coi)
-    ## sig.level contour (default is 95%)
+    # sig.level contour (default is 95%)
     if (plot.sig & length (x$signif) > 1) {
       if (x$type %in% c("wt", "xwt")) {
         contour(x$t, yvals, t(x$signif), level=tol, col=col.sig, lwd=lwd.sig, 
@@ -153,13 +165,13 @@ plot.biwavelet <-
                 add=TRUE, drawlabels=FALSE)
       }
     }
-    ## Plot phases
+    # Plot phases
     if (plot.phase) {
       a=x$phase
-      ## Remove phases where power is weak
+      # Remove phases where power is weak
       locs=which (zvals < quantile(zvals, arrow.cutoff))
       a[locs]=NA
-
+      
       phase.plot(x$t, log2(x$period), a, 
                  arrow.len=arrow.len, arrow.lwd=arrow.lwd, arrow.col=arrow.col)
     }

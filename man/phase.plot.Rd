@@ -34,7 +34,7 @@ arrow line color. Default is \code{black}.
 Tarik C. Gouhier (tarik.gouhier@gmail.com)
 
 Huidong Tian provided a much better implementation of the phase.plot function
-that allows for better looking phase arrows.
+that allows for more accurate phase arrows.
 
 Original code based on WTC MATLAB package written by Aslak Grinsted.
 }

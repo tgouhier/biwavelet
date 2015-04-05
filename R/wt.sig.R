@@ -89,7 +89,7 @@ function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
       signif[a1] = fft.theor[a1]*chisquare
     }
   }
-  else if (sig.test == 2) { ## time-averaged significance
+  else if (sig.test == 2) { ## scale-averaged significance
     if (length(dof) != 2)
       stop('DOF must be set to [S1,S2], the range of scale-averages')
     if (Cdelta == -1) {
