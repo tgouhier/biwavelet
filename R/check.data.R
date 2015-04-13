@@ -19,9 +19,16 @@ check.data <- function (y, x1 = NULL, x2 = NULL) {
 
 check.datum <- function (x) {
   if (NCOL(x) > 1) {
-    if (class(x[,1])[1]=="Date" | class(x[,1])[1]=="POSIXct") {
-      t = 1:NROW(x)
-      dt = diff(t)[1]
+    if (class(x[, 1])[1] == "Date" | class(x[,1])[1] == "POSIXct") {
+      diffs <- diff(x[, 1])
+      if (all(diffs == diffs[1])) {
+        t = x[, 1]
+        dt = as.numeric(diffs[1])
+      }
+      else {
+        t = 1:NROW(x)
+        dt = diff(t)[1]
+      }
     }
     else {
       dt = diff(x[, 1])[1]

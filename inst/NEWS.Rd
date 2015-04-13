@@ -2,10 +2,17 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
-\section{Changes in biwavelet version 0.17.6 (2015-05-05)}{
+\section{Changes in biwavelet version 0.17.7 (2015-04-13)}{
   \subsection{fixed}{
     \itemize{
-    \item Added ability to set \code{zlim} in \code{plot.biwavelet}}
+    \item Fixed \code{check.datum} function so that it does not assume a sampling frequency of 1.}
+    }
+}
+
+\section{Changes in biwavelet version 0.17.6 (2015-04-05)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Added ability to set \code{zlim} in \code{plot.biwavelet}.}
     }
 }
 
