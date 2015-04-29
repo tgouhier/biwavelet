@@ -1,5 +1,5 @@
 plot.biwavelet <-
-  function (x, ncol=64, xlab="Time", ylab="Period", 
+  function (x, ncol=64, fill.cols=NULL, xlab="Time", ylab="Period", 
             tol=1, plot.cb=FALSE, plot.phase=FALSE,
             type=c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase"), 
             plot.coi=TRUE, lwd.coi=1, col.coi="white", lty.coi=1, alpha.coi=0.5,
@@ -13,16 +13,21 @@ plot.biwavelet <-
             arrow.col="black", 
             xlim = NULL, ylim = NULL, zlim = NULL,
             xaxt = "s", yaxt = "s", form='%Y', ...) {
-    if (bw) {
-      bw.colors <- colorRampPalette(c("black", "white"))
-      fill.colors=bw.colors(ncol)
+    
+    if (is.null(fill.cols)) {
+      if (bw) {
+        fill.cols <- c("black", "white")
+      }
+      else {
+        fill.cols <- c("#00007F", "blue", "#007FFF", 
+                       "cyan","#7FFF7F", "yellow", 
+                       "#FF7F00", "red", "#7F0000")
+      }
     }
-    else {
-      jet.colors <-
-        colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
-                           "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
-      fill.colors=jet.colors(ncol)
-    }
+    
+    col.pal <- colorRampPalette(fill.cols)
+    fill.colors = col.pal(ncol)
+      
     yrange <- ylim
     y.ticks = 2^(floor(log2(min(x$period, yrange))):floor(log2(max(x$period, yrange))))
     types=c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase")

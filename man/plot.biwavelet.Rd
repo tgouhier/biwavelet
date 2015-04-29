@@ -7,10 +7,10 @@ Plot \code{biwavelet} objects
 Plot \code{biwavelet} objects such as the cwt, cross-wavelet and wavelet coherence
 }
 \usage{
-\method{plot}{biwavelet} (x, ncol = 64, xlab = "Time", ylab = "Period",
+\method{plot}{biwavelet} (x, ncol = 64, fill.cols = NULL, xlab = "Time", ylab = "Period",
                tol = 1, plot.cb = FALSE, plot.phase = FALSE, 
                type=c("power.corr.norm", "power.corr", "power.norm", "power", 
-               "wavelet", "phase"), 
+                      "wavelet", "phase"), 
                plot.coi = TRUE, lwd.coi = 1, col.coi = "white", lty.coi = 1, alpha.coi = 0.5,
                plot.sig = TRUE, lwd.sig = 4, col.sig = "black", lty.sig = 1,
                bw = FALSE, legend.loc = NULL, legend.horiz = FALSE, 
@@ -27,6 +27,11 @@ Plot \code{biwavelet} objects such as the cwt, cross-wavelet and wavelet coheren
 }
   \item{ncol}{
 number of colors to use. Default is 64.
+}
+  \item{fill.cols}{
+Vector of fill colors to be used. Users can specify color vectors using 
+\code{colorRampPalette} or \code{brewer.pal} from package \code{RColorBrewer}. 
+Default is \code{NULL} and will generate MATLAB's jet color palette.
 }
   \item{xlab}{
 xlabel of the figure. Default is "Time"

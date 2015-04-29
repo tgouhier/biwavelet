@@ -2,6 +2,16 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+
+\section{Changes in biwavelet version 0.17.10 (2015-04-29)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Added ability to handle custom color palettes in \code{plot.biwavelet}.
+    Users can now specify any color scheme using the \code{fill.cols} argument.
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.17.9 (2015-04-29)}{
   \subsection{fixed}{
     \itemize{
