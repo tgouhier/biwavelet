@@ -11,15 +11,15 @@ Plot \code{biwavelet} objects such as the cwt, cross-wavelet and wavelet coheren
                tol = 0.95, plot.cb = FALSE, plot.phase = FALSE, 
                type=c("power.corr.norm", "power.corr", "power.norm", "power", 
                "wavelet", "phase"), 
-               plot.coi = TRUE, lwd.coi=4, col.coi="white", lty.coi=2,
-               plot.sig = TRUE, lwd.sig=4, col.sig="black", lty.sig=1,
+               plot.coi = TRUE, lwd.coi = 1, col.coi = "white", lty.coi = 1, alpha.coi = 0.5,
+               plot.sig = TRUE, lwd.sig = 4, col.sig = "black", lty.sig = 1,
                bw = FALSE, legend.loc = NULL, legend.horiz = FALSE, 
-               arrow.len = min(par()$pin[2]/30,par()$pin[1]/40), 
+               arrow.len = min(par()$pin[2]/30, par()$pin[1]/40), 
                arrow.lwd = arrow.len*0.3,
-               arrow.cutoff = 0.9, arrow.col="black",
+               arrow.cutoff = 0.9, arrow.col = "black",
                xlim = NULL, ylim = NULL, zlim = NULL, 
                xaxt = "s", yaxt = "s", 
-               form='\%Y', \dots)
+               form = '\%Y', \dots)
 }
 \arguments{
   \item{x}{
@@ -53,17 +53,20 @@ the bias-corrected power, \code{power.norm} to plot the power normalized by the 
 Default is \code{power.corr.norm}.
 }
   \item{plot.coi}{
-plot cone of influence (COI) if TRUE. Default is TRUE. Areas that fall outside 
-of the COI can be affected by edge effects.
+plot cone of influence (COI) as a semi-transparent polygon if TRUE. Default is TRUE. 
+Areas that fall within the polygon can be affected by edge effects.
 }
   \item{lwd.coi}{
-Line width of COI. Default is 4.
+Line width of COI. Default is 1.
 }
   \item{col.coi}{
 Color of cone of COI. Default is \code{white}.
 }
   \item{lty.coi}{
-Line type of COI
+Line type of COI. Default is 1 for solide lines.
+}
+  \item{alpha.coi}{
+Transparency of COI. Range is 0 (full transparency) to 1 (no transparency). Default is 0.5.
 }
   \item{plot.sig}{
 plot contours for significance if TRUE. Default is TRUE.

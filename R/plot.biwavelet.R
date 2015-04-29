@@ -2,7 +2,7 @@ plot.biwavelet <-
   function (x, ncol=64, xlab="Time", ylab="Period", 
             tol=0.95, plot.cb=FALSE, plot.phase=FALSE,
             type=c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase"), 
-            plot.coi=TRUE, lwd.coi=4, col.coi="white", lty.coi=2,
+            plot.coi=TRUE, lwd.coi=1, col.coi="white", lty.coi=1, alpha.coi=0.5,
             plot.sig=TRUE, lwd.sig=4, col.sig="black", lty.sig=1,
             bw=FALSE,
             legend.loc=NULL, 
@@ -151,8 +151,12 @@ plot.biwavelet <-
       box()
     }
     # COI
-    if (plot.coi)
-      lines(x$t, log2(x$coi), lty=lty.coi, lwd=lwd.coi, col=col.coi)
+    if (plot.coi) {
+      # lines(x$t, log2(x$coi), lty=lty.coi, lwd=lwd.coi, col=col.coi)
+      polygon (x = c(x$t, rev(x$t)), lty = lty.coi, lwd = lwd.coi,
+               y = c(log2(x$coi), rep(max(log2(x$coi), na.rm = TRUE), length(x$coi))), 
+               col = adjustcolor(col.coi, alpha.f = alpha.coi), border = col.coi)
+    }
     # sig.level contour (default is 95%)
     if (plot.sig & length (x$signif) > 1) {
       if (x$type %in% c("wt", "xwt")) {

@@ -2,6 +2,13 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.17.8 (2015-04-28)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Added semi-transparent COI.}
+    }
+}
+
 \section{Changes in biwavelet version 0.17.7 (2015-04-13)}{
   \subsection{fixed}{
     \itemize{
