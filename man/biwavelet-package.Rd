@@ -15,8 +15,8 @@ wavelet analyses.
 \tabular{ll}{
 Package: \tab biwavelet\cr
 Type: \tab Package\cr
-Version: \tab 0.17.8\cr
-Date: \tab 2015-04-28\cr
+Version: \tab 0.17.9\cr
+Date: \tab 2015-04-29\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -92,12 +92,6 @@ wt1=wt(cbind(1:1000, s))
 par(mfrow=c(1,2))
 plot(wt1, type="power.corr.norm", main="Bias-corrected")
 plot(wt1, type="power.norm", main="Not-corrected")
-
-# Compare non-corrected vs. corrected cross-wavelet spectrum
-x1=xwt(cbind(1:1000, s), cbind(1:1000, s))
-par(mfrow=c(1,2))
-plot(x1, type="power.corr.norm", main="Bias-corrected")
-plot(x1, type="power.norm", main="Not-corrected")
 
 # ADDITIONAL EXAMPLES
 t1=cbind(1:100, rnorm(100))

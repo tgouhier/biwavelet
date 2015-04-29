@@ -1,31 +1,22 @@
-wt.sig <-
-function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL, 
+wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL, 
           mother=c("morlet", "paul", "dog"), param=-1, sigma2=NULL) {
   
   mothers=c("morlet", "paul", "dog")
   mother=match.arg(tolower(mother), mothers)
-  
+  x = d[, 2]
   ## Find the AR1 coefficient
-  if (is.null(dt) & NCOL(d) > 1) {
-    dt = diff(d[, 1])[1]
-    x = d[, 2] - mean(d[, 2])
-  }
-  else {
-    x = d - mean(d)
-  }
-  
   if (is.null(lag1))
     lag1=arima(x, order=c(1, 0, 0))$coef[1]
+  
   n1=NROW(d)
   J1=length(scale) - 1
   s0=min(scale)
   dj=log(scale[2] / scale[1]) / log(2)  
   if (is.null(sigma2))
-    sigma2=var(x)
+    sigma2=1
   types=c("morlet", "paul", "dog")
   mother=match.arg(tolower(mother), types)
-    
-  ## Get the appropriate parameters [see Table(2)]
+  ## Get the appropriate parameters
   if (mother=='morlet') {
     if (param == -1)
       param = 6
@@ -64,7 +55,6 @@ function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
   gamma.fac = empir[3]  ## time-decorrelation factor
   dj0 = empir[4]        ## scale-decorrelation factor
   freq = dt / period    ## normalized frequency
-  
   fft.theor = (1 - lag1^2) / (1 - 2 * lag1 * cos(freq * 2 * pi) + lag1^2)
   fft.theor = sigma2 * fft.theor  ## include time-series variance
   signif = fft.theor
@@ -113,4 +103,3 @@ function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
   
     return (list(signif=signif, fft.theor=fft.theor))
 }
-

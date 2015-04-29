@@ -1,8 +1,7 @@
-wt <-
-function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL, 
-          mother=c("morlet", "paul", "dog"), param=-1, lag1=NULL, 
-          sig.level=0.95, sig.test=0, do.sig=TRUE) {
-
+wt <- function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL, 
+                mother=c("morlet", "paul", "dog"), param=-1, lag1=NULL, 
+                sig.level=0.95, sig.test=0, do.sig=TRUE) {
+  
   mothers=c("morlet", "paul", "dog")
   mother=match.arg(tolower(mother), mothers)
   # Check data format 
@@ -20,12 +19,12 @@ function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL,
     }
     J1=round(log2(max.scale / s0) / dj)
   }
-
+  # This could be made more efficient by removing the +1
+  # but this can lead to insufficient padding in some instances.
+  # Currently the padding is the same as that of Torrence & Compo (1998)
   if (pad) {
-    base2 = floor(log(n.obs) / log(2) + 0.5)
-    x = c(x, rep(0, 2^ceiling(log2(n.obs)) - n.obs))
+    x = c(x, rep(0, 2^ceiling(log2(n.obs)+1) - n.obs))
   }
-  
   n=NROW(x)
   k = seq(1, floor(n / 2), 1)
   k = k * ((2 * pi)/(n * dt))
@@ -50,11 +49,11 @@ function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL,
   
   phase=atan2(Im(wave), Re(wave))
   if (do.sig) {
-    signif = wt.sig (d=x, dt=dt, scale=scale, sig.test=sig.test, 
+    signif = wt.sig (d=d, dt=dt, scale=scale, sig.test=sig.test, 
                      sig.level=sig.level, lag1=lag1, dof=-1, 
                      mother=mother, sigma2=1)$signif
     signif=matrix(signif, nrow=length(signif), ncol=1) %*% rep(1, n.obs)
-    signif=power / (sigma2*signif)
+    signif=power / (sigma2*signif)    
   }
   else
     signif=NA

@@ -1,6 +1,6 @@
 plot.biwavelet <-
   function (x, ncol=64, xlab="Time", ylab="Period", 
-            tol=0.95, plot.cb=FALSE, plot.phase=FALSE,
+            tol=1, plot.cb=FALSE, plot.phase=FALSE,
             type=c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase"), 
             plot.coi=TRUE, lwd.coi=1, col.coi="white", lty.coi=1, alpha.coi=0.5,
             plot.sig=TRUE, lwd.sig=4, col.sig="black", lty.sig=1,

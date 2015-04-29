@@ -8,7 +8,7 @@ Plot \code{biwavelet} objects such as the cwt, cross-wavelet and wavelet coheren
 }
 \usage{
 \method{plot}{biwavelet} (x, ncol = 64, xlab = "Time", ylab = "Period",
-               tol = 0.95, plot.cb = FALSE, plot.phase = FALSE, 
+               tol = 1, plot.cb = FALSE, plot.phase = FALSE, 
                type=c("power.corr.norm", "power.corr", "power.norm", "power", 
                "wavelet", "phase"), 
                plot.coi = TRUE, lwd.coi = 1, col.coi = "white", lty.coi = 1, alpha.coi = 0.5,
@@ -36,8 +36,8 @@ ylabel of the figure. Default is "Period"
 }
   \item{tol}{
 tolerance level for significance contours. Sigificance contours will be drawn around all regions
-of the spectrum where \code{spectrum/percentile >= tol}. Default is \code{0.95}. If strict
-\code{i^{th}} percentile regions are desired, then set \code{tol=1}.
+of the spectrum where \code{spectrum/percentile >= tol}. Default is \code{1}. If strict
+\code{i^{th}} percentile regions are desired, then must be set to \code{tol} must be set to \code{1}.
 }
   \item{plot.cb}{
 plot color bar if TRUE. Default is FALSE.
@@ -60,7 +60,7 @@ Areas that fall within the polygon can be affected by edge effects.
 Line width of COI. Default is 1.
 }
   \item{col.coi}{
-Color of cone of COI. Default is \code{white}.
+Color of COI. Default is \code{white}.
 }
   \item{lty.coi}{
 Line type of COI. Default is 1 for solide lines.

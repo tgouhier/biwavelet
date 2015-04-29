@@ -2,6 +2,15 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.17.9 (2015-04-29)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Fixed limited padding issue, which could lead to weird edge effects. 
+    Current padding level is identical to that of Torrence & Compo (1998).
+    \item Changed the default \code{tol} value from 0.95 to 1 in the \code{plot} function.}
+    }
+}
+
 \section{Changes in biwavelet version 0.17.8 (2015-04-28)}{
   \subsection{fixed}{
     \itemize{
