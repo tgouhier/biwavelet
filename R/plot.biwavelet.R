@@ -162,7 +162,7 @@ plot.biwavelet <- function (x, ncol=64, fill.cols=NULL, xlab="Time", ylab="Perio
              col = adjustcolor(col.coi, alpha.f = alpha.coi), border = col.coi)
   }
   # sig.level contour (default is 95%)
-  if (plot.sig & length (x$signif) > 1) {
+  if (plot.sig & length(x$signif) > 1) {
     if (x$type %in% c("wt", "xwt")) {
       contour(x$t, yvals, t(x$signif), level=tol, col=col.sig, lwd=lwd.sig, 
               add=TRUE, drawlabels=FALSE)

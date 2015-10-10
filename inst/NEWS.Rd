@@ -3,6 +3,17 @@
 \encoding{UTF-8}
 
 
+\section{Changes in biwavelet version 0.17.11 (2015-10-09)}{
+  \subsection{fixed}{
+    \itemize{
+    \item close all progress bars after use
+    \item Function \code{wtc} can now handle non-finite values when computing 
+    the quantiles of the rsq values from the Monte Carlo simulations
+    }
+  }
+}
+
+
 \section{Changes in biwavelet version 0.17.10 (2015-04-29)}{
   \subsection{fixed}{
     \itemize{

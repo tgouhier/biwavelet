@@ -12,5 +12,6 @@ wclust <- function (w.arr) {
       setTxtProgressBar(prog.bar, k)
     }
   }
+  close(prog.bar)
   return (list(diss.mat=dist.matrix, dist.mat=as.dist(dist.matrix)))
 }

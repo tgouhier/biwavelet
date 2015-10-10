@@ -40,7 +40,8 @@ function (nrands=300, lag1, dt, ntimesteps, pad=TRUE, dj=1/12, s0, J1, max.scale
       if (!quiet)
         setTxtProgressBar(prog.bar, r)
     }
-    wtcsig=apply(rand.rsq, MARGIN=c(1,2), quantile, sig.level)
+    close(prog.bar)
+    wtcsig=apply(rand.rsq, MARGIN=c(1,2), quantile, sig.level, na.rm = TRUE)
   }
   return (wtcsig)
 }
