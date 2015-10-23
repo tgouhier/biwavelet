@@ -28,84 +28,102 @@ plot.biwavelet <- function (x, ncol=64, fill.cols=NULL, xlab="Time", ylab="Perio
   fill.colors = col.pal(ncol)
   
   yrange <- ylim
-  y.ticks = 2^(floor(log2(min(x$period, yrange))):floor(log2(max(x$period, yrange))))
-  types=c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase")
-  type=match.arg(tolower(type), types)
   
-  if (type=="power.corr" | type=="power.corr.norm") {
-    if (x$type=="wtc" | x$type=="xwt") {
-      x$power=x$power.corr
-      x$wave=x$wave.corr
+  ytckmin <- floor(log2(min(x$period, yrange)))
+  ytckmax <- floor(log2(max(x$period, yrange)))
+  
+  y.ticks <- 2^( ytckmin:ytckmax )
+  
+  types <- c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase")
+  type <- match.arg(tolower(type), types)
+  
+  if (type == "power.corr" | type == "power.corr.norm") {
+    if (x$type == "wtc" | x$type == "xwt") {
+      x$power <- x$power.corr
+      x$wave <- x$wave.corr
     }
-    else
-      x$power=x$power.corr
+    else {
+      x$power <- x$power.corr
+    }
   }
   
-  if (type=="power.norm" | type=="power.corr.norm") {
+  if (type == "power.norm" | type == "power.corr.norm") {
     if (x$type == "xwt") {
-      zvals=log2(x$power)/(x$d1.sigma*x$d2.sigma)
-      if (is.null(zlim))
-        zlim=range(c(-1, 1) * max(zvals))
-      zvals [zvals < zlim[1]]=zlim[1]
-      # locs=pretty(range(zvals), n=5)
-      locs=pretty(range(zlim), n=5)
-      leg.lab=2^locs
+      zvals <- log2(x$power) / (x$d1.sigma*x$d2.sigma)
+      if (is.null(zlim)){
+        zlim <- range(c(-1, 1) * max(zvals))
+      }
+      zvals [zvals < zlim[1]] <- zlim[1]
+      # locs <- pretty(range(zvals), n=5)
+      locs <- pretty(range(zlim), n=5)
+      leg.lab <- 2^locs
     }
     else if (x$type == "wtc" | x$type == "pwtc") {
-      zvals=x$rsq
-      zvals[!is.finite(zvals)]=NA
-      if (is.null(zlim))
-        zlim=range(zvals, na.rm=TRUE)
-      zvals [zvals < zlim[1]]=zlim[1]
-      # locs=pretty(range(zvals, na.rm=TRUE), n=5)
-      locs=pretty(range(zlim), n=5)
-      leg.lab=locs
+      zvals <- x$rsq
+      zvals[!is.finite(zvals)] <- NA
+      if (is.null(zlim)) {
+        zlim <- range(zvals, na.rm=TRUE)
+      }
+      zvals [zvals < zlim[1]] <- zlim[1]
+      # locs <- pretty(range(zvals, na.rm=TRUE), n=5)
+      locs <- pretty(range(zlim), n=5)
+      leg.lab <- locs
     }      
     else {
-      zvals=log2(abs(x$power / x$sigma2))
-      if (is.null(zlim))
-        zlim=range(c(-1, 1) * max(zvals))
-      zvals [zvals < zlim[1]]=zlim[1]  
-      # locs=pretty(range(zvals), n=5)
-      locs=pretty(range(zlim), n=5)
-      leg.lab=2^locs
+      zvals <- log2(abs(x$power / x$sigma2))
+      if (is.null(zlim)) {
+        zlim <- range(c(-1, 1) * max(zvals))
+      }
+      zvals [zvals < zlim[1]] <- zlim[1]  
+      # locs <- pretty(range(zvals), n=5)
+      locs <- pretty(range(zlim), n=5)
+      leg.lab <- 2^locs
     }
   }
   else if (type=="power"| type=="power.corr") {
-    zvals=log2(x$power)
-    if (is.null(zlim))
-      zlim=range(c(-1, 1)*max(zvals))
-    zvals [zvals < zlim[1]]=zlim[1]
-    # locs=pretty(range(zvals), n=5)
-    locs=pretty(range(zlim), n=5)
-    leg.lab=2^locs
+    zvals <- log2(x$power)
+    if (is.null(zlim)) {
+      zlim <- range(c(-1, 1)*max(zvals))
+    }
+    zvals [zvals < zlim[1]] <- zlim[1]
+    # locs <- pretty(range(zvals), n=5)
+    locs <- pretty(range(zlim), n=5)
+    leg.lab <- 2^locs
   }
-  else if (type=="wavelet") {
-    zvals=(Re(x$wave))
-    if (is.null(zlim))
-      zlim=range(zvals)
+  else if (type == "wavelet") {
+    zvals <- (Re(x$wave))
+    if (is.null(zlim)) {
+      zlim <- range(zvals)
+    }
     # locs=pretty(range(zvals), n=5)
-    locs=pretty(range(zlim), n=5)
-    leg.lab=locs
+    locs <- pretty(range(zlim), n=5)
+    leg.lab <- locs
   }
-  else if (type=="phase") {
-    zvals=x$phase
-    if (is.null(zlim))
-      zlim=c(-pi, pi)
+  else if (type == "phase") {
+    zvals <- x$phase
+    if (is.null(zlim)) {
+      zlim <- c(-pi, pi)
+    }
     # locs=pretty(range(zvals), n=5)
-    locs=pretty(range(zlim), n=5)
-    leg.lab=locs        
+    locs <- pretty(range(zlim), n=5)
+    leg.lab <- locs        
   }
   else {
     stop("type must be power, power.norm, power.corr, power.corr.norm, wavelet or phase")
   }
-  if (is.null(xlim))
-    xlim=range(x$t)
-  yvals=log2(x$period)
-  if (is.null(ylim))
-    ylim=range(yvals)
-  else
-    ylim=log2(ylim)
+  
+  if (is.null(xlim)) {
+    xlim <- range(x$t)
+  }
+  
+  yvals <- log2(x$period)
+  
+  if (is.null(ylim)) {
+    ylim <- range(yvals)
+  } else {
+    ylim <- log2(ylim)
+  }
+  
   image(x$t,
         yvals, 
         t(zvals), 
@@ -119,20 +137,20 @@ plot.biwavelet <- function (x, ncol=64, fill.cols=NULL, xlab="Time", ylab="Perio
         col=fill.colors, ...)
   box()
   if (class(x$xaxis)[1] == "Date" | class(x$xaxis)[1] == "POSIXct") {
-    if (xaxt!="n") {
-      xlocs=pretty(x$t)+1
+    if (xaxt != "n") {
+      xlocs <- pretty(x$t)+1
       axis(side=1, at=xlocs, labels=format(x$xaxis[xlocs], form))
     }
   }
   else {
-    if (xaxt!="n") {
-      xlocs=axTicks(1)
+    if (xaxt != "n") {
+      xlocs <- axTicks(1)
       axis(side=1, at=xlocs)        
     }
   }
-  if (yaxt!="n") {
-    axis.locs=axTicks(2)
-    yticklab=format(2^axis.locs, dig=1)
+  if (yaxt != "n") {
+    axis.locs <- axTicks(2)
+    yticklab <- format(2^axis.locs, dig=1)
     axis(2, at=axis.locs, labels=yticklab)
   }
   
@@ -168,17 +186,17 @@ plot.biwavelet <- function (x, ncol=64, fill.cols=NULL, xlab="Time", ylab="Perio
               add=TRUE, drawlabels=FALSE)
     }
     else {
-      tmp=x$rsq/x$signif
+      tmp <- x$rsq / x$signif
       contour(x$t, yvals, t(tmp), level=tol, col=col.sig, lwd=lwd.sig, 
               add=TRUE, drawlabels=FALSE)
     }
   }
   # Plot phases
   if (plot.phase) {
-    a=x$phase
+    a <- x$phase
     # Remove phases where power is weak
-    locs=which (zvals < quantile(zvals, arrow.cutoff))
-    a[locs]=NA
+    locs <- which (zvals < quantile(zvals, arrow.cutoff))
+    a[locs] <- NA
     
     phase.plot(x$t, log2(x$period), a, 
                arrow.len=arrow.len, arrow.lwd=arrow.lwd, arrow.col=arrow.col)
