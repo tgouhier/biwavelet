@@ -1,3 +1,67 @@
+#' Compute wavelet transform
+#' 
+#' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
+#' 
+#' Code based on wavelet MATLAB program written by Christopher Torrence
+#' and Gibert P. Compo.
+#' 
+#' @param d time series in matrix format (\code{n} rows x 2 columns). The first
+#'   column should contain the time steps and the second column should contain
+#'   the values.
+#' @param pad pad the values will with zeros to increase the speed of the
+#'   transform. Default is TRUE.
+#' @param dt length of a time step.
+#' @param dj spacing between successive scales. Default is 1/12.
+#' @param s0 smallest scale of the wavelet. Default is \code{2*dt}
+#' @param J1 number of scales - 1.
+#' @param max.scale maximum scale. Computed automatically if left unspecified.
+#' @param mother type of mother wavelet function to use. Can be set to
+#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
+#' @param param nondimensional parameter specific to the wavelet function.
+#' @param lag1 AR(1) coefficient of time series used to test for significant
+#'   patterns.
+#' @param sig.level significance level. Default is 0.95.
+#' @param sig.test type of significance test. If set to 0, use a regular
+#'   \eqn{\chi^2} test. If set to 1, then perform a time-average test.
+#'   If set to 2, then do a scale-average test.
+#' @param do.sig perform significance testing if \code{TRUE}. Default is
+#'   \code{TRUE}.
+#'   
+#' @return Returns a \code{biwavelet} object containing:
+#' \item{coi}{matrix containg cone of influence}
+#' \item{wave}{matrix containing the wavelet transform}
+#' \item{power}{matrix of power}
+#' \item{power.corr}{matrix of bias-corrected power using the method described 
+#'                    by \code{Liu et al. (2007)}}
+#' \item{phase}{matrix of phases}
+#' \item{period}{vector of periods}
+#' \item{scale}{vector of scales}
+#' \item{dt}{length of a time step}
+#' \item{t}{vector of times}
+#' \item{xaxis}{vector of values used to plot xaxis}
+#' \item{s0}{smallest scale of the wavelet }
+#' \item{dj}{spacing between successive scales}
+#' \item{sigma2}{variance of time series}
+#' \item{mother}{mother wavelet used}
+#' \item{type}{type of \code{biwavelet} object created (\code{wt})}
+#' \item{signif}{matrix containg significance levels}
+#' 
+#' @references
+#' Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+#' \emph{Bulletin of the American Meteorological Society} 79:61-78.
+#' 
+#' Liu, Y., X. San Liang, and R. H. Weisberg. 2007. Rectification of the Bias in
+#' the Wavelet Power Spectrum. \emph{Journal of Atmospheric and Oceanic
+#' Technology} 24:2093-2102.
+#' 
+#' @examples
+#' t1 <- cbind(1:100, rnorm(100))
+#' ## Continuous wavelet transform
+#' wt.t1 <- wt(t1)
+#' ## Plot power
+#' ## Make room to the right for the color bar
+#' par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
+#' plot(wt.t1, plot.cb = TRUE, plot.phase = FALSE)
 wt <- function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL, 
                 mother=c("morlet", "paul", "dog"), param=-1, lag1=NULL, 
                 sig.level=0.95, sig.test=0, do.sig=TRUE) {
