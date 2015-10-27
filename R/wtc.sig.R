@@ -1,3 +1,51 @@
+#' Determine significance of wavelet coherence
+#' 
+#' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
+#' 
+#' Code based on WTC MATLAB package written by Aslak Grinsted.
+#' 
+#' @param nrands number of Monte Carlo randomizations. Default is 300.
+#' @param lag1 vector containing the AR(1) coefficient of each time series.
+#' @param dt length of a time step.
+#' @param ntimesteps number of time steps in time series.
+#' @param pad pad the values will with zeros to increase the speed of the
+#'   transform. Default is \code{TRUE}.
+#' @param dj spacing between successive scales. Default is 1/12.
+#' @param s0 smallest scale of the wavelet. Default is \code{2*dt}
+#' @param J1 number of scales - 1.
+#' @param max.scale maximum scale
+#' @param mother type of mother wavelet function to use. Can be set to 
+#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}. 
+#'   Significance testing is only available for \code{morlet} wavelet.
+#' @param sig.level significance level to compute. Default is \code{0.95}
+#' @param quiet Do not display progress bar. Default is \code{FALSE}
+#' 
+#' @return Returns significance matrix containing the \code{sig.level}
+#'   percentile of wavelet coherence at each time step and scale.
+#' 
+#' @references
+#' Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier, 
+#' and N. C. Stenseth. 2008. Wavelet analysis of ecological time series. 
+#' \emph{Oecologia} 156:287-304.
+#' 
+#' Grinsted, A., J. C. Moore, and S. Jevrejeva. 2004. Application of the cross 
+#' wavelet transform and wavelet coherence to geophysical time series. 
+#' \emph{Nonlinear Processes in Geophysics} 11:561-566.
+#' 
+#' Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+#' \emph{Bulletin of the American Meteorological Society} 79:61-78.
+#' 
+#' Torrence, C., and P. J. Webster. 1998. The annual cycle of persistence in the
+#' El Nino/Southern Oscillation. \emph{Quarterly Journal of the Royal 
+#' Meteorological Society} 124:1985-2004.
+#' 
+#' @note The Monte Carlo randomizations can be extremely slow for large
+#'   datasets. For instance, 1000 randomizations of a dataset consisting of 1000
+#'   samples will take ~30 minutes on a 2.66 GHz dual-core Xeon processor.
+#'   
+#' @examples
+#' ## Not run: wtcsig=wtc.sig(nrands, lag1 = c(d1.ar1, d2.ar1), dt,
+#' ##                         pad, dj, J1, s0, mother = morlet)
 wtc.sig <-
 function (nrands=300, lag1, dt, ntimesteps, pad=TRUE, dj=1/12, s0, J1, max.scale=NULL,
           mother=c("morlet", "paul", "dog"), sig.level=0.95, quiet=FALSE) {
