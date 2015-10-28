@@ -7,8 +7,8 @@
 #' @param yv vector of numeric values
 #' 
 #' @return Returns a list containing the full grid components \code{xv} and \code{yv}:
-#' \item{x }{replicated values of xv}
-#' \item{y }{replicated values of yv}
+#' \item{x}{replicated values of xv}
+#' \item{y}{replicated values of yv}
 #' 
 #' @examples
 #' xv <- runif(10)

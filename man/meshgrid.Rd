@@ -13,8 +13,8 @@ meshgrid(xv, yv)
 }
 \value{
 Returns a list containing the full grid components \code{xv} and \code{yv}:
-\item{x }{replicated values of xv}
-\item{y }{replicated values of yv}
+\item{x}{replicated values of xv}
+\item{y}{replicated values of yv}
 }
 \description{
 Replicates the grid vectors \code{xv} and \code{yv} to generate a full grid
