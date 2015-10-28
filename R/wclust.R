@@ -3,7 +3,7 @@ wclust <- function (w.arr) {
   nW=s[1]
   dist.matrix=matrix(NA, nrow=nW, ncol=nW)
   k=1
-  nWaves=seq(from=1, to=nW, by=1)
+  nWaves <- 1:nW
   prog.bar=txtProgressBar(min = 0, length(nWaves)^2, style = 3)
   for (n in nWaves) {
     for (j in nWaves) {

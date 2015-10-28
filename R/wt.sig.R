@@ -109,7 +109,7 @@ wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
     truncate = which(dof < dofmin)
     dof[truncate] = dofmin * rep(1, length(truncate)) ## minimum DOF is dofmin
     
-    for (a1 in seq(1, J1+1, 1)) {
+    for (a1 in 1:(J1+1)) {
       chisquare = qchisq(sig.level, dof[a1]) / dof[a1]
       signif[a1] = fft.theor[a1]*chisquare
     }
