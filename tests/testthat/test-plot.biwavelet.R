@@ -1,7 +1,9 @@
 library(testthat)
 library(biwavelet)
-library(dplyr)
+
+# suppress generating any PDFs
+pdf(NULL)
 
 test_that("plot.biwavelet", {
-  cbind(1:720, enviro.data$mei) %>% wt %>% plot.biwavelet
+  plot.biwavelet(wt(cbind(1:720, enviro.data$mei)))
 })
