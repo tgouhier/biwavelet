@@ -49,8 +49,8 @@ The Monte Carlo randomizations can be extremely slow for large
   samples will take ~30 minutes on a 2.66 GHz dual-core Xeon processor.
 }
 \examples{
-## Not run: wtcsig=wtc.sig(nrands, lag1 = c(d1.ar1, d2.ar1), dt,
-##                         pad, dj, J1, s0, mother = morlet)
+## Not run: wtcsig <- wtc.sig(nrands, lag1 = c(d1.ar1, d2.ar1), dt,
+##                            pad, dj, J1, s0, mother = morlet)
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)
