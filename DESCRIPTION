@@ -14,3 +14,4 @@ Description: This is a port of the WTC MATLAB package written by Aslak Grinsted
 License: GPL (>=2)
 URL: http://github.com/tgouhier/biwavelet
 LazyData: yes
+Suggests: testthat
