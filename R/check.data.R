@@ -1,3 +1,32 @@
+#' Check the format of time series
+#' 
+#' @param y time series y in matrix format (\code{n} rows x 2 columns). The
+#'   first column should contain the time steps and the second column should
+#'   contain the values.
+#' @param x1 time series x1 in matrix format (\code{n} rows x 2 columns). The
+#'   first column should contain the time steps and the second column should
+#'   contain the values.
+#' @param x2 time series x2 in matrix format (\code{n} rows x 2 columns). The
+#'   first column should contain the time steps and the second column should
+#'   contain the values.
+#'   
+#' @return Returns a named list containing:
+#' \item{t}{time steps}
+#' \item{dt}{size of a time step}
+#' \item{n.obs}{number of observations}
+#' 
+#' @references
+#' Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+#' \emph{Bulletin of the American Meteorological Society} 79:61-78.
+#' 
+#' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
+#' 
+#' @examples
+#' # Not run:
+#' t1=cbind(1:100, rnorm(100))
+#' check.data(y=t1)
+#' 
+#' @export
 check.data <- function (y, x1 = NULL, x2 = NULL) {
   y=check.datum(y)
   if (!is.null(x1)) {
@@ -17,6 +46,10 @@ check.data <- function (y, x1 = NULL, x2 = NULL) {
   return(list(y=y, x1=x1, x2=x2))
 }
 
+#' Helper function
+#' @param x TODO
+#' @return TODO
+#' @note This is not exported
 check.datum <- function (x) {
   if (NCOL(x) > 1) {
     if (class(x[, 1])[1] == "Date" | class(x[,1])[1] == "POSIXct") {
