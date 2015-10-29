@@ -1,8 +1,4 @@
-library(testthat)
-library(assertthat)
-library(biwavelet)
-suppressMessages(library(dplyr))
-
+context("Performance optimizations")
 test_that("replacing seq(1,N,1) with 1:N",{
   
   m <- J1 <- npad <- n.obs <- nW <- 17

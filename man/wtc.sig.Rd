@@ -50,7 +50,7 @@ The Monte Carlo randomizations can be extremely slow for large
 }
 \examples{
 ## Not run: wtcsig <- wtc.sig(nrands, lag1 = c(d1.ar1, d2.ar1), dt,
-##                            pad, dj, J1, s0, mother = morlet)
+##                            pad, dj, J1, s0, mother = "morlet")
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)

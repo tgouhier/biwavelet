@@ -75,4 +75,3 @@ smooth.wavelet <- function (wave, dt, dj, scale) {
   
   return (swave)
 }
-

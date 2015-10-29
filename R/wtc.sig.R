@@ -1,5 +1,4 @@
 #' Determine significance of wavelet coherence
-#' @export
 #' 
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #' 
@@ -46,7 +45,9 @@
 #'   
 #' @examples
 #' ## Not run: wtcsig <- wtc.sig(nrands, lag1 = c(d1.ar1, d2.ar1), dt,
-#' ##                            pad, dj, J1, s0, mother = morlet)
+#' ##                            pad, dj, J1, s0, mother = "morlet")
+#' 
+#' @export
 wtc.sig <- function (nrands = 300, lag1, dt, ntimesteps, pad = TRUE, dj = 1/12,
                      s0, J1, max.scale = NULL, mother = c("morlet", "paul", "dog"),
                      sig.level = 0.95, quiet = FALSE) {
@@ -100,8 +101,10 @@ wtc.sig <- function (nrands = 300, lag1, dt, ntimesteps, pad = TRUE, dj = 1/12,
     }
   }
   
-  close(prog.bar)
-  wtcsig <- apply(rand.rsq, MARGIN = c(1,2), quantile, sig.level, na.rm = TRUE)
-
-  return (wtcsig)
+  if (!quiet) {
+    close(prog.bar)
+  }
+  
+  # this will be returned
+  apply(rand.rsq, MARGIN = c(1,2), quantile, sig.level, na.rm = TRUE)
 }
