@@ -25,12 +25,11 @@
 #' 
 #' @examples
 #' ## Not run: wb <- wt.bases(mother, k, scale[a1], param)
-wt.bases <-function (mother = c("morlet", "paul", "dog"), k, scale, param = -1) {
-
-  mothers=c("morlet", "paul", "dog")
-  mother=match.arg(tolower(mother), mothers)
+wt.bases <-function (mother = "morlet", k, scale, param = -1) {
   
-  n=length(k)
+  mother <- match.arg(tolower(mother), MOTHERS)
+  n <- length(k)
+  
   if (mother == "morlet") {
     if (param == -1) {
       param = 6
@@ -70,11 +69,12 @@ wt.bases <-function (mother = c("morlet", "paul", "dog"), k, scale, param = -1) 
     dof = 1
   }
   else {
-    stop("mother wavelet parameter must be 'morlet', 'paul', or 'dog'")
+    stop(paste("mother wavelet parameter must be one of:",
+               paste(MOTHERS, collapse = ', ')))
   }
 
-  return (list(daughter=daughter, 
-               fourier.factor=fourier.factor, 
-               coi=coi, 
-               dof=dof))
+  list(daughter = daughter, 
+       fourier.factor = fourier.factor, 
+       coi = coi, 
+       dof = dof)
 }

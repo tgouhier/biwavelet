@@ -62,12 +62,14 @@
 #' ## Make room to the right for the color bar
 #' par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 #' plot(wt.t1, plot.cb = TRUE, plot.phase = FALSE)
-wt <- function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL, 
-                mother=c("morlet", "paul", "dog"), param=-1, lag1=NULL, 
-                sig.level=0.95, sig.test=0, do.sig=TRUE) {
+#' 
+#' @export
+wt <- function (d, pad = TRUE, dt = NULL, dj = 1/12, s0 = 2*dt, J1 = NULL,
+                max.scale = NULL, mother = "morlet", param = -1, lag1 = NULL, 
+                sig.level = 0.95, sig.test = 0, do.sig = TRUE) {
   
-  mothers=c("morlet", "paul", "dog")
-  mother=match.arg(tolower(mother), mothers)
+  mother <- match.arg(tolower(mother), MOTHERS)
+  
   # Check data format 
   checked=check.datum(d)
   n.obs = checked$n.obs
@@ -120,8 +122,9 @@ wt <- function (d, pad=TRUE, dt=NULL, dj=1/12, s0=2*dt, J1=NULL, max.scale=NULL,
     signif=matrix(signif, nrow=length(signif), ncol=1) %*% rep(1, n.obs)
     signif=power / (sigma2*signif)    
   }
-  else
+  else {
     signif=NA
+  }
   
   results=list(coi=coi, 
                wave=wave,

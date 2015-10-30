@@ -4,7 +4,7 @@
 \alias{wt.bases}
 \title{Compute wavelet}
 \usage{
-wt.bases(mother = c("morlet", "paul", "dog"), k, scale, param = -1)
+wt.bases(mother = "morlet", k, scale, param = -1)
 }
 \arguments{
 \item{mother}{type of mother wavelet function to use. Can be set to

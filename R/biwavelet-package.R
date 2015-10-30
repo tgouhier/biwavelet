@@ -121,21 +121,30 @@
 #' w.arr[3, , ]=wt.t3$wave
 #' 
 #' # Compute dissimilarity and distance matrices
-#' w.arr.dis=wclust(w.arr)
-#' plot(hclust(w.arr.dis$dist.mat, method="ward"), sub="", main="", 
-#'      ylab="Dissimilarity", hang=-1)
+#' w.arr.dis <- wclust(w.arr)
+#' plot(hclust(w.arr.dis$dist.mat, method = "ward"), sub = "", main = "", 
+#'      ylab = "Dissimilarity", hang = -1)
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage(
-    paste("biwavelet", 
-          utils::packageDescription("biwavelet",
-                                    field="Version"),
-          "loaded."),
-    appendLF = TRUE)
+  
+  # lazily evaluated promise of supported mother wavelets
+  delayedAssign("MOTHERS", c("morlet", "paul", "dog"),
+                assign.env = as.environment("package:biwavelet"))
+
+  # just to show a startup message
+  version <- utils::packageDescription("biwavelet", field="Version")
+  message <- paste("biwavelet", version, "loaded.")
+  packageStartupMessage(message, appendLF = TRUE)
 }
 
 # Datasets #############################
+
+#' Supported mother wavelets
+#' 
+#' The list of supported mother wavelets is used in multiple places
+#' therefore, we provide it as a lazily evaluated promise.
+MOTHERS <- c("morlet", "paul", "dog")
 
 #' @docType data
 #' @name enviro.data

@@ -5,9 +5,8 @@
 \title{Compute partial wavelet coherence}
 \usage{
 pwtc(y, x1, x2, pad = TRUE, dj = 1/12, s0 = 2 * dt, J1 = NULL,
-  max.scale = NULL, mother = c("morlet", "paul", "dog"), param = -1,
-  lag1 = NULL, sig.level = 0.95, sig.test = 0, nrands = 300,
-  quiet = FALSE)
+  max.scale = NULL, mother = "morlet", param = -1, lag1 = NULL,
+  sig.level = 0.95, sig.test = 0, nrands = 300, quiet = FALSE)
 }
 \arguments{
 \item{y}{time series y in matrix format (\code{n} rows x 2 columns). The
@@ -84,13 +83,17 @@ The Monte Carlo randomizations can be extremely slow for large
 y <- cbind(1:100, rnorm(100))
 x1 <- cbind(1:100, rnorm(100))
 x2 <- cbind(1:100, rnorm(100))
+
 ## Partial wavelet coherence of y and x1
 pwtc.yx1 <- pwtc(y, x1, x2, nrands = 0)
+
 ## Partial wavelet coherence of y and x2
 pwtc.yx2 <- pwtc(y, x2, x1, nrands = 0)
+
 ## Plot partial wavelet coherence and phase difference (arrows)
 ## Make room to the right for the color bar
-par(mfrow = c(2,1), oma = c(4, 0, 0, 1), mar = c(1, 4, 4, 5), mgp = c(1.5, 0.5, 0))
+par(mfrow = c(2,1), oma = c(4, 0, 0, 1),
+    mar = c(1, 4, 4, 5), mgp = c(1.5, 0.5, 0))
 plot(pwtc.yx1, xlab = "", plot.cb = TRUE,
      main = "Partial wavelet coherence of y and x1 | x2")
 plot(pwtc.yx2, plot.cb = TRUE,

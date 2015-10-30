@@ -5,8 +5,7 @@
 \title{Determine significance of wavelet transform}
 \usage{
 wt.sig(d, dt, scale, sig.test = 0, sig.level = 0.95, dof = 2,
-  lag1 = NULL, mother = c("morlet", "paul", "dog"), param = -1,
-  sigma2 = NULL)
+  lag1 = NULL, mother = "morlet", param = -1, sigma2 = NULL)
 }
 \arguments{
 \item{d}{time series in matrix format (\code{n} rows x 2 columns). The first

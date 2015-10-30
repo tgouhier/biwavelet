@@ -5,8 +5,7 @@
 \title{Determine significance of wavelet coherence}
 \usage{
 wtc.sig(nrands = 300, lag1, dt, ntimesteps, pad = TRUE, dj = 1/12, s0, J1,
-  max.scale = NULL, mother = c("morlet", "paul", "dog"), sig.level = 0.95,
-  quiet = FALSE)
+  max.scale = NULL, mother = "morlet", sig.level = 0.95, quiet = FALSE)
 }
 \arguments{
 \item{nrands}{number of Monte Carlo randomizations. Default is 300.}

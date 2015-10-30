@@ -5,9 +5,8 @@
 \title{Compute wavelet coherence}
 \usage{
 wtc(d1, d2, pad = TRUE, dj = 1/12, s0 = 2 * dt, J1 = NULL,
-  max.scale = NULL, mother = c("morlet", "paul", "dog"), param = -1,
-  lag1 = NULL, sig.level = 0.95, sig.test = 0, nrands = 300,
-  quiet = FALSE)
+  max.scale = NULL, mother = "morlet", param = -1, lag1 = NULL,
+  sig.level = 0.95, sig.test = 0, nrands = 300, quiet = FALSE)
 }
 \arguments{
 \item{d1}{time series 1 in matrix format (\code{n} rows x 2 columns). The
@@ -83,8 +82,10 @@ The Monte Carlo randomizations can be extremely slow for large
 \examples{
 t1 <- cbind(1:100, rnorm(100))
 t2 <- cbind(1:100, rnorm(100))
+
 ## Wavelet coherence
 wtc.t1t2 <- wtc(t1, t2, nrands = 10)
+
 ## Plot wavelet coherence and phase difference (arrows)
 ## Make room to the right for the color bar
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)

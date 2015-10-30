@@ -49,11 +49,10 @@
 #' 
 #' @export
 wtc.sig <- function (nrands = 300, lag1, dt, ntimesteps, pad = TRUE, dj = 1/12,
-                     s0, J1, max.scale = NULL, mother = c("morlet", "paul", "dog"),
+                     s0, J1, max.scale = NULL, mother = "morlet",
                      sig.level = 0.95, quiet = FALSE) {
   
-  mothers <- c("morlet", "paul", "dog")
-  mother <- match.arg(tolower(mother), mothers)
+  mother <- match.arg(tolower(mother), MOTHERS)
   ms <- s0 * (2^(J1 * dj)) / dt ## maxscale in units of samples
   n  <- ceiling(ms * 6)
   d1  <- cbind(1:ntimesteps, arima.sim(model = list(ar = lag1[1], ma = 0), n = ntimesteps))
@@ -83,9 +82,9 @@ wtc.sig <- function (nrands = 300, lag1, dt, ntimesteps, pad = TRUE, dj = 1/12,
     # d2 <- d2 - mean(d2)
     
     # Wavelet transforms
-    wt1 <- wt(d = d1, pad = pad, dj = dj, dt = dt, s0 = s0, J1 = J1, 
+    wt1 <- wt(d = d1, pad = pad, dj = dj, dt = dt, s0 = s0, J1 = J1,
               max.scale = max.scale, mother = mother, do.sig = FALSE)
-    wt2 <- wt(d = d2, pad = pad, dj = dj, dt = dt, s0 = s0, J1 = J1, 
+    wt2 <- wt(d = d2, pad = pad, dj = dj, dt = dt, s0 = s0, J1 = J1,
               max.scale = max.scale, mother = mother, do.sig = FALSE)
     
     # Smoothed cross wavelet transform

@@ -78,9 +78,9 @@ w.arr[2, , ]=wt.t2$wave
 w.arr[3, , ]=wt.t3$wave
 
 # Compute dissimilarity and distance matrices
-w.arr.dis=wclust(w.arr)
-plot(hclust(w.arr.dis$dist.mat, method="ward"), sub="", main="",
-     ylab="Dissimilarity", hang=-1)
+w.arr.dis <- wclust(w.arr)
+plot(hclust(w.arr.dis$dist.mat, method = "ward"), sub = "", main = "",
+     ylab = "Dissimilarity", hang = -1)
 }
 \author{
 Tarik C. Gouhier

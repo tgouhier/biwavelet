@@ -39,3 +39,4 @@ test_that("replacing seq(1,N,1) with 1:N",{
     seq(from=1, to=nW, by=1) )
   
 })
+
