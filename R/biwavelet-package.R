@@ -138,7 +138,7 @@ NULL
                 assign.env = as.environment("package:biwavelet"))
 
   # just to show a startup message
-  message <- paste("biwavelet", packageVersion("biwavelet"), "loaded.")
+  message <- paste("biwavelet", utils::packageVersion("biwavelet"), "loaded.")
   packageStartupMessage(message, appendLF = TRUE)
 }
 
