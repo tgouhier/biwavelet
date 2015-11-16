@@ -83,7 +83,7 @@ data(enviro.data)
 xwt.mei.npgo <- xwt(subset(enviro.data, select = c("date", "mei")),
                     subset(enviro.data, select = c("date", "npgo")))
 
-## Make room to the right for the color bar
+# Make room to the right for the color bar
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(xwt.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
 }
