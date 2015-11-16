@@ -44,24 +44,23 @@
 #'
 #' @export
 wclust <- function(w.arr) {
-  s <- dim(w.arr)
-  nW <- s[1]
-  dist.matrix <- matrix(NA, nrow = nW, ncol = nW)
+  num_waves <- nrow(w.arr)
+  dist.matrix <- matrix(NA, nrow = num_waves, ncol = num_waves)
   k <- 1
-  nWaves <- 1:nW
-  
-  prog.bar <- txtProgressBar(min = 0, length(nWaves) ^ 2, style = 3)
-  
-  for (n in nWaves) {
-    for (j in nWaves) {
+  waves_vec <- 1:num_waves
+
+  prog.bar <- txtProgressBar(min = 0, num_waves ^ 2, style = 3)
+
+  for (n in waves_vec) {
+    for (j in waves_vec) {
       dist.matrix[n,j] <- wdist(w.arr[n, ,], w.arr[j, ,])
       k <- k + 1
       setTxtProgressBar(prog.bar, k)
     }
   }
-  
+
   close(prog.bar)
-  
+
   list(diss.mat = dist.matrix,
        dist.mat = as.dist(dist.matrix))
 }
