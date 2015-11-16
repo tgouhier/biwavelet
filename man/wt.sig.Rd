@@ -43,8 +43,8 @@ Returns a list containing:
 Determine significance of wavelet transform
 }
 \examples{
-## Not run: wt.sig (d, dt, scale, sig.test, sig.level, lag1, dof=-1,
-##  mother=morlet, sigma2=1)
+# Not run: wt.sig(d, dt, scale, sig.test, sig.level, lag1,
+#                 dof = -1, mother = morlet, sigma2 = 1)
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)

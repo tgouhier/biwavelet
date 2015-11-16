@@ -18,7 +18,7 @@ phase.plot(x, y, phases, arrow.len = min(par()$pin[2]/30, par()$pin[1]/40),
 
 \item{arrow.col}{arrow line color. Default is \code{black}.}
 
-\item{arrow.lwd}{width/thickness of arrows. Default is arrow.len*0.3.}
+\item{arrow.lwd}{width/thickness of arrows. Default is arrow.len * 0.3.}
 }
 \description{
 Plot phases with arrows
@@ -33,7 +33,7 @@ Arrows pointing up mean that \code{y} leads \code{x} by \eqn{\pi/2}.
 Arrows pointing down mean that \code{x} leads \code{y} by \eqn{\pi/2}.
 }
 \examples{
-## Not run: phase.plot(x, y, phases)
+# Not run: phase.plot(x, y, phases)
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)

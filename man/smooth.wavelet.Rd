@@ -30,7 +30,7 @@ This function is used internally for computing wavelet coherence.
   It is only appropriate for the morlet wavelet.
 }
 \examples{
-## Not run: smooth.wt1=smooth.wavelet(wave, dt, dj, scale)
+# Not run: smooth.wt1=smooth.wavelet(wave, dt, dj, scale)
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)

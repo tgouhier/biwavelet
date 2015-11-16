@@ -1,7 +1,7 @@
 context("Performance optimizations")
 test_that("replacing seq(1,N,1) with 1:N", {
 
-  m <- J1 <- npad <- n.obs <- nW <- 17
+  m <- J1 <- npad <- n.obs <- num_waves <- 17
 
   # in wt.bases
   expect_equal(
@@ -30,12 +30,12 @@ test_that("replacing seq(1,N,1) with 1:N", {
 
   # in wt
   expect_equal(
-    floor(n.obs/2 - 1):1,
+    floor(n.obs / 2 - 1):1,
     seq(floor(n.obs / 2 - 1), 1, -1) )
 
   # in wclust
   expect_equal(
-    1:nW,
-    seq(from = 1, to = nW, by = 1) )
+    1:num_waves,
+    seq(from = 1, to = num_waves, by = 1) )
 
 })

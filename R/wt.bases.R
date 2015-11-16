@@ -24,25 +24,25 @@
 #' Gibert P. Compo.
 #' 
 #' @examples
-#' ## Not run: wb <- wt.bases(mother, k, scale[a1], param)
+#' # Not run: wb <- wt.bases(mother, k, scale[a1], param)
 wt.bases <- function(mother = "morlet", k, scale, param = -1) {
-  
+
   mother <- match.arg(tolower(mother), MOTHERS)
   n <- length(k)
-  
+
   if (mother == "morlet") {
     if (param == -1) {
       param <- 6
     }
     k0 <- param
-    
+
     # TODO refactor this line to a nicer expression
-    expnt <- -(scale * k - k0) ^ 2/2 * (k > 0)
-    
+    expnt <- -(scale * k - k0) ^ 2 / 2 * (k > 0)
+
     norm <- sqrt(scale * k[2]) * (pi ^ (-0.25)) * sqrt(n)
     daughter <- norm * exp(expnt)
     daughter <- daughter * (k > 0)
-    fourier.factor <- 4*pi / (k0 + sqrt(2 + k0 ^ 2))
+    fourier.factor <- 4 * pi / (k0 + sqrt(2 + k0 ^ 2))
     coi <- fourier.factor / sqrt(2)
     dof <- 2
   } else if (mother == "paul") {
@@ -51,10 +51,13 @@ wt.bases <- function(mother = "morlet", k, scale, param = -1) {
     }
     m <- param
     expnt <- -(scale * k) * (k > 0)
-    norm <- sqrt(scale * k[2]) * (2 ^ m / sqrt(m * prod( 2:(2*m - 1) ))) * sqrt(n)
+
+    norm <- sqrt(scale * k[2]) *
+            (2 ^ m / sqrt(m * prod( 2:(2 * m - 1) ))) * sqrt(n)
+
     daughter <- norm * ((scale * k) ^ m) * exp(expnt)
     daughter <- daughter * (k > 0)
-    fourier.factor <- 4*pi / (2*m + 1)
+    fourier.factor <- 4 * pi / (2 * m + 1)
     coi <- fourier.factor * sqrt(2)
     dof <- 2
   } else if (mother == "dog") {
@@ -65,16 +68,16 @@ wt.bases <- function(mother = "morlet", k, scale, param = -1) {
     expnt <- -(scale * k) ^ 2 / 2
     norm <- sqrt(scale * k[2] / gamma(m + 0.5)) * sqrt(n)
     daughter <- -norm * (1i ^ m) * ((scale * k) ^ m) * exp(expnt)
-    fourier.factor <- 2 * pi * sqrt(2 / (2*m + 1))
+    fourier.factor <- 2 * pi * sqrt(2 / (2 * m + 1))
     coi <- fourier.factor / sqrt(2)
     dof <- 1
   } else {
     stop(paste("mother wavelet parameter must be one of:",
-               paste(MOTHERS, collapse = ', ')))
+               paste(MOTHERS, collapse = ", ")))
   }
 
-  list(daughter = daughter, 
-       fourier.factor = fourier.factor, 
-       coi = coi, 
+  list(daughter = daughter,
+       fourier.factor = fourier.factor,
+       coi = coi,
        dof = dof)
 }

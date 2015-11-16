@@ -43,9 +43,9 @@ convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
     y <- c(y, rep.int(0, n - 1))
     n <- length(y)
   }
-  
+
   x <- mvfft(mvfft(x) * (if (conj) Conj(fft(y)) else fft(y)),
              inverse = TRUE)
-  
+
   (if (Real) Re(x) else x) / n
 }

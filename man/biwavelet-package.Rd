@@ -42,17 +42,20 @@ plot(wt1, type="power.corr.norm", main="Bias-corrected")
 plot(wt1, type="power.norm", main="Not-corrected")
 
 # ADDITIONAL EXAMPLES
-t1=cbind(1:100, rnorm(100))
-t2=cbind(1:100, rnorm(100))
+t1 <- cbind(1:100, rnorm(100))
+t2 <- cbind(1:100, rnorm(100))
+
 # Continuous wavelet transform
-wt.t1=wt(t1)
+wt.t1 <- wt(t1)
+
 # Plot power
 # Make room to the right for the color bar
-par(oma=c(0, 0, 0, 1), mar=c(5, 4, 4, 5) + 0.1)
+par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wt.t1, plot.cb=TRUE, plot.phase=FALSE)
 
-# Cross-wavelet
-xwt.t1t2=xwt(t1, t2)
+# Compute cross-wavelet
+xwt.t1t2 <- xwt(t1, t2)
+
 # Plot cross wavelet power and phase difference (arrows)
 plot(xwt.t1t2, plot.cb=TRUE)
 
@@ -67,10 +70,12 @@ plot(wtc.t1t2, plot.cb=TRUE)
 t1=cbind(1:100, sin(seq(from=0, to=10*2*pi, length.out=100)))
 t2=cbind(1:100, sin(seq(from=0, to=10*2*pi, length.out=100)+0.1*pi))
 t3=cbind(1:100, rnorm(100))
+
 # Compute wavelet spectra
 wt.t1=wt(t1)
 wt.t2=wt(t2)
 wt.t3=wt(t3)
+
 # Store all wavelet spectra into array
 w.arr=array(NA, dim=c(3, NROW(wt.t1$wave), NCOL(wt.t1$wave)))
 w.arr[1, , ]=wt.t1$wave
