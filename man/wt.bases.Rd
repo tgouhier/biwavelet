@@ -27,7 +27,7 @@ Returns a list containing:
 Computes the wavelet as a function of Fourier frequency.
 }
 \examples{
-## Not run: wb <- wt.bases(mother, k, scale[a1], param)
+# Not run: wb <- wt.bases(mother, k, scale[a1], param)
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)

@@ -70,16 +70,16 @@ Compute cross-wavelet
 t1 <- cbind(1:100, rnorm(100))
 t2 <- cbind(1:100, rnorm(100))
 
-## Cross-wavelet
+# Compute Cross-wavelet
 xwt.t1t2 <- xwt(t1, t2)
 
-## Plot cross-wavelet and phase difference (arrows)
+# Plot cross-wavelet and phase difference (arrows)
 plot(xwt.t1t2, plot.cb = TRUE, plot.phase = TRUE)
 
-## Real data
+# Real data
 data(enviro.data)
 
-## Cross-wavelet of MEI and NPGO
+# Cross-wavelet of MEI and NPGO
 xwt.mei.npgo <- xwt(subset(enviro.data, select = c("date", "mei")),
                     subset(enviro.data, select = c("date", "npgo")))
 

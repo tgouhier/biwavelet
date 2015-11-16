@@ -16,7 +16,8 @@ test_that("Error message for unsupported plot type", {
 })
 
 test_that("Plotting all supported types should also work", {
-  types <- c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase")
+  types <- c("power.corr.norm", "power.corr", "power.norm",
+             "power", "wavelet", "phase")
   for (t in types) {
     expect_null( plot.biwavelet(some_wt, type = t) )
   }
