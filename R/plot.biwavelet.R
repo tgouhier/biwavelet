@@ -130,6 +130,7 @@
 #' plot(x1, type = "power.norm", main = "Biased")
 #' 
 #' @export
+#' @importFrom fields image.plot
 plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
                            xlab = "Time", ylab = "Period",
                            tol = 1, plot.cb = FALSE, plot.phase = FALSE,

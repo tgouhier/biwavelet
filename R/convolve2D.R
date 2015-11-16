@@ -26,6 +26,8 @@
 #'   weights \code{y}.
 #'   
 #' @return M \code{x} n matrix
+#' 
+#' @export
 #' @importFrom stats fft mvfft
 convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
   type <- match.arg(type)
@@ -36,8 +38,7 @@ convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
     if (ny != n) {
       stop("length mismatch in convolution")
     }
-  }
-  else {
+  } else {
     n1 <- ny - 1
     x <- rbind(matrix(0, n1, ncol(x)), x)
     y <- c(y, rep.int(0, n - 1))

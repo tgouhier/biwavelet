@@ -25,6 +25,8 @@
 #' 
 #' @examples
 #' # Not run: wb <- wt.bases(mother, k, scale[a1], param)
+#' 
+#' @export
 wt.bases <- function(mother = "morlet", k, scale, param = -1) {
 
   mother <- match.arg(tolower(mother), MOTHERS)
