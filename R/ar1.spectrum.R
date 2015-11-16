@@ -25,6 +25,6 @@
 #' p <- ar1.spectrum(0.5, 1:25)
 #' 
 #' @export
-ar1.spectrum <- function (ar1, periods) {
-  (1 - ar1^2) / abs(1 - ar1*exp(-2*1i*pi*(1/periods)))^2
+ar1.spectrum <- function(ar1, periods) {
+  (1 - ar1 ^ 2) / abs(1 - ar1 * exp(-2 * 1i * pi * (1 / periods))) ^ 2
 }

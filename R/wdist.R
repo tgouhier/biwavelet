@@ -1,4 +1,5 @@
 #' Compute dissimilarity between two wavelet spectra
+#' 
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #' 
 #' @param wt1 \code{power}, \code{wave} or \code{rsq} matrix from
@@ -25,18 +26,22 @@
 #' @examples
 #' t1 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)))
 #' t2 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)+0.1*pi))
+#' 
 #' ## Compute wavelet spectra
 #' wt.t1 <- wt(t1)
 #' wt.t2 <- wt(t2)
+#' 
 #' ## Compute dissimilarity
 #' wdist(wt.t1$wave, wt.t2$wave)
 #' 
-wdist <- function (wt1, wt2, cutoff=0.99) {
-  wcov <- Re(wt1) %*% (t(Re(wt2)))
+#' @export
+wdist <- function(wt1, wt2, cutoff = 0.99) {
+  wcov <- Re(wt1) %*% t(Re(wt2))
   wsvd <- svd(wcov)
   
   ## Cutoff point: find first value greater than cutoff (select min of 3 freqs)
   nfreqs <- max(3, which(cumsum(sqrt(wsvd$d))/sum(sqrt(wsvd$d)) >= cutoff)[1])
+  
   u <- wsvd$u[1:nfreqs,]
   v <- wsvd$v[1:nfreqs,]
   
@@ -45,16 +50,16 @@ wdist <- function (wt1, wt2, cutoff=0.99) {
   
   ## Distances 1
   D1 <- rowSums(atan(abs(
-    (Lnk[,1:(NCOL(Lnk)-1)] - Ljk[,1:(NCOL(Ljk)-1)]) -
+    (Lnk[,1:(NCOL(Lnk) - 1)] - Ljk[,1:(NCOL(Ljk) - 1)]) -
       (Lnk[,2:NCOL(Lnk)] - Ljk[,2:NCOL(Ljk)]))))
   
   ## Distances 2
   D2 <- rowSums(atan(abs(
-    (u[,1:(NROW(u)-1)] - v[,1:(NROW(v)-1)]) -
+    (u[,1:(NROW(u) - 1)] - v[,1:(NROW(v) - 1)]) -
       (u[,2:NROW(u)] - v[,2:NROW(v)]))))
   
   ## Weights based on the amount of variance explained by each axis
   w <- sqrt(wsvd$d[1:nfreqs]) / sum(sqrt(wsvd$d[1:nfreqs]))
-  D <- weighted.mean(D1+D2, w)
-  return (D)
+  
+  weighted.mean(D1 + D2, w)
 }

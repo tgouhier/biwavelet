@@ -27,7 +27,7 @@
 #'   
 #' @return M \code{x} n matrix
 #' @importFrom stats fft mvfft
-convolve2D <- function (x, y, conj = TRUE, type = c("circular", "open")) {
+convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
   type <- match.arg(type)
   n <- nrow(x)
   ny <- length(y)
