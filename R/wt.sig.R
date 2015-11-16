@@ -33,21 +33,27 @@
 #' @examples
 #' ## Not run: wt.sig (d, dt, scale, sig.test, sig.level, lag1, dof=-1, 
 #' ##  mother=morlet, sigma2=1)
-wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL, 
-          mother="morlet", param=-1, sigma2=NULL) {
+#' 
+#' @export
+wt.sig <- function(d, dt, scale, sig.test = 0, sig.level = 0.95,
+                   dof = 2, lag1 = NULL, mother = "morlet",
+                   param = -1, sigma2 = NULL) {
   
   mother <- match.arg(tolower(mother), MOTHERS)
 
   x <- d[, 2]
+  
   ## Find the AR1 coefficient
   if (is.null(lag1)) {
     lag1 <- arima(x, order = c(1, 0, 0))$coef[1]
   }
   
-  n1 <- NROW(d)
+  # unused variables (found using lintr static code analysis)
+  # n1 <- NROW(d)
+  # s0 <- min(scale)
+
   J1 <- length(scale) - 1
-  s0 <- min(scale)
-  dj <- log(scale[2] / scale[1]) / log(2)  
+  dj <- log(scale[2] / scale[1]) / log(2)
 
   if (is.null(sigma2)) {
     sigma2 <- 1
@@ -59,7 +65,7 @@ wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
       param <- 6
     }
     k0 <- param
-    fourier.factor <- (4 * pi) / (k0 + sqrt(2 + k0^2))
+    fourier.factor <- 4*pi / (k0 + sqrt(2 + k0 ^ 2))
     empir <- c(2, -1, -1, -1)
     if (k0 == 6) {
       empir[2:4] <- c(0.776, 2.32, 0.60)
@@ -77,7 +83,7 @@ wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
     }
       
   }
-  else if (mother=='dog') {
+  else if (mother == 'dog') {
     if (param == -1) {
       param <- 2
     }
@@ -92,8 +98,7 @@ wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
     }
   }
   else {
-    stop(paste("mother wavelet parameter must be one of:",
-               paste(MOTHERS, collapse = ', ')))
+    stop("Programming error! We should never reach this code.")
   }
   
   period <- scale * fourier.factor
@@ -102,7 +107,7 @@ wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
   gamma.fac <- empir[3]  ## time-decorrelation factor
   dj0 <- empir[4]        ## scale-decorrelation factor
   freq <- dt / period    ## normalized frequency
-  fft.theor <- (1 - lag1^2) / (1 - 2 * lag1 * cos(freq * 2 * pi) + lag1^2)
+  fft.theor <- (1 - lag1 ^ 2) / (1 - 2*lag1 * cos(freq * 2*pi) + lag1 ^ 2)
   fft.theor <- sigma2 * fft.theor  ## include time-series variance
   signif <- fft.theor
   
@@ -121,11 +126,11 @@ wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
     }
     truncate <- which(dof < 1)
     dof[truncate] <- rep(1, length(truncate))
-    dof <- dofmin * sqrt(1 + (dof * dt / gamma.fac / scale)^2)
+    dof <- dofmin * sqrt(1 + (dof * dt / gamma.fac / scale) ^ 2)
     truncate <- which(dof < dofmin)
     dof[truncate] <- dofmin * rep(1, length(truncate)) ## minimum DOF is dofmin
     
-    for (a1 in 1:(J1+1)) {
+    for (a1 in 1:(J1 + 1)) {
       chisquare <- qchisq(sig.level, dof[a1]) / dof[a1]
       signif[a1] <- fft.theor[a1] * chisquare
     }
@@ -146,7 +151,7 @@ wt.sig <- function (d, dt, scale, sig.test=0, sig.level=0.95, dof=2, lag1=NULL,
     }
     Savg <- 1 /sum(1 / scale[avg])
     Smid <- exp((log(s1) + log(s2)) / 2) ## power-of-two midpoint
-    dof <- (dofmin * navg * Savg / Smid) * sqrt(1 + (navg * dj / dj0)^2)
+    dof <- (dofmin * navg * Savg / Smid) * sqrt(1 + (navg * dj/dj0) ^ 2)
     fft.theor <- Savg * sum(fft.theor[avg] / scale[avg])
     chisquare <- qchisq(sig.level, dof) / dof
     signif <- (dj * dt / Cdelta / Savg) * fft.theor * chisquare

@@ -8,9 +8,9 @@ wclust(w.arr)
 }
 \arguments{
 \item{w.arr}{\code{N x p x t} array of wavelet spectra where \code{N} is the
-number of wavelet spectra to be compared, \code{p} is the number of periods
-in each wavelet spectrum and \code{t} is the number of time steps in each
-wavelet spectrum.}
+  number of wavelet spectra to be compared, \code{p} is the number of periods
+  in each wavelet spectrum and \code{t} is the number of time steps in each
+  wavelet spectrum.}
 }
 \value{
 Returns a list containing:
