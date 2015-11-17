@@ -31,7 +31,7 @@ wt.bases <- function(mother = "morlet", ...) {
   switch(mother,
     morlet = wt.bases.morlet(...),
     paul = wt.bases.paul(...),
-    dog = wt.bases.dog(...),
+    dog = rcpp_wt_bases_dog(...), # original wt.bases.dog(...),
     stop(paste("mother wavelet parameter must be one of:",
                paste(MOTHERS, collapse = ", ")))
   )
