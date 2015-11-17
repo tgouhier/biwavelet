@@ -5,8 +5,6 @@ Version: 0.17.11.3
 Date: 2015-10-27
 Author: Tarik C. Gouhier, Aslak Grinsted, Viliam Simko
 Maintainer: Tarik C. Gouhier <tarik.gouhier@gmail.com>
-Imports:
-    fields
 Description: This is a port of the WTC MATLAB package written by Aslak Grinsted
     and the wavelet program written by Christopher Torrence and Gibert P.
     Compo. This package can be used to perform univariate and bivariate
@@ -15,4 +13,5 @@ License: GPL (>=2)
 URL: http://github.com/tgouhier/biwavelet
 LazyData: yes
 LinkingTo: Rcpp
+Imports: fields, Rcpp (>= 0.12.2)
 Suggests: testthat

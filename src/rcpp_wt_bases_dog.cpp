@@ -51,8 +51,8 @@ biwavelet:::wt.bases.dog(1:10, 2, 1)$daughter
 biwavelet:::rcpp_wt_bases_dog(1:10, 2, 1)$daughter
 
 microbenchmark(
- biwavelet:::wt.bases.dog(1:10, 2, 3),
- biwavelet:::rcpp_wt_bases_dog(1:10, 2, 3),
- times = 100000
+  biwavelet:::wt.bases.dog(1:10, 2, 3),
+  biwavelet:::rcpp_wt_bases_dog(1:10, 2, 3),
+  times = 100000
 )
 */

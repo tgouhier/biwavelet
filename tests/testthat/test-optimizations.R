@@ -1,7 +1,7 @@
 context("Performance optimizations")
 
 test_that("Optimized version of wt.bases.dog is equal to original", {
-  for (param in 0:4) {
+  for (param in 1:4) {
     expect_equal(
       biwavelet:::wt.bases.dog(1:10, 2, param),
       biwavelet:::rcpp_wt_bases_dog(1:10, 2, param)
