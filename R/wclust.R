@@ -4,6 +4,7 @@
 #'   number of wavelet spectra to be compared, \code{p} is the number of periods
 #'   in each wavelet spectrum and \code{t} is the number of time steps in each
 #'   wavelet spectrum.
+#' 
 #' @return Returns a list containing:
 #'   \item{diss.mat}{square dissimilarity matrix}
 #'   \item{dist.mat}{(lower triangular) distance matrix}
@@ -19,6 +20,7 @@
 #' wavelet analysis. \emph{Marine Ecology Progress Series} 359:11-23. 
 #' 
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
+#' 
 #' @examples
 #' t1 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)))
 #' t2 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)+0.1*pi))
@@ -41,20 +43,24 @@
 #'      ylab = "Dissimilarity", hang = -1)
 #'
 #' @export
-wclust <- function (w.arr) {
-  s=dim(w.arr)
-  nW=s[1]
-  dist.matrix=matrix(NA, nrow=nW, ncol=nW)
-  k=1
-  nWaves <- 1:nW
-  prog.bar=txtProgressBar(min = 0, length(nWaves)^2, style = 3)
-  for (n in nWaves) {
-    for (j in nWaves) {
-      dist.matrix[n,j]=wdist(w.arr[n, ,], w.arr[j, ,])
-      k=k+1
+wclust <- function(w.arr) {
+  num_waves <- nrow(w.arr)
+  dist.matrix <- matrix(NA, nrow = num_waves, ncol = num_waves)
+  k <- 1
+  waves_vec <- 1:num_waves
+
+  prog.bar <- txtProgressBar(min = 0, num_waves ^ 2, style = 3)
+
+  for (n in waves_vec) {
+    for (j in waves_vec) {
+      dist.matrix[n,j] <- wdist(w.arr[n, ,], w.arr[j, ,])
+      k <- k + 1
       setTxtProgressBar(prog.bar, k)
     }
   }
+
   close(prog.bar)
-  return (list(diss.mat=dist.matrix, dist.mat=as.dist(dist.matrix)))
+
+  list(diss.mat = dist.matrix,
+       dist.mat = as.dist(dist.matrix))
 }

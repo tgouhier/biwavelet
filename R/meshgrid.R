@@ -14,9 +14,11 @@
 #' xv <- runif(10)
 #' yv <- runif(5)
 #' g <- meshgrid(xv, yv)
-meshgrid <- function (xv, yv) {
+#' 
+#' @export
+meshgrid <- function(xv, yv) {
   list(
-    x = outer(yv * 0, xv, FUN="+"),
-    y = outer(yv, xv * 0, FUN="+")
+    x = outer(yv * 0, xv, FUN = "+"),
+    y = outer(yv, xv * 0, FUN = "+")
   )
 }

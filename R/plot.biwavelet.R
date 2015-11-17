@@ -88,242 +88,242 @@
 #' @examples
 #' t1 <- cbind(1:100, rnorm(100))
 #' t2 <- cbind(1:100, rnorm(100))
-#' ## Continuous wavelet transform
+#' 
+#' # Continuous wavelet transform
 #' wt.t1 <- wt(t1)
-#' ## Plot power
-#' ## Make room to the right for the color bar
+#' 
+#' # Plot power
+#' # Make room to the right for the color bar
 #' par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 #' plot(wt.t1, plot.cb = TRUE, plot.phase = FALSE)
 #' 
-#' ## Cross-wavelet transform
+#' # Cross-wavelet transform
 #' xwt.t1t2 <- xwt(t1, t2)
-#' ## Plot cross-wavelet
+#' 
+#' # Plot cross-wavelet
 #' par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 #' plot(xwt.t1t2, plot.cb = TRUE)
 #'
-#' ## Example of bias-correction
+#' # Example of bias-correction
 #' t1 <- sin(seq(from = 0, to = 2*5*pi, length = 1000))
 #' t2 <- sin(seq(from = 0, to = 2*15*pi, length = 1000))
 #' t3 <- sin(seq(from = 0, to = 2*40*pi, length = 1000))
-#' ## This aggregate time series should have the same power at three distinct periods
+#' 
+#' # This aggregate time series should have the same power
+#' # at three distinct periods
 #' s <- t1 + t2 + t3
-#' ## Compare plots to see bias-effect on CWT: biased power spectrum artificially
-#' ## reduces the power of higher-frequency fluctuations.
+#' 
+#' # Compare plots to see bias-effect on CWT:
+#' # biased power spectrum artificially
+#' # reduces the power of higher-frequency fluctuations.
 #' wt1 <- wt(cbind(1:1000, s))
 #' par(mfrow = c(1,2))
 #' plot(wt1, type = "power.corr.norm", main = "Bias-corrected")
 #' plot(wt1, type = "power.norm", main = "Biased")
 #' 
-#' ## Compare plots to see bias-effect on XWT: biased power spectrum artificially
-#' ## reduces the power of higher-frequency fluctuations.
+#' # Compare plots to see bias-effect on XWT:
+#' # biased power spectrum artificially
+#' # reduces the power of higher-frequency fluctuations.
 #' x1 <- xwt(cbind(1:1000, s), cbind(1:1000, s))
 #' par(mfrow = c(1,2))
 #' plot(x1, type = "power.corr.norm", main = "Bias-corrected")
 #' plot(x1, type = "power.norm", main = "Biased")
 #' 
 #' @export
-plot.biwavelet <- function (x, ncol=64, fill.cols=NULL, xlab="Time", ylab="Period", 
-                            tol=1, plot.cb=FALSE, plot.phase=FALSE,
-                            type=c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase"), 
-                            plot.coi=TRUE, lwd.coi=1, col.coi="white", lty.coi=1, alpha.coi=0.5,
-                            plot.sig=TRUE, lwd.sig=4, col.sig="black", lty.sig=1,
-                            bw=FALSE,
-                            legend.loc=NULL, 
-                            legend.horiz=FALSE,
-                            arrow.len=min(par()$pin[2]/30,par()$pin[1]/40), 
-                            arrow.lwd=arrow.len*0.3, 
-                            arrow.cutoff=0.9, 
-                            arrow.col="black", 
-                            xlim = NULL, ylim = NULL, zlim = NULL,
-                            xaxt = "s", yaxt = "s", form='%Y', ...) {
-  
+#' @importFrom fields image.plot
+plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
+                           xlab = "Time", ylab = "Period",
+                           tol = 1, plot.cb = FALSE, plot.phase = FALSE,
+                           type = "power.corr.norm",
+                           plot.coi = TRUE, lwd.coi = 1, col.coi = "white",
+                           lty.coi = 1, alpha.coi = 0.5, plot.sig = TRUE,
+                           lwd.sig = 4, col.sig = "black", lty.sig = 1,
+                           bw = FALSE,
+                           legend.loc = NULL,
+                           legend.horiz = FALSE,
+                           arrow.len = min(par()$pin[2] / 30,
+                                           par()$pin[1] / 40),
+                           arrow.lwd = arrow.len * 0.3,
+                           arrow.cutoff = 0.9,
+                           arrow.col = "black",
+                           xlim = NULL, ylim = NULL, zlim = NULL,
+                           xaxt = "s", yaxt = "s", form = "%Y", ...) {
+
   if (is.null(fill.cols)) {
     if (bw) {
       fill.cols <- c("black", "white")
-    }
-    else {
-      fill.cols <- c("#00007F", "blue", "#007FFF", 
-                     "cyan","#7FFF7F", "yellow", 
+    } else {
+      fill.cols <- c("#00007F", "blue", "#007FFF",
+                     "cyan","#7FFF7F", "yellow",
                      "#FF7F00", "red", "#7F0000")
     }
   }
-  
+
   col.pal <- colorRampPalette(fill.cols)
-  fill.colors = col.pal(ncol)
-  
-  yrange <- ylim
-  
-  ytckmin <- floor(log2(min(x$period, yrange)))
-  ytckmax <- floor(log2(max(x$period, yrange)))
-  
-  y.ticks <- 2^( ytckmin:ytckmax )
-  
-  types <- c("power.corr.norm", "power.corr", "power.norm", "power", "wavelet", "phase")
+  fill.colors <- col.pal(ncol)
+
+  types <- c("power.corr.norm", "power.corr", "power.norm",
+             "power", "wavelet", "phase")
+
   type <- match.arg(tolower(type), types)
-  
+
   if (type == "power.corr" | type == "power.corr.norm") {
     if (x$type == "wtc" | x$type == "xwt") {
       x$power <- x$power.corr
       x$wave <- x$wave.corr
-    }
-    else {
+    } else {
       x$power <- x$power.corr
     }
   }
-  
+
   if (type == "power.norm" | type == "power.corr.norm") {
     if (x$type == "xwt") {
-      zvals <- log2(x$power) / (x$d1.sigma*x$d2.sigma)
-      if (is.null(zlim)){
+      zvals <- log2(x$power) / (x$d1.sigma * x$d2.sigma)
+
+      if (is.null(zlim)) {
         zlim <- range(c(-1, 1) * max(zvals))
       }
-      zvals [zvals < zlim[1]] <- zlim[1]
-      # locs <- pretty(range(zvals), n=5)
-      locs <- pretty(range(zlim), n=5)
-      leg.lab <- 2^locs
-    }
-    else if (x$type == "wtc" | x$type == "pwtc") {
+
+      zvals[zvals < zlim[1]] <- zlim[1]
+      locs <- pretty(range(zlim), n = 5)
+      leg.lab <- 2 ^ locs
+
+    } else if (x$type == "wtc" | x$type == "pwtc") {
       zvals <- x$rsq
       zvals[!is.finite(zvals)] <- NA
       if (is.null(zlim)) {
-        zlim <- range(zvals, na.rm=TRUE)
+        zlim <- range(zvals, na.rm = TRUE)
       }
-      zvals [zvals < zlim[1]] <- zlim[1]
-      # locs <- pretty(range(zvals, na.rm=TRUE), n=5)
-      locs <- pretty(range(zlim), n=5)
+      zvals[zvals < zlim[1]] <- zlim[1]
+      locs <- pretty(range(zlim), n = 5)
       leg.lab <- locs
-    }      
-    else {
+    } else {
       zvals <- log2(abs(x$power / x$sigma2))
       if (is.null(zlim)) {
         zlim <- range(c(-1, 1) * max(zvals))
       }
-      zvals [zvals < zlim[1]] <- zlim[1]  
-      # locs <- pretty(range(zvals), n=5)
-      locs <- pretty(range(zlim), n=5)
-      leg.lab <- 2^locs
+      zvals[zvals < zlim[1]] <- zlim[1]
+      locs <- pretty(range(zlim), n = 5)
+      leg.lab <- 2 ^ locs
     }
-  }
-  else if (type=="power"| type=="power.corr") {
+  } else if (type == "power" | type == "power.corr") {
     zvals <- log2(x$power)
     if (is.null(zlim)) {
-      zlim <- range(c(-1, 1)*max(zvals))
+      zlim <- range( c(-1, 1) * max(zvals) )
     }
-    zvals [zvals < zlim[1]] <- zlim[1]
-    # locs <- pretty(range(zvals), n=5)
-    locs <- pretty(range(zlim), n=5)
-    leg.lab <- 2^locs
-  }
-  else if (type == "wavelet") {
+    zvals[zvals < zlim[1]] <- zlim[1]
+    locs <- pretty(range(zlim), n = 5)
+    leg.lab <- 2 ^ locs
+  } else if (type == "wavelet") {
     zvals <- (Re(x$wave))
     if (is.null(zlim)) {
       zlim <- range(zvals)
     }
-    # locs=pretty(range(zvals), n=5)
-    locs <- pretty(range(zlim), n=5)
+    locs <- pretty(range(zlim), n = 5)
     leg.lab <- locs
-  }
-  else if (type == "phase") {
+  } else if (type == "phase") {
     zvals <- x$phase
     if (is.null(zlim)) {
       zlim <- c(-pi, pi)
     }
-    # locs=pretty(range(zvals), n=5)
-    locs <- pretty(range(zlim), n=5)
-    leg.lab <- locs        
+    locs <- pretty(range(zlim), n = 5)
+    leg.lab <- locs
+  } else {
+    stop("Programming error! We should never reach this code.")
   }
-  else {
-    stop("type must be power, power.norm, power.corr, power.corr.norm, wavelet or phase")
-  }
-  
+
   if (is.null(xlim)) {
     xlim <- range(x$t)
   }
-  
+
   yvals <- log2(x$period)
-  
+
   if (is.null(ylim)) {
     ylim <- range(yvals)
   } else {
     ylim <- log2(ylim)
   }
-  
+
   image(x$t,
-        yvals, 
-        t(zvals), 
-        zlim=zlim,
-        xlim=xlim,
-        ylim=rev(ylim),
-        xlab=xlab, 
-        ylab=ylab,
-        yaxt="n",
-        xaxt="n",
-        col=fill.colors, ...)
+        yvals,
+        t(zvals),
+        zlim = zlim,
+        xlim = xlim,
+        ylim = rev(ylim),
+        xlab = xlab,
+        ylab = ylab,
+        yaxt = "n",
+        xaxt = "n",
+        col = fill.colors, ...)
+
   box()
   if (class(x$xaxis)[1] == "Date" | class(x$xaxis)[1] == "POSIXct") {
     if (xaxt != "n") {
-      xlocs <- pretty(x$t)+1
-      axis(side=1, at=xlocs, labels=format(x$xaxis[xlocs], form))
+      xlocs <- pretty(x$t) + 1
+      axis(side = 1, at = xlocs, labels = format(x$xaxis[xlocs], form))
     }
-  }
-  else {
+  } else {
     if (xaxt != "n") {
       xlocs <- axTicks(1)
-      axis(side=1, at=xlocs)        
+      axis(side = 1, at = xlocs)
     }
   }
+
   if (yaxt != "n") {
     axis.locs <- axTicks(2)
-    yticklab <- format(2^axis.locs, dig=1)
-    axis(2, at=axis.locs, labels=yticklab)
+    yticklab <- format(2 ^ axis.locs, dig = 1)
+    axis(2, at = axis.locs, labels = yticklab)
   }
-  
+
   ## Add color bar
   if (plot.cb) {
-    image.plot(x$t, 
-               yvals, 
-               t(zvals), 
-               zlim=zlim,
-               ylim=rev(range(yvals)),
-               xlab=xlab, 
-               ylab=ylab,
-               col=fill.colors,
-               smallplot=legend.loc,
-               horizontal=legend.horiz,
-               legend.only=TRUE, 
-               axis.args=
-                 list(at=locs, labels=format(leg.lab, dig=2)), 
-               xpd=NA)
-    #box()
+    image.plot(x$t,
+               yvals,
+               t(zvals),
+               zlim = zlim,
+               ylim = rev(range(yvals)),
+               xlab = xlab,
+               ylab = ylab,
+               col = fill.colors,
+               smallplot = legend.loc,
+               horizontal = legend.horiz,
+               legend.only = TRUE,
+               axis.args =
+                 list(at = locs, labels = format(leg.lab, dig = 2)),
+               xpd = NA)
   }
+
   # COI
   if (plot.coi) {
-    # lines(x$t, log2(x$coi), lty=lty.coi, lwd=lwd.coi, col=col.coi)
-    polygon (x = c(x$t, rev(x$t)), lty = lty.coi, lwd = lwd.coi,
-             y = c(log2(x$coi), rep(max(log2(x$coi), na.rm = TRUE), length(x$coi))), 
-             col = adjustcolor(col.coi, alpha.f = alpha.coi), border = col.coi)
+    polygon(x = c(x$t, rev(x$t)), lty = lty.coi, lwd = lwd.coi,
+            y = c(log2(x$coi),
+                  rep(max(log2(x$coi), na.rm = TRUE), length(x$coi))),
+            col = adjustcolor(col.coi, alpha.f = alpha.coi), border = col.coi)
   }
+
   # sig.level contour (default is 95%)
   if (plot.sig & length(x$signif) > 1) {
     if (x$type %in% c("wt", "xwt")) {
-      contour(x$t, yvals, t(x$signif), level=tol, col=col.sig, lwd=lwd.sig, 
-              add=TRUE, drawlabels=FALSE)
-    }
-    else {
+      contour(x$t, yvals, t(x$signif), level = tol, col = col.sig,
+              lwd = lwd.sig, add = TRUE, drawlabels = FALSE)
+    } else {
       tmp <- x$rsq / x$signif
-      contour(x$t, yvals, t(tmp), level=tol, col=col.sig, lwd=lwd.sig, 
-              add=TRUE, drawlabels=FALSE)
+      contour(x$t, yvals, t(tmp), level = tol, col = col.sig, lwd = lwd.sig,
+              add = TRUE, drawlabels = FALSE)
     }
   }
+
   # Plot phases
   if (plot.phase) {
     a <- x$phase
+
     # Remove phases where power is weak
-    locs <- which (zvals < quantile(zvals, arrow.cutoff))
+    locs <- which(zvals < quantile(zvals, arrow.cutoff))
     a[locs] <- NA
-    
-    phase.plot(x$t, log2(x$period), a, 
-               arrow.len=arrow.len, arrow.lwd=arrow.lwd, arrow.col=arrow.col)
+
+    phase.plot(x$t, log2(x$period), a,
+               arrow.len = arrow.len, arrow.lwd = arrow.lwd,
+               arrow.col = arrow.col)
   }
   box()
 }
