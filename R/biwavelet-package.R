@@ -1,6 +1,7 @@
 #' @docType package
 #' @name biwavelet-package
 #' @aliases biwavelet
+#' @useDynLib biwavelet
 #' 
 #' @title
 #' Conduct Univariate and Bivariate Wavelet Analyses
