@@ -1,4 +1,4 @@
-context("wt.bases")
+context("Compute wavelet (wt.bases)")
 
 test_that("List of supported mother wavelets as global promise", {
 

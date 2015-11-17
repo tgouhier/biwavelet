@@ -148,15 +148,16 @@ xwt <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   P2 <- ar1.spectrum(d2.ar1, wt2$period / dt)
 
   # Significance
-  if (mother == "morlet") {
-    V <- 2
-    Zv <- 3.9999
-    signif <- d1.sigma * d2.sigma * sqrt(P1 * P2) * Zv / V
-    signif <- matrix(signif, nrow = length(signif), ncol = 1) %*% rep(1, n)
-    signif <- abs(W.d1d2) / signif
-  } else {
-    signif <- NA
-  }
+  signif <- switch(mother,
+    morlet = {
+      V <- 2
+      Zv <- 3.9999
+      signif <- d1.sigma * d2.sigma * sqrt(P1 * P2) * Zv / V
+      signif <- matrix(signif, nrow = length(signif), ncol = 1) %*% rep(1, n)
+      abs(W.d1d2) / signif
+    },
+    NA # for other mother wavelets
+  )
 
   results <- list(coi = coi,
                   wave = W.d1d2,

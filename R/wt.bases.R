@@ -33,7 +33,7 @@ wt.bases <- function(mother = "morlet", k, scale, param = -1) {
   n <- length(k)
 
   # using switch instead of if..elseif..else should be faster
-  # see alse http://stackoverflow.com/a/7826352/855435
+  # see also http://stackoverflow.com/a/7826352/855435
   switch(mother,
     morlet = {
       if (param == -1) {

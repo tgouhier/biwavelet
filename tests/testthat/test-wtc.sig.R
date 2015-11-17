@@ -1,3 +1,5 @@
+context("Significance of wavelet coherence (wtc.sig)")
+
 # Setup variables =====
 
 size <- 64
@@ -13,7 +15,6 @@ n <- checked$y$n.obs
 s0 <- 2 * dt
 
 # Tests ==========
-context("wtc.sig")
 
 test_that("Quiet mode without progress bar should not throw errors", {
   out <- wtc.sig(quiet = TRUE, nrands = 2, lag1 = c(d1.ar1, d2.ar1),
