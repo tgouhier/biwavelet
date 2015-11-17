@@ -4,17 +4,15 @@
 \alias{wt.bases}
 \title{Compute wavelet}
 \usage{
-wt.bases(mother = "morlet", k, scale, param = -1)
+wt.bases(mother = "morlet", ...)
 }
 \arguments{
 \item{mother}{type of mother wavelet function to use. Can be set to
 \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.}
 
-\item{k}{vector of frequencies at which to calculate the wavelet.}
-
-\item{scale}{the wavelet scale.}
-
-\item{param}{nondimensional parameter specific to the wavelet function.}
+\item{...}{see parameters \code{k}, \code{scale} and \code{param} in
+  functions: \code{\link{wt.bases.morlet}}, \code{\link{wt.bases.paul}} and
+            \code{\link{wt.bases.dog}}}
 }
 \value{
 Returns a list containing:
