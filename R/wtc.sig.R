@@ -52,8 +52,6 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
                     dj = 1 / 12, s0, J1, max.scale = NULL,
                     mother = "morlet", sig.level = 0.95, quiet = FALSE) {
 
-  mother <- match.arg(tolower(mother), MOTHERS)
-
   d1  <- cbind(1:ntimesteps,
                arima.sim(model = list(ar = lag1[1], ma = 0), n = ntimesteps))
 
