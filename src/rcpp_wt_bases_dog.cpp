@@ -22,7 +22,7 @@ const double SQRT_ONE_HALF = sqrt(.5); // NOTE: sqrt(1/2) = 1/sqrt(2)
 //' \item{coi}{cone of influence}
 //' \item{dof}{degrees of freedom for each point in wavelet power}
 //' 
-//' @note This c++ implementation is approx. 54% faster than the original R code
+//' @note This c++ implementation is approx. 36% faster than the original R code
 // [[Rcpp::export]]
 List rcpp_wt_bases_dog(const NumericVector k,
                        const int scale,
@@ -50,12 +50,14 @@ List rcpp_wt_bases_dog(const NumericVector k,
 library(biwavelet)
 library(microbenchmark)
 
-biwavelet:::wt.bases.dog(1:10, 2, 1)$daughter
-rcpp_wt_bases_dog(1:10, 2, 1)$daughter
+k <- 1:10
+scale <- 2
+param <- -1
 
 microbenchmark(
-  biwavelet:::wt.bases.dog(1:10, 2, 3),
-  rcpp_wt_bases_dog(1:10, 2, 3),
+  wt.bases.dog(k, scale, param),
+  rcpp_wt_bases_dog(k, scale, param),
   times = 100000
 )
+
 */

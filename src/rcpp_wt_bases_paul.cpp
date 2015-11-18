@@ -1,6 +1,9 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+const double PI4 = 4 * PI;
+const double SQRT_ONE_HALF = sqrt(.5); // NOTE: sqrt(1/2) = 1/sqrt(2)
+
 //' Optimized "wt.bases.paul" function.
 //' 
 //' This si a C++ version optimized for speed.
@@ -18,7 +21,7 @@ using namespace Rcpp;
 //' \item{coi}{cone of influence}
 //' \item{dof}{degrees of freedom for each point in wavelet power}
 //' 
-//' @note This c++ implementation is approx. 73% faster than the original R code
+//' @note This c++ implementation is approx. 59% faster than the original R code
 // [[Rcpp::export]]
 List rcpp_wt_bases_paul(const NumericVector k,
                        const int scale,
@@ -46,13 +49,13 @@ List rcpp_wt_bases_paul(const NumericVector k,
     sqrt(scale * k[1]) * sqrt(klen) * pow(2, m) / sqrt(m * prod);
 
   // R: fourier.factor <- 4 * pi / (2 * m + 1)
-  const double ffact = 4 * PI / (2 * m + 1);
+  const double ffact = PI4 / (2 * m + 1);
   
   return List::create(
     // R: daughter = norm * ((scale * k) ^ m) * exp(expnt) * (k > 0)
     _["daughter"] = norm * pow(scale * k, m) * exp_expnt_kgtzero,
     _["fourier.factor"] = ffact,
-    _["coi"] = ffact * sqrt(.5), // because sqrt(.5) = 1 / sqrt(2)
+    _["coi"] = ffact * SQRT_ONE_HALF,
     _["dof"] = 2
   );
 }
@@ -64,10 +67,10 @@ library(microbenchmark)
 
 k <- 1:10
 scale <- 2
-param <- -1
+param <- 4
 
 microbenchmark(
-  biwavelet:::wt.bases.paul(k, scale, param),
+  wt.bases.paul(k, scale, param),
   rcpp_wt_bases_paul(k, scale, param),
   times = 100000
 )
