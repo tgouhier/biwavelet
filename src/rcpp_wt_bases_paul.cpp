@@ -69,16 +69,22 @@ List rcpp_wt_bases_paul(const NumericVector k,
 ;
 
 /*** R
-library(biwavelet)
 library(microbenchmark)
+library(ggplot2)
+library(dplyr)
 
 k <- 1:10
-scale <- 2
-param <- 4
+s <- 2
+p <- 4
 
-microbenchmark(
-  wt.bases.paul(k, scale, param),
-  rcpp_wt_bases_paul(k, scale, param),
-  times = 100000
+out <- microbenchmark(
+  wt.bases.paul(k, s, p),
+  rcpp_wt_bases_paul(k, s, p),
+  times = 2000L
 )
+options(microbenchmark.unit = "t")
+print(out)
+options(microbenchmark.unit = "relative")
+print(out)
+autoplot(out)
 */

@@ -55,17 +55,22 @@ List rcpp_wt_bases_dog(const NumericVector k,
 ;
 
 /*** R
-library(biwavelet)
 library(microbenchmark)
+library(ggplot2)
+library(dplyr)
 
 k <- 1:10
-scale <- 2
-param <- -1
+s <- 2
+p <- 4
 
-microbenchmark(
-  wt.bases.dog(k, scale, param),
-  rcpp_wt_bases_dog(k, scale, param),
-  times = 100000
+out <- microbenchmark(
+  wt.bases.dog(k, s, p),
+  rcpp_wt_bases_dog(k, s, p),
+  times = 2000L
 )
-
+options(microbenchmark.unit = "t")
+print(out)
+options(microbenchmark.unit = "relative")
+print(out)
+autoplot(out)
 */

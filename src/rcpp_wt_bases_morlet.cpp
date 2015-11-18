@@ -63,19 +63,22 @@ List rcpp_wt_bases_morlet(const NumericVector k,
 ;
 
 /*** R
-library(biwavelet)
 library(microbenchmark)
+library(ggplot2)
+library(dplyr)
 
 k <- 1:10
-scale <- 2
-param <- 4
+s <- 2
+p <- 4
 
-# wt.bases.morlet(k, scale, param)$daughter
-# rcpp_wt_bases_morlet(k, scale, param)$daughter
-
-microbenchmark(
-  wt.bases.morlet(k, scale, param),
-  rcpp_wt_bases_morlet(k, scale, param),
-  times = 100000
+out <- microbenchmark(
+  wt.bases.morlet(k, s, p),
+  rcpp_wt_bases_morlet(k, s, p),
+  times = 2000L
 )
+options(microbenchmark.unit = "t")
+print(out)
+options(microbenchmark.unit = "relative")
+print(out)
+autoplot(out)
 */

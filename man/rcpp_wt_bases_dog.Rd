@@ -26,7 +26,7 @@ Computes the wavelet as a function of Fourier frequency
 for "dog" mother wavelet.
 }
 \note{
-This c++ implementation is approx. 36% faster than the original R code
+This c++ implementation is approx. 50% faster than the original R code
 }
 \author{
 Viliam Simko
