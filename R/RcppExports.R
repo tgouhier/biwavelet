@@ -18,9 +18,31 @@
 #' \item{coi}{cone of influence}
 #' \item{dof}{degrees of freedom for each point in wavelet power}
 #' 
-#' @note This c++ implementation is approx. 54% faster than the original R code
+#' @note This c++ implementation is approx. 36% faster than the original R code
 rcpp_wt_bases_dog <- function(k, scale, param = -1L) {
     .Call('biwavelet_rcpp_wt_bases_dog', PACKAGE = 'biwavelet', k, scale, param)
+}
+
+#' Optimized "wt.bases.morlet" function.
+#' 
+#' This si a C++ version optimized for speed.
+#' Computes the wavelet as a function of Fourier frequency
+#' for "morlet" mother wavelet.
+#' 
+#' @author Viliam Simko
+#'
+#' @param k vector of frequencies at which to calculate the wavelet.
+#' @param scale the wavelet scale.
+#' @param param nondimensional parameter specific to the wavelet function.
+#' @return Returns a list containing:
+#' \item{daughter}{wavelet function}
+#' \item{fourier.factor}{ratio of fourier period to scale}
+#' \item{coi}{cone of influence}
+#' \item{dof}{degrees of freedom for each point in wavelet power}
+#' 
+#' @note This c++ implementation is approx. 60% faster than the original R code
+rcpp_wt_bases_morlet <- function(k, scale, param = -1L) {
+    .Call('biwavelet_rcpp_wt_bases_morlet', PACKAGE = 'biwavelet', k, scale, param)
 }
 
 #' Optimized "wt.bases.paul" function.
@@ -40,7 +62,7 @@ rcpp_wt_bases_dog <- function(k, scale, param = -1L) {
 #' \item{coi}{cone of influence}
 #' \item{dof}{degrees of freedom for each point in wavelet power}
 #' 
-#' @note This c++ implementation is approx. 73% faster than the original R code
+#' @note This c++ implementation is approx. 59% faster than the original R code
 rcpp_wt_bases_paul <- function(k, scale, param = -1L) {
     .Call('biwavelet_rcpp_wt_bases_paul', PACKAGE = 'biwavelet', k, scale, param)
 }
