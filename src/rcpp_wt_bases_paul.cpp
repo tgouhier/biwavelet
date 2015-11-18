@@ -50,10 +50,17 @@ List rcpp_wt_bases_paul(const NumericVector k,
 
   // R: fourier.factor <- 4 * pi / (2 * m + 1)
   const double ffact = PI4 / (2 * m + 1);
+
+  NumericVector daughter;
+  if(klen < 2) {
+    daughter = NA_REAL; // becomes NA_real_ in R
+  } else {
+    // R: daughter = norm * ((scale * k) ^ m) * exp(expnt) * (k > 0)
+    daughter = norm * pow(scale * k, m) * exp_expnt_kgtzero;
+  }
   
   return List::create(
-    // R: daughter = norm * ((scale * k) ^ m) * exp(expnt) * (k > 0)
-    _["daughter"] = norm * pow(scale * k, m) * exp_expnt_kgtzero,
+    _["daughter"] = daughter,
     _["fourier.factor"] = ffact,
     _["coi"] = ffact * SQRT_ONE_HALF,
     _["dof"] = 2

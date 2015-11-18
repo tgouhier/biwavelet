@@ -35,12 +35,12 @@ List rcpp_wt_bases_morlet(const NumericVector k,
   // R: exp_expnt_kgtzero <- exp(expnt) * (k > 0)
   NumericVector exp_expnt_kgtzero(klen);
   for(int i=0; i<klen; ++i) {
-    exp_expnt_kgtzero[i] = (k[i] > 0) ? exp(-pow(scale*k[i]-k0, 2)/2) : 0;
+    exp_expnt_kgtzero[i] = (k[i] > 0) ? exp(-pow(scale*k[i]-k0, 2) * .5) : 0;
   }
   
   NumericVector daughter;
   if(klen < 2) {
-    daughter = NA_REAL;
+    daughter = NA_REAL; // becomes NA_real_ in R
   } else {
     // R: norm <- sqrt(scale * k[2]) * sqrt(length(k)) * (pi ^ (-1/4))
     // Note: k[2] in R is k[1] in c++ because vectors are indexed from 0
@@ -51,7 +51,7 @@ List rcpp_wt_bases_morlet(const NumericVector k,
   }
   
   // R: fourier.factor <- 4 * pi / (k0 + sqrt(2 + k0 ^ 2))
-  const double ffact = PI4 / (k0 + sqrt(2 + pow(k0,2)));
+  const double ffact = PI4 / (k0 + sqrt(2 + k0*k0));
 
   return List::create(
     _["daughter"] = daughter,
@@ -78,5 +78,4 @@ microbenchmark(
   rcpp_wt_bases_morlet(k, scale, param),
   times = 100000
 )
-
 */
