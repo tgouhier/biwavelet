@@ -30,12 +30,14 @@
 wt.bases <- function(mother = "morlet", ...) {
   switch(mother,
     morlet = wt.bases.morlet(...),
-    paul = wt.bases.paul(...),
+    paul = rcpp_wt_bases_paul(...), # original wt.bases.paul(...),
     dog = rcpp_wt_bases_dog(...), # original wt.bases.dog(...),
     stop(paste("mother wavelet parameter must be one of:",
                paste(MOTHERS, collapse = ", ")))
   )
 }
+
+# Helper functions ########################
 
 #' Helper method (not exported)
 #' @param k vector of frequencies at which to calculate the wavelet.

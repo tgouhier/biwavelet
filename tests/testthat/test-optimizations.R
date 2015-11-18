@@ -9,6 +9,15 @@ test_that("Optimized version of wt.bases.dog is equal to original", {
   }
 })
 
+test_that("Optimized version of wt.bases.paul is equal to original", {
+  for (param in 1:4) {
+    expect_equal(
+      biwavelet:::wt.bases.paul(1:10, 2, param),
+      biwavelet:::rcpp_wt_bases_paul(1:10, 2, param)
+    )
+  }
+})
+
 test_that("replacing seq(1,N,1) with 1:N", {
 
   m <- J1 <- npad <- n.obs <- num_waves <- 17
