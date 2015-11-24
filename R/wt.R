@@ -56,8 +56,10 @@
 #' 
 #' @examples
 #' t1 <- cbind(1:100, rnorm(100))
+#' 
 #' ## Continuous wavelet transform
 #' wt.t1 <- wt(t1)
+#' 
 #' ## Plot power
 #' ## Make room to the right for the color bar
 #' par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
@@ -68,8 +70,6 @@ wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
                J1 = NULL, max.scale = NULL, mother = "morlet",
                param = -1, lag1 = NULL, sig.level = 0.95,
                sig.test = 0, do.sig = TRUE) {
-
-  mother <- match.arg(tolower(mother), MOTHERS)
 
   # Check data format
   checked <- check.datum(d)
@@ -82,7 +82,7 @@ wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
 
   if (is.null(J1)) {
     if (is.null(max.scale)) {
-      max.scale <- (n.obs * 0.17) * 2 * dt ## automaxscale
+      max.scale <- n.obs * 0.34 * dt # automaxscale
     }
     J1 <- round(log2(max.scale / s0) / dj)
   }
@@ -95,10 +95,10 @@ wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
 
   n <- NROW(x)
   k <- 1:floor(n / 2)
-  k <- k * (2 * pi / (n * dt))
+  k <- k * 2 * pi / (n * dt)
   k <- c(0, k, -k[ floor( (n - 1) / 2 ):1 ])
   f <- fft(x)
-  scale <- s0 * 2 ^ ( (0:J1) * dj)
+  scale <- s0 * 2 ^ ((0:J1) * dj)
   period <- scale
   wave <- matrix(0, nrow = J1 + 1, ncol = n)
   wave <- wave + 1i * wave
