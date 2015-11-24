@@ -17,7 +17,7 @@ s0 <- 2 * dt
 # Tests ==========
 
 test_that("Quiet mode without progress bar should not throw errors", {
-  out <- wtc.sig(quiet = TRUE, nrands = 2, lag1 = c(d1.ar1, d2.ar1),
+  out <- wtc.sig(quiet = TRUE, nrands = 10, lag1 = c(d1.ar1, d2.ar1),
                  dt = dt, ntimesteps = n, s0 = s0, J1 = NULL)
   expect_true( is.matrix(out) )
 })
@@ -27,7 +27,7 @@ test_that("Error message for unsupported mother wavelet", {
     wtc.sig( mother = "dummy",
              lag1 = c(d1.ar1, d2.ar1),
              dt = dt, ntimesteps = n, s0 = s0, J1 = NULL),
-    regexp = "should be one of" )
+    regexp = "must be one of" )
 })
 
 test_that("Testing whether all mother wavelets work for wtc.sig", {
@@ -36,5 +36,6 @@ test_that("Testing whether all mother wavelets work for wtc.sig", {
                     lag1 = c(d1.ar1, d2.ar1),
                     dt = dt, ntimesteps = n, s0 = s0, J1 = NULL)
     expect_true( is.matrix(out) )
+    expect_equal( dim(out), c(42,64) )
   }
 })
