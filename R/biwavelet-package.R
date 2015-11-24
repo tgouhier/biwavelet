@@ -1,6 +1,9 @@
 #' @docType package
 #' @name biwavelet-package
 #' @aliases biwavelet
+#' @useDynLib biwavelet
+#' @exportPattern ^[[:alpha:]]+
+#' @importFrom Rcpp evalCpp
 #' 
 #' @title
 #' Conduct Univariate and Bivariate Wavelet Analyses

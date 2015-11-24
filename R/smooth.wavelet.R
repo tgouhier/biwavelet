@@ -40,7 +40,7 @@ smooth.wavelet <- function(wave, dt, dj, scale) {
   npad <- 2 ^ ceiling(log2(m)) # new size after padding
 
   k <- 1:as.integer(npad / 2) # faster
-  k <- k * (2 * pi / npad)
+  k <- k * 2 * pi / npad
   k <- c(0, k, -k[as.integer( (npad - 1) / 2 ):1]) # faster
 
   k2 <- k ^ 2
@@ -58,9 +58,21 @@ smooth.wavelet <- function(wave, dt, dj, scale) {
     twave <- Re(twave)
   }
 
-  # scale smoothing (boxcar with width of 0.6)
+  # Note: preparing for c++ reimplementation
+  boxcar_scale_smoothing(twave, dj)
+}
+
+#' Scale smoothing (boxcar with width of 0.6)
+#' 
+#' This helper function will be later reimplemented in c++
+#' 
+#' @param twave matrix
+#' @param dj number of octaves per scale
+#' @return swave
+boxcar_scale_smoothing <- function(twave, dj) {
+  n <- NROW(twave)
   dj0 <- 0.6
-  dj0steps <- dj0 / (dj * 2)
+  dj0steps <- 0.5 * dj0 / dj
   dj0steps.mod <- dj0steps %% 1
   dj0steps.len <- 2 * round(dj0steps)
   ker <- c(dj0steps.mod, rep(1, length = dj0steps.len - 1), dj0steps.mod)
@@ -68,6 +80,5 @@ smooth.wavelet <- function(wave, dt, dj, scale) {
   keep.start <- floor(length(ker) / 2) + 1
   swave <- convolve2D(twave, rev(ker), type = "o")
   swave <- swave[keep.start:(keep.start + n - 1),]
-
   return(swave)
 }
