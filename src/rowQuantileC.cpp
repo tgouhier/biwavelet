@@ -13,7 +13,7 @@ extern "C" {
     d.wrap(data, nr, nc);
     
     if ((*q<0) || (*q>1)) {
-      Rprintf("quantileC: given quantile is out of range 0 to 1.\n");
+      Rf_error("quantileC: given quantile is out of range 0 to 1.");
       return;
     }
     
