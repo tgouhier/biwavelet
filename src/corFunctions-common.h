@@ -3,9 +3,8 @@
  */
 #ifndef __corFunctions_common_h__
 #define __corFunctions_common_h__
-#define LDOUBLE 	long double
 #include "pivot.h"
 
 enum { noWarning, warnZeroMAD };
-double quantile(double * x, size_t n, double q, int copy, int * err);
+double quantile(double * x, const size_t n, const double q, int * err);
 #endif

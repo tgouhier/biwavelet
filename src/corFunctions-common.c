@@ -14,14 +14,9 @@
 #include <sys/time.h>
 
 #include <R.h>
-#include <R_ext/BLAS.h>
-#include <R_ext/libextern.h>
-#define LDOUBLE 	long double
 
 #include "pivot.h"
 #include "corFunctions-common.h"
-
-#define RefUX	0.5
 
 /**
  * Here I first put all NAs to the end, then call the pivot function to find
@@ -29,48 +24,23 @@
  * 
  * q is the quantile: 1/2 will give exactly the median above.
  */
-double quantile(double * x, size_t n, double q, int copy, int * err)
-{
-  double * xx;
-  double res;
-
-  if (copy)
-  {
-    if ( (xx=malloc(n * sizeof(double)))==NULL ) 
-    {
-      Rprintf("Memory allocation error in quantile(). Could not allocate %d kB.\n", 
-              (int) (n * sizeof(double) / 1024 + 1));
-      *err = 1;
-      return NA_REAL;
-    }
-    memcpy((void *)xx, (void *)x, n * sizeof(double));
-  } else xx = x;
-
-    
+double quantile(double * x, const size_t n, const double q, int * err) {
   *err = 0;
+  
   // Put all NA's at the end.
   size_t bound = n;
-  for (size_t i=n; i>0; ) 
+  for (size_t i = n; i>0; ) 
   {
     i--;
-    if (ISNAN(xx[i]))
+    if (ISNAN(x[i]))
     {
        bound--;
-       xx[i] = xx[bound];
-       xx[bound] = NA_REAL;
+       x[i] = x[bound];
+       x[bound] = NA_REAL;
     }
   }
 
-  // Rprintf("Quantile: q: %f, n: %d, bound: %d\n", q, n, bound);
-  // Any non-NA's left?
-
-  if (bound==0)
-    res = NA_REAL;
-  else
-  // yes, return the appropriate pivot. 
-    res = pivot(xx, bound, ( 1.0 * (bound-1))*q);
-
-  if (copy) free(xx);
-
-  return res;
+  return bound == 0 // Any non-NA's left?
+    ? NA_REAL
+    : pivot(x, bound, ( 1.0 * (bound - 1)) * q);
 }

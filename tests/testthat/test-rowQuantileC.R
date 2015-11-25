@@ -1,6 +1,6 @@
 context("rowQuantileC implementation in C++")
 
-test_that("Quantile out of range 0 to 1 should fail", {
+test_that("Quantile out of range should fail", {
   data <- matrix(1:10, nrow = 2)
 
   expect_error(rowQuantileC(data, 2), regexp = "out of the allowed range")
@@ -15,8 +15,14 @@ test_that("Quantile out of range 0 to 1 should fail", {
   )
 })
 
-test_that("Multiple quantiles as parameter should also fail", {
+test_that("Multiple quantiles as parameter should fail", {
   data <- matrix(1:10, nrow = 2)
   expect_error(rowQuantileC(data, c(.5, .75)))
   expect_error(rowQuantileC(data, 1:5))
 })
+
+
+# test_that("Multiple quantiles as parameter should fail", {
+#   data <- as.double(c(1,1,1,1,2,3,4))
+#   .C("pivot", v = data, len = length(data), target = 3)
+# })

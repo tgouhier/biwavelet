@@ -238,9 +238,8 @@ void dArray::colQuantile(double q, dArray & quant)
   double val;
   for (size_t i=0, col=0; i<totLen; i+=colLen, col++)
   {
-    // column.clear();
     copy2vector(i, colLen, column);
-    val = quantile(&(column[0]), colLen, q, 0,  & err);
+    val = quantile(&(column[0]), colLen, q,  & err);
     quant.linValue(col, val);
   }
 }
@@ -275,7 +274,7 @@ void dArray::rowQuantile(double q, dArray & quant)
   {
     rowData.clear();
     for (size_t col=0; col<rowLen; col++) rowData.push_back(value(row, col));
-    val = quantile(&(rowData[0]), rowLen, q, 0,  & err);
+    val = quantile(&(rowData[0]), rowLen, q, & err);
     quant.linValue(row, val);
   }
 }
@@ -302,11 +301,9 @@ void iArray::colQuantile(double q, dArray & quant)
 
   int err;
   double val;
-  for (size_t i=0, col=0; i<totLen; i+=colLen, col++)
-  {
-    // column.clear();
+  for (size_t i=0, col=0; i<totLen; i+=colLen, col++) {
     copy2vector(i, colLen, column);
-    val = quantile(&(column[0]), colLen, q, 0, & err);
+    val = quantile(&(column[0]), colLen, q, & err);
     quant.linValue(col, val);
   }
 }
