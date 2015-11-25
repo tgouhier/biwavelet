@@ -18,7 +18,7 @@
 #' \item{coi}{cone of influence}
 #' \item{dof}{degrees of freedom for each point in wavelet power}
 #' 
-#' @note This c++ implementation is approx. 36% faster than the original R code
+#' @note This c++ implementation is approx. 50% faster than the original R code
 rcpp_wt_bases_dog <- function(k, scale, param = -1L) {
     .Call('biwavelet_rcpp_wt_bases_dog', PACKAGE = 'biwavelet', k, scale, param)
 }

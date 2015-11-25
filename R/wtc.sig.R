@@ -52,6 +52,10 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
                     dj = 1 / 12, s0, J1, max.scale = NULL,
                     mother = "morlet", sig.level = 0.95, quiet = FALSE) {
 
+  if (nrands < 1) {
+    return(NA)
+  }
+
   d1  <- cbind(1:ntimesteps,
                arima.sim(model = list(ar = lag1[1], ma = 0), n = ntimesteps))
 
@@ -60,10 +64,6 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
 
   s.inv <- 1 / t(wt1$scale)
   s.inv <- matrix(rep(s.inv, ntimesteps), nrow = NROW(wt1$wave))
-
-  if (nrands < 1) {
-    return(NA)
-  }
 
   rand.rsq <- array(dim = c(NROW(wt1$wave), NCOL(wt1$wave), nrands), NA)
   if (!quiet) {
@@ -85,7 +85,7 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
               max.scale = max.scale, mother = mother, do.sig = FALSE)
 
     # Smoothed cross wavelet transform
-    smooth.CW <- smooth.wavelet(s.inv * (wt1$wave * Conj(wt2$wave)),
+    smooth.CW <- smooth.wavelet(s.inv * wt1$wave * Conj(wt2$wave),
                                 dt, dj, wt1$scale)
 
     sw1 <- smooth.wavelet(s.inv * (abs(wt1$wave) ^ 2), dt, dj, wt1$scale)
@@ -102,6 +102,12 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
     close(prog.bar)
   }
 
-  # this will be returned
-  apply(rand.rsq, MARGIN = c(1,2), quantile, sig.level, na.rm = TRUE)
+  # The original slow implementation was using "apply" and "quantile" functions
+  # apply(rand.rsq, MARGIN = c(1,2), quantile, sig.level, na.rm = TRUE)
+  # This has been replaced with a C++ implementation taken from WGCNA package
+  result <- matrix(nrow = nrow(rand.rsq), ncol = ncol(rand.rsq))
+  for (i in 1:ncol(rand.rsq)) {
+    result[,i] <- rowQuantileC(rand.rsq[,i,], sig.level)
+  }
+  return(result)
 }
