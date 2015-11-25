@@ -102,3 +102,7 @@ Quarterly Journal of the Royal Meteorological Society 124:1985–2004.
 Veleda, D., R. Montagne, and M. Araujo. 2012.
 **Cross-Wavelet Bias Corrected by Normalizing Scales**.
 Journal of Atmospheric and Oceanic Technology 29:1401-1408.
+
+## Other links
+ * Old website hosted at r-forge: http://biwavelet.r-forge.r-project.org/
+ * Old PDF Manual: http://biwavelet.r-forge.r-project.org/biwavelet-manual.pdf
