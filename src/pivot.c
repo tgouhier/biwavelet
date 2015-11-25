@@ -4,19 +4,11 @@
  *
  */
 
-
 #include <stdlib.h>
 #include <R.h>
 #include <Rinternals.h>
 
 #include "pivot.h"
-
-
-void RprintV(double * v, size_t l)
-{
-  for (size_t i=0; i<l; i++) Rprintf("%5.3f ", v[i]);
-  Rprintf("\n");
-}
 
 double vMax(double * v, size_t len)
 {
@@ -37,9 +29,6 @@ double vMin(double * v, size_t len)
 
 double pivot(double * v, size_t len, double target)
 {
-  // Rprintf("Entering pivot with len=%d and target=%f\n   ", len, target);
-  // RprintV(v, len);
-
   if (len > 2)
   {
     // pick the pivot, say as the median of the first, middle and last
@@ -81,11 +70,9 @@ double pivot(double * v, size_t len, double target)
     v[len-1] = v[bound];
     v[bound] = vp;
 
-    // Rprintf("   After pivoting: bound:%d and vector: ", bound); // RprintV(v, len);
-
     // Did we find the target?
-    
     double crit = target - bound;
+    
     // Rprintf("   crit: %5.3f\n", crit);
     if (fabs(crit) > 1.0)
     {
@@ -119,75 +106,3 @@ double pivot(double * v, size_t len, double target)
      return v[0];
   }
 }
-
-
-/*
- *
- * This isn't needed for now.
- *
- *
-void testPivot(double * v, size_t * len, double * target, double * result)
-{
-   * result = pivot(v, *len, *target);
-}
-*/
-
-/*****************************************************************************************************
- *
- * Implement order via qsort.
- *
- *****************************************************************************************************/
-
-int compareOrderStructure(const orderStructure * os1, const orderStructure * os2)
-{
-  if (ISNAN(os1->val)) return 1;
-  if (ISNAN(os2->val)) return -1;
-  if (os1->val < os2->val) return -1;
-  if (os1->val > os2->val) return 1;
-  return 0;
-}
-
-void qorder_internal(double * x, size_t n, orderStructure * os)
-{
-  for (R_xlen_t i = 0; i<n; i++)
-  {
-    (os+i)->val = *(x+i);
-    (os+i)->index = i;
-  }
-
-  // Rprintf("qorder: calling qsort..");
-  qsort(os, (size_t) n, sizeof(orderStructure), 
-           ((int (*) (const void *, const void *)) compareOrderStructure));
-}
-  
-
-SEXP qorder(SEXP data)
-{
-  R_xlen_t n = Rf_xlength(data);
-
-  // Rprintf("qorder: length of input data is %ld.\n", n);
-
-  double * x = REAL(data);
-
-  orderStructure * os = Calloc((size_t) n, orderStructure);
-
-  qorder_internal(x, (size_t) n, os);
-
-  SEXP ans;
-  if (n<(size_t) 0x80000000)
-  {
-    // Rprintf("..returning integer order.\n");
-    PROTECT (ans = allocVector(INTSXP, n));
-    int * ansp = INTEGER(ans);
-    for (R_xlen_t i = 0; i<n; i++) ansp[i] = (int) ( (os+i)->index+1);
-  } else {
-    // Rprintf("..returning floating point (double) order.\n");
-    PROTECT (ans = allocVector(REALSXP, n));
-    double * ansp = REAL(ans);
-    for (R_xlen_t i = 0; i<n; i++) ansp[i] = (double) ((os+i)->index+1);
-  }
-  Free(os);
-  UNPROTECT(1);
-  return ans;
-}
-
