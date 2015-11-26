@@ -1,7 +1,7 @@
 Package: biwavelet
 Type: Package
 Title: Conduct Univariate and Bivariate Wavelet Analyses
-Version: 0.17.12
+Version: 0.17.13
 Date: 2015-11-25
 Author: Tarik C. Gouhier, Aslak Grinsted, Viliam Simko
 Maintainer: Tarik C. Gouhier <tarik.gouhier@gmail.com>

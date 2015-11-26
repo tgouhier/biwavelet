@@ -1,5 +1,5 @@
-#include "array.h"
 #include <R.h>
+#include "array.h"
 
 extern "C" {
   void rowQuantileC(double *data,
