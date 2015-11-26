@@ -5,7 +5,7 @@
 #include <R.h>
 
 #include "pivot.h"
-#include "corFunctions-common.h"
+#include "quantile.h"
 
 /**
  * Here I first put all NAs to the end, then call the pivot function to find
