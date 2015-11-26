@@ -1,4 +1,4 @@
-if ( !require("profvis", character.only = TRUE)) {
+if (!require("profvis", character.only = TRUE)) {
   devtools::install_github("rstudio/profvis")
   library(profvis)
 }
