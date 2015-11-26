@@ -1,9 +1,10 @@
 #' This function calls the C++ implementation of row quantile.
+#' 
 #' @param data Numeric matrix whose row quantiles are wanted.
 #' @param p Probability with value in [0,1]
-#' @return A vector of length nrows(data), where each element represents row
-#'   quantile.
-rowQuantileC <- function(data, p) {
+#' @return A vector of length \code{nrows(data)}, where each element represents
+#'   row quantile.
+row_quantile <- function(data, p) {
 
   data <- as.matrix(data)
   ncol <- ncol(data);

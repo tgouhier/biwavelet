@@ -33,17 +33,17 @@ microbenchmark(
   },
   function() {
     for (i in 1:10) {
-      out2[i,] <- rowQuantileC(ts[i,,], 0.95)
+      out2[i,] <- row_quantile(ts[i,,], 0.95)
     }
   },
   function() {
     # this version is the best
     for (i in 1:10) {
-      out3[,i] <- rowQuantileC(ts[,i,], 0.95)
+      out3[,i] <- row_quantile(ts[,i,], 0.95)
     }
   },
   function() {
-    out4 <- apply(ts, 2, rowQuantileC, 0.95)
+    out4 <- apply(ts, 2, row_quantile, 0.95)
   },
   times = 1000
 )

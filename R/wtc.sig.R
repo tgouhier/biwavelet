@@ -107,7 +107,7 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   # This has been replaced with a C++ implementation taken from WGCNA package
   result <- matrix(nrow = nrow(rand.rsq), ncol = ncol(rand.rsq))
   for (i in 1:ncol(rand.rsq)) {
-    result[,i] <- rowQuantileC(rand.rsq[,i,], sig.level)
+    result[,i] <- row_quantile(rand.rsq[,i,], sig.level)
   }
   return(result)
 }
