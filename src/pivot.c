@@ -1,18 +1,15 @@
 /*
  * Compilation:
  *  gcc --std=c99 -fPIC -O3 -o pivot.so -shared pivot.c
- *
  */
-
 #include <stdlib.h>
 #include <R.h>
 #include <Rinternals.h>
-
 #include "pivot.h"
 
 double vMax(double *v, const size_t len) {
   double mx = v[0];
-  for (size_t i=1; i<len; i++) {
+  for (size_t i = 1; i < len; i++) {
     if (v[i] > mx) {
       mx = v[i];
     }
@@ -71,17 +68,18 @@ double pivot(double * v, const size_t len, const double target) {
       }
     }
 
-    v[len-1] = v[bound];
+    v[len - 1] = v[bound];
     v[bound] = vp;
 
     // Did we find the target?
     const double crit = target - bound;
     
     if (fabs(crit) > 1.0) {
-      if (crit < 0)
+      if (crit < 0) {
         return pivot(v, bound, target);
-      else
-        return pivot(v+bound+1, len-bound-1, target-bound-1);
+      } else {
+        return pivot(v + bound + 1, len - bound - 1, target - bound - 1);
+      }
     }
 
     if (crit < 0) {

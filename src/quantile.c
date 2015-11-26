@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-
 #include <R.h>
-
 #include "pivot.h"
 #include "quantile.h"
 
