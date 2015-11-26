@@ -45,9 +45,7 @@ test_that("Multiple quantiles as parameter are not supported", {
   expect_error(rowQuantileC(data, 1:5), regexp = "one quantile")
 })
 
-
-
-test_that("", {
-   data <- as.double(c(1,1,1,1,2,3,4))
-   .C("pivot", v = data, len = length(data), target = 3)
- })
+# test_that("", {
+#    data <- as.double(c(1,1,1,1,2,3,4))
+#    .C("pivot", v = data, len = length(data), target = 3)
+#  })
