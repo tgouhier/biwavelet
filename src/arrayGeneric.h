@@ -1,7 +1,6 @@
 // The name of this file ends in .h so R CMD install does not attempt to compile it on its own.
 
-class CLASS_NAME
-{
+class CLASS_NAME {
   protected:
 
     TYPE 	* data_;
@@ -396,4 +395,3 @@ void CLASS_NAME::sample(size_t size, CLASS_NAME & values, int replace)
     }
   }
 }
-

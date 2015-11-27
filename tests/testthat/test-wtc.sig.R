@@ -39,3 +39,16 @@ test_that("Testing whether all mother wavelets work for wtc.sig", {
     expect_equal( dim(out), c(42,64) )
   }
 })
+
+test_that("Number of Monte Carlo randomizations < 1 should behave nicely", {
+  expect_equal(wtc.sig( nrands = 0,
+                       lag1 = 0, dt = 0, ntimesteps = 0, s0 = 0, J1 = 0), NA)
+})
+  
+test_that("Progressbar should not cause errors", {
+  expect_output(
+    out <- wtc.sig(quiet = FALSE, nrands = 1, lag1 = c(d1.ar1, d2.ar1),
+            dt = dt, ntimesteps = n, s0 = s0, J1 = NULL),
+    regexp = "\\|=+=\\| 100%"
+  )
+})
