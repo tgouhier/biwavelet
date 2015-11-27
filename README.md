@@ -10,8 +10,7 @@
 To download the development version of the package, type the following at the R command line:
 ```{r}
 install.packages("devtools")
-library(devtools)
-install_github("tgouhier/biwavelet")
+devtools:::install_github("tgouhier/biwavelet")
 ```
 
 To download the release version of the package on CRAN, type the following at the R command line:
