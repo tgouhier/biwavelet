@@ -72,9 +72,8 @@ t2 <- cbind(1:100, rnorm(100))
 
 # Compute Cross-wavelet
 xwt.t1t2 <- xwt(t1, t2)
-
-# Plot cross-wavelet and phase difference (arrows)
-plot(xwt.t1t2, plot.cb = TRUE, plot.phase = TRUE)
+plot(xwt.t1t2, plot.cb = TRUE, plot.phase = TRUE,
+     main = "Plot cross-wavelet and phase difference (arrows)")
 
 # Real data
 data(enviro.data)
