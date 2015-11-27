@@ -63,7 +63,9 @@ wtc.mei.npgo <- wtc(MEI, NPGO)
 ``` r
 # Make room to the right for the color bar
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
-plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
+plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE,
+     main = "MEI and NPGO wavelet coherence",
+     xlab = "Date", ylab = "Time (months)")
 ```
 
 ![](inst/webimg/README-wtc_example-1.png)
