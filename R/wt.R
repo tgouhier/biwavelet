@@ -94,7 +94,7 @@ wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
   }
 
   n <- NROW(x)
-  k <- 1:floor(n / 2)
+  k <- seq_len(floor(n / 2))
   k <- k * 2 * pi / (n * dt)
   k <- c(0, k, -k[ floor( (n - 1) / 2 ):1 ])
   f <- fft(x)
@@ -103,18 +103,18 @@ wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
   wave <- matrix(0, nrow = J1 + 1, ncol = n)
   wave <- wave + 1i * wave
 
-  for (a1 in 1:(J1 + 1)) {
+  for (a1 in seq_len(J1 + 1)) {
     wb <- wt.bases(mother, k, scale[a1], param)
     wave[a1, ] <- fft(f * wb$daughter, inverse = TRUE) / length(f)
   }
 
   period <- wb$fourier.factor * scale
   coi <- wb$coi * dt * c(1e-5,
-                         1:((n.obs + 1) / 2 - 1),
+                         seq_len((n.obs + 1) / 2 - 1),
                          floor(n.obs / 2 - 1):1,
                          1e-5)
 
-  wave <- wave[, 1:n.obs] ## Get rid of padding before returning
+  wave <- wave[, seq_len(n.obs)] ## Get rid of padding before returning
   power.corr <- (abs(wave) ^ 2 * max.scale) /
                 matrix(rep(period, length(t)), nrow = NROW(period))
 

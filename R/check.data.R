@@ -65,7 +65,7 @@ check.datum <- function(x) {
         t <- x[, 1]
         dt <- as.numeric(diffs[1])
       } else {
-        t <- 1:NROW(x)
+        t <- seq_len(NROW(x))
         dt <- diff(t)[1]
       }
     } else {

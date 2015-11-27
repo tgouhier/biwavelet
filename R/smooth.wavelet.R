@@ -39,19 +39,19 @@ smooth.wavelet <- function(wave, dt, dj, scale) {
   # zero-pad to power of 2... Speeds up fft calcs if n is large
   npad <- 2 ^ ceiling(log2(m)) # new size after padding
 
-  k <- 1:as.integer(npad / 2) # faster
+  k <- seq_len(npad / 2) # faster
   k <- k * 2 * pi / npad
   k <- c(0, k, -k[as.integer( (npad - 1) / 2 ):1]) # faster
 
   k2 <- k ^ 2
   snorm <- scale / dt
   smooth <- numeric(length = length(k2))
-  for (ii in 1:n) {
+  for (ii in seq_len(n)) {
     F <- exp(-0.5 * (snorm[ii] ^ 2) * k2)
     wave.pad <- rep(0i, times = length(F))
-    wave.pad[1:m] <- wave[ii,]
+    wave.pad[seq_len(m)] <- wave[ii,]
     smooth <- fft(F * fft(wave.pad), inverse = TRUE) / npad
-    twave[ii, ] <- smooth[1:m]
+    twave[ii, ] <- smooth[seq_len(m)]
   }
 
   if (is.double(wave)) {
