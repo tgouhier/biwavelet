@@ -38,8 +38,8 @@ phase.plot <- function(x, y, phases,
   phases[-a.row,] <- NA
   phases[,-a.col] <- NA
 
-  for (i in 1:NROW(phases)) {
-    for (j in 1:NCOL(phases)) {
+  for (i in seq_len(NROW(phases))) {
+    for (j in seq_len(NCOL(phases))) {
       if (!is.na(phases[i,j])) {
         arrow(x[j], y[i], l = arrow.len, w = arrow.lwd,
               alpha = phases[i,j], col = arrow.col)

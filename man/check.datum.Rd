@@ -7,15 +7,15 @@
 check.datum(x)
 }
 \arguments{
-\item{x}{TODO}
+\item{x}{matrix}
 }
 \value{
-TODO
+list(t, dt, n.obs)
 }
 \description{
 Helper function
 }
 \note{
-This is not exported
+This function is not exported
 }
 
