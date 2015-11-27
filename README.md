@@ -46,7 +46,7 @@ periodicities:
 
 ```{r}
 wt1 <- wt(cbind(1:1000, s))
-par(mfrow = c(1,2)) 
+par(mfrow = c(1,2), mar=c(3,3,3,1))
 plot(wt1, type = "power.corr.norm", main = "Bias-corrected wavelet power") 
 plot(wt1, type = "power.norm", main = "Biased wavelet power")
 ```
