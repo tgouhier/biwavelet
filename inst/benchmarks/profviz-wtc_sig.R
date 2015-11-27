@@ -23,6 +23,13 @@ profvis({
 })
 
 library(microbenchmark)
+microbenchmark(
+  {seq_len(1000000)},
+  {1:1000000},
+  times = 1000
+)
+
+
 
 load("inst/benchmarks/data1.Rd")
 out2 <- matrix(nrow = 10, ncol = 10)
@@ -48,8 +55,12 @@ microbenchmark(
   times = 1000
 )
 
-ntimesteps <- 100L
+ntimesteps <- 100
 lag1 <- c(-0.0693, 0.1581)
+
+mr1 <- get_minroots(lag1[1])
+mr2 <- get_minroots(lag1[2])
+ntseq <- seq_len(ntimesteps)
 
 microbenchmark(
   function() {
@@ -59,58 +70,33 @@ microbenchmark(
                  arima.sim(model = list(ar = lag1[2], ma = 0), n = ntimesteps))
   },
   function() {
-    d1  <- cbind(1:ntimesteps,
-                 arima.sim(model = list(ar = lag1[1], ma = 0), n = ntimesteps))
-    d2  <- d1
-    d2[,2] <- cbind(1:ntimesteps,
-                    arima.sim(model = list(ar = lag1[2], ma = 0), n = ntimesteps))
+    d1 <- cbind(ntseq, ar1_ma0_sim(mr1, lag1[1], ntimesteps))
+    d2 <- cbind(ntseq, ar1_ma0_sim(mr2, lag1[2], ntimesteps))
   }
       
   times = 100000
 )
 
+ts1 <- arima.sim(model = list(ar = lag1[1], ma = 0), n = ntimesteps)
+ar <- lag1[1]
+minroots <- get_minroots(ar)
+ts2 <- ar1_ma0_sim(minroots, ar = ar, ntimesteps)
+n <- ntimesteps
+
 get_minroots <- function(ar) {
   min(Mod(polyroot(c(1, -ar))))
 }
 
-ar1_ma0_sim <- function(minroots, n) {
-  
+ar1_ma0_sim <- function(minroots, ar, n) {
+
   if (minroots <= 1) {
     stop("'ar' part of model is not stationary")
   }
 
-  rand.gen <- rnorm
-  innov <- rand.gen(n)
-  n.start <- NA
-  start.innov <- rand.gen(n.start)
+  n.start <- 2 + ceiling(6 / log(minroots))
   
-  p <- 1 #length(model$ar)
-  q <- 1 #length(model$ma)
-
-  if (is.na(n.start)) {
-    n.start <- p + q + ceiling(6 / log(minroots))
-  }
-  
-  if (n.start < p + q)
-    stop("burn-in 'n.start' must be as long as 'ar + ma'")
-  
-  if (!missing(start.innov) && length(start.innov) < n.start) {
-    stop(sprintf(ngettext(n.start, "'start.innov' is too short: need %d point", 
-                          "'start.innov' is too short: need %d points"), n.start), 
-         domain = NA)
-  }
-
-  x <- ts(data = c(start.innov[seq_len(n.start)], innov[1L:n]),
-          start = 1 - n.start)
-  
-  x <- filter(x, model$ar, method = "recursive")
-  
-  if (n.start > 0) {
-    x <- x[-(seq_len(n.start))]
-  }
-  
-  as.ts(x)
+  x <- ts(data = rnorm(n + n.start), start = 1 - n.start)
+  x <- filter(x, ar, method = "recursive")
+  x[-seq_len(n.start)] # maybe as.ts(x)
 }
-
-
-
+ts2 <- ar1_ma0_sim(minroots, ar = ar, 10)
