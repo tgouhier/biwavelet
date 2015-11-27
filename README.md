@@ -52,6 +52,15 @@ plot(wt1, type = "power.norm", main = "Biased wavelet power")
 This bias also affects the cross-wavelet, which can be used to determine the time- and frequency-resolved relationship between two time series. The new version of biwavelet implements the bias-correction developed by [Veleda et al. (2012)](#Veleda2012). The bias does not affect the wavelet coherence, however. For instance, MEI and NPGO undergo coherent fluctuations at periodicities of ~64-150 months (5-12 years) between 1966-2010, with peaks in NPGO leading peaks in MEI by one quarter of a cycle. For help interpreting these results, please see the references below and the biwavelet manual.
 
 ``` r
+data(enviro.data)
+MEI <- subset(enviro.data, select = c("date", "mei"))
+NPGO <- subset(enviro.data, select = c("date", "npgo"))
+
+# Compute wavelet coherence of MEI and NPGO using Monte Carlo randomization
+wtc.mei.npgo <- wtc(MEI, NPGO)
+```
+
+``` r
 # Make room to the right for the color bar
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)

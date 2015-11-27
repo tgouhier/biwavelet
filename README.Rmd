@@ -80,7 +80,7 @@ For instance, MEI and NPGO undergo coherent fluctuations at periodicities of
 in MEI by one quarter of a cycle. For help interpreting these results, please
 see the references below and the biwavelet manual.
 
-```{r wtc_mei_npgo, include=FALSE, cache=TRUE}
+```{r wtc_mei_npgo, cache=TRUE, results='hide'}
 data(enviro.data)
 MEI <- subset(enviro.data, select = c("date", "mei"))
 NPGO <- subset(enviro.data, select = c("date", "npgo"))
