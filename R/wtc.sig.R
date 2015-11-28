@@ -119,10 +119,19 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   return(result)
 }
 
+#' Helper function
+#' @param ar The 'ar' part of AR(1)
+#' @return double
 get_minroots <- function(ar) {
-  min(Mod(polyroot(c(1, -ar))))
+  min(Mod(polyroot(c(1, -ar)))) 
 }
 
+#' Slightly faster arima.sim implementation which assumes AR(1) and ma=0.
+#' 
+#' @param minroots Output from \code{get_minroots} function.
+#' @param ar The 'ar' part of AR(1)
+#' @param n Length of output series, before un-differencing. A strictly positive integer.
+#' @seealso arima.sim
 ar1_ma0_sim <- function(minroots, ar, n) {
   
   if (minroots <= 1) {

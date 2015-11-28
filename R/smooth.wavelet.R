@@ -28,29 +28,28 @@
 #' 
 #' @return Returns the smoothed wavelet.
 #' @export
-#' @importFrom stats fft
 smooth.wavelet <- function(wave, dt, dj, scale) {
 
   m <- NCOL(wave)
   n <- NROW(wave)
 
-  twave <- matrix(nrow = n, ncol = m, 0)
-
   # zero-pad to power of 2... Speeds up fft calcs if n is large
   npad <- 2 ^ ceiling(log2(m)) # new size after padding
 
-  k <- seq_len(npad / 2) # faster
+  k <- seq_len(.5 * npad) # faster
   k <- k * 2 * pi / npad
-  k <- c(0, k, -k[as.integer( (npad - 1) / 2 ):1]) # faster
+  k <- c(0, k, -k[as.integer( .5 * (npad - 1)):1]) # faster
 
   k2 <- k ^ 2
   snorm <- scale / dt
   smooth <- numeric(length = length(k2))
+  
+  twave <- matrix(nrow = n, ncol = m, 0)
   for (ii in seq_len(n)) {
     F <- exp(-0.5 * (snorm[ii] ^ 2) * k2)
     wave.pad <- rep(0i, times = length(F))
     wave.pad[seq_len(m)] <- wave[ii,]
-    smooth <- fft(F * fft(wave.pad), inverse = TRUE) / npad
+    smooth <- fft(F * fft(wave.pad), inverse = TRUE) * (1 / npad)
     twave[ii, ] <- smooth[seq_len(m)]
   }
 
@@ -58,27 +57,16 @@ smooth.wavelet <- function(wave, dt, dj, scale) {
     twave <- Re(twave)
   }
 
+  # Scale smoothing (boxcar with width of 0.6)
   # Note: preparing for c++ reimplementation
-  boxcar_scale_smoothing(twave, dj)
-}
-
-#' Scale smoothing (boxcar with width of 0.6)
-#' 
-#' This helper function will be later reimplemented in c++
-#' 
-#' @param twave matrix
-#' @param dj number of octaves per scale
-#' @return swave
-boxcar_scale_smoothing <- function(twave, dj) {
-  n <- NROW(twave)
-  dj0 <- 0.6
-  dj0steps <- 0.5 * dj0 / dj
+  dj0steps <- .3 / dj
   dj0steps.mod <- dj0steps %% 1
   dj0steps.len <- 2 * round(dj0steps)
   ker <- c(dj0steps.mod, rep(1, length = dj0steps.len - 1), dj0steps.mod)
   ker <- ker / (dj0steps.len - 1 + 2 * dj0steps.mod)
-  keep.start <- floor(length(ker) / 2) + 1
-  swave <- convolve2D(twave, rev(ker), type = "o")
-  swave <- swave[keep.start:(keep.start + n - 1),]
-  return(swave)
+  keep.start <- floor(.5 * length(ker)) + 1
+  swave <- convolve2D_typeopen(twave, rev(ker))
+  # return
+  swave[keep.start:(keep.start + n - 1),]
+  
 }
