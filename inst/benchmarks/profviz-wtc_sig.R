@@ -22,6 +22,16 @@ profvis({
                     J1 = NULL, max.scale = NULL, quiet = FALSE)
 })
 
+image(wtcsig)
+
+Rprof(interval = 0.001)
+wtcsig <- wtc.sig(nrands = 100, lag1 = c(d1.ar1, d2.ar1), dt = dt,
+                  ntimesteps = n,
+                  pad = TRUE, dj = 1 / 12, s0 = s0,
+                  J1 = NULL, max.scale = NULL, quiet = FALSE)
+Rprof(NULL)
+summaryRprof()$by.self
+
 library(microbenchmark)
 microbenchmark(
   {seq_len(1000000)},
@@ -100,3 +110,6 @@ ar1_ma0_sim <- function(minroots, ar, n) {
   x[-seq_len(n.start)] # maybe as.ts(x)
 }
 ts2 <- ar1_ma0_sim(minroots, ar = ar, 10)
+
+twave <- matrix(nrow = 100, ncol = 10, 1)
+ker = 1:3
