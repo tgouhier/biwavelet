@@ -2,7 +2,7 @@
 biwavelet R package
 ===================
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet) [![Build Status](https://travis-ci.org/vsimko/biwavelet.svg)](https://travis-ci.org/vsimko/biwavelet) [![codecov.io](https://codecov.io/github/vsimko/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/vsimko/biwavelet?branch=master) ![CRAN Downloads](http://cranlogs-dev.r-pkg.org/badges/biwavelet)
+[![Build Status](https://travis-ci.org/tgouhier/biwavelet.svg)](https://travis-ci.org/tgouhier/biwavelet) [![codecov.io](https://codecov.io/github/tgouhier/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/tgouhier/biwavelet?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet) ![CRAN Downloads](http://cranlogs-dev.r-pkg.org/badges/biwavelet)
 
 Download and Install
 --------------------
@@ -11,8 +11,7 @@ To download the development version of the package, type the following at the R 
 
 ``` r
 install.packages("devtools")
-library(devtools)
-install_github("tgouhier/biwavelet")
+devtools::install_github("tgouhier/biwavelet")
 ```
 
 To download the release version of the package on CRAN, type the following at the R command line:

@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 
 # biwavelet R package
 
+[![Build Status](https://travis-ci.org/tgouhier/biwavelet.svg)](https://travis-ci.org/tgouhier/biwavelet)
+[![codecov.io](https://codecov.io/github/tgouhier/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/tgouhier/biwavelet?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet)
-[![Build Status](https://travis-ci.org/vsimko/biwavelet.svg)](https://travis-ci.org/vsimko/biwavelet)
-[![codecov.io](https://codecov.io/github/vsimko/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/vsimko/biwavelet?branch=master)
 ![CRAN Downloads](http://cranlogs-dev.r-pkg.org/badges/biwavelet)
 
 ## Download and Install
@@ -25,8 +25,7 @@ knitr::opts_chunk$set(
 To download the development version of the package, type the following at the R command line:
 ```{r Install latest, eval=FALSE}
 install.packages("devtools")
-library(devtools)
-install_github("tgouhier/biwavelet")
+devtools::install_github("tgouhier/biwavelet")
 ```
 
 To download the release version of the package on CRAN, type the following at the R command line:
@@ -94,6 +93,8 @@ wtc.mei.npgo <- wtc(MEI, NPGO)
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
 ```
+
+<!-- Original image: ![MEI and NPGO wavelet coherence](inst/webimg/wtc.png) -->
 
 The biwavelet package can also be used to compute the (dis)similarity between
 pairs of time series based on their wavelet spectrum:
