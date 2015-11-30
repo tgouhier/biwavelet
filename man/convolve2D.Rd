@@ -9,12 +9,12 @@ convolve2D(x, y, conj = TRUE, type = c("circular", "open"))
 \arguments{
 \item{x}{M \code{x} n matrix.}
 
-\item{y}{numeric sequence of length N.}
+\item{y}{Numeric sequence of length N.}
 
-\item{conj}{logical; if \code{TRUE}, take the complex conjugate before
+\item{conj}{Logical; if \code{TRUE}, take the complex conjugate before
 back-transforming. Default is \code{TRUE} and used for usual convolution.}
 
-\item{type}{character; one of \code{circular}, \code{open} (beginning of word
+\item{type}{Character; one of \code{circular}, \code{open} (beginning of word
 is ok).
 
 For \code{circular}, the two sequences are treated as circular, i.e.,

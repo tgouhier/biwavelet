@@ -3,3 +3,4 @@
 .RData
 src/*.so
 src/*.o
+README_cache

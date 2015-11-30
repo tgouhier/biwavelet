@@ -56,9 +56,12 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
     return(NA)
   }
 
-  d1  <- cbind(1:ntimesteps,
-               arima.sim(model = list(ar = lag1[1], ma = 0), n = ntimesteps))
+  mr1 <- get_minroots(lag1[1])
+  mr2 <- get_minroots(lag1[2])
+  ntseq <- seq_len(ntimesteps)
 
+  d1 <- cbind(ntseq, ar1_ma0_sim(mr1, lag1[1], ntimesteps))
+  
   wt1 <- wt(d = d1, pad = pad, dj = dj, dt = dt, s0 = s0, J1 = J1,
            max.scale = max.scale, mother = mother, do.sig = FALSE)
 
@@ -70,13 +73,11 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
     prog.bar <- txtProgressBar(min = 0, max = nrands, style = 3)
   }
 
-  for (r in 1:nrands) {
+  for (r in seq_len(nrands)) {
 
     # Generate time series
-    d1 <- cbind(1:ntimesteps,
-                arima.sim(model = list(ar = lag1[1], ma = 0), n = ntimesteps))
-    d2 <- cbind(1:ntimesteps,
-                arima.sim(model = list(ar = lag1[2], ma = 0), n = ntimesteps))
+    d1 <- cbind(ntseq, ar1_ma0_sim(mr1, lag1[1], ntimesteps))
+    d2 <- cbind(ntseq, ar1_ma0_sim(mr2, lag1[2], ntimesteps))
 
     # Wavelet transforms
     wt1 <- wt(d = d1, pad = pad, dj = dj, dt = dt, s0 = s0, J1 = J1,
@@ -106,8 +107,35 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   # apply(rand.rsq, MARGIN = c(1,2), quantile, sig.level, na.rm = TRUE)
   # This has been replaced with a C++ implementation taken from WGCNA package
   result <- matrix(nrow = nrow(rand.rsq), ncol = ncol(rand.rsq))
-  for (i in 1:ncol(rand.rsq)) {
+  for (i in seq_len(ncol(rand.rsq))) {
     result[,i] <- row_quantile(rand.rsq[,i,], sig.level)
   }
   return(result)
+}
+
+#' Helper function
+#' @param ar The 'ar' part of AR(1)
+#' @return double
+get_minroots <- function(ar) {
+  min(Mod(polyroot(c(1, -ar)))) 
+}
+
+#' Slightly faster arima.sim implementation which assumes AR(1) and ma=0.
+#' 
+#' @param minroots Output from \code{get_minroots} function.
+#' @param ar The 'ar' part of AR(1)
+#' @param n Length of output series, before un-differencing. A strictly positive integer.
+#' @seealso arima.sim
+ar1_ma0_sim <- function(minroots, ar, n) {
+  
+  if (minroots <= 1) {
+    stop("'ar' part of model is not stationary")
+  }
+
+  nstart <- 2 + ceiling(6 / log(minroots))
+  
+  x <- ts(data = rnorm(n + nstart), start = 1 - nstart)
+  x <- filter(x, ar, method = "recursive")
+  x[-seq_len(nstart)]
+  # maybe also this: as.ts(x)
 }

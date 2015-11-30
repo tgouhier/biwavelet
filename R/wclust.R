@@ -47,12 +47,12 @@ wclust <- function(w.arr) {
   num_waves <- nrow(w.arr)
   dist.matrix <- matrix(NA, nrow = num_waves, ncol = num_waves)
   k <- 1
-  waves_vec <- 1:num_waves
+  waves_seq <- 1:num_waves
 
   prog.bar <- txtProgressBar(min = 0, num_waves ^ 2, style = 3)
 
-  for (n in waves_vec) {
-    for (j in waves_vec) {
+  for (n in waves_seq) {
+    for (j in waves_seq) {
       dist.matrix[n,j] <- wdist(w.arr[n, ,], w.arr[j, ,])
       k <- k + 1
       setTxtProgressBar(prog.bar, k)

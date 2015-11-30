@@ -349,5 +349,3 @@ void iArray::colQuantile(const double q, dArray & quant) {
 }
 
 #endif
-
-

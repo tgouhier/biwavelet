@@ -54,9 +54,9 @@ check.data <- function(y, x1 = NULL, x2 = NULL) {
 }
 
 #' Helper function
-#' @param x TODO
-#' @return TODO
-#' @note This is not exported
+#' @param x matrix
+#' @return list(t, dt, n.obs)
+#' @note This function is not exported
 check.datum <- function(x) {
   if (NCOL(x) > 1) {
     if (class(x[, 1])[1] == "Date" | class(x[,1])[1] == "POSIXct") {
@@ -65,7 +65,7 @@ check.datum <- function(x) {
         t <- x[, 1]
         dt <- as.numeric(diffs[1])
       } else {
-        t <- 1:NROW(x)
+        t <- seq_len(NROW(x))
         dt <- diff(t)[1]
       }
     } else {

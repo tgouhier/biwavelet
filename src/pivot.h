@@ -6,5 +6,3 @@ double vMin(double * v, const size_t len);
 double pivot(double * v, const size_t len, const double target);
 
 #endif
-
-
