@@ -19,7 +19,7 @@
 #'   It is only appropriate for the morlet wavelet.
 #'   
 #' @examples
-#' # Not run: smooth.wt1=smooth.wavelet(wave, dt, dj, scale)
+#' # Not run: smooth.wt1 <- smooth.wavelet(wave, dt, dj, scale)
 #' 
 #' @param wave wavelet coefficients
 #' @param dt size of time steps
@@ -66,7 +66,7 @@ smooth.wavelet <- function(wave, dt, dj, scale) {
   ker <- ker / (dj0steps.len - 1 + 2 * dj0steps.mod)
   keep.start <- floor(.5 * length(ker)) + 1
   swave <- convolve2D_typeopen(twave, rev(ker))
+
   # return
   swave[keep.start:(keep.start + n - 1),]
-  
 }
