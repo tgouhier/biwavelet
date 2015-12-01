@@ -10,11 +10,11 @@
 #'   for inclusion.
 #'   
 #' @param x M \code{x} n matrix.
-#' @param y numeric sequence of length N.
-#' @param conj logical; if \code{TRUE}, take the complex conjugate before
+#' @param y Numeric sequence of length N.
+#' @param conj Logical; if \code{TRUE}, take the complex conjugate before
 #'   back-transforming. Default is \code{TRUE} and used for usual convolution.
 #'   
-#' @param type character; one of \code{circular}, \code{open} (beginning of word
+#' @param type Character; one of \code{circular}, \code{open} (beginning of word
 #'   is ok).
 #'   
 #'   For \code{circular}, the two sequences are treated as circular, i.e.,
@@ -48,5 +48,26 @@ convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
   x <- mvfft(mvfft(x) * (if (conj) Conj(fft(y)) else fft(y)),
              inverse = TRUE)
 
+  (if (Real) Re(x) else x) / n
+}
+
+#' Speed-optimized version of convolve2D
+#' 
+#' Assumes \code{type = "open"}
+#' 
+#' @inheritParams convolve2D
+#' @seealso \link{convolve2D}
+#' 
+convolve2D_typeopen <- function(x, y) {
+  n <- nrow(x)
+  Real <- is.numeric(x) && is.numeric(y)
+
+  # assuming type = "open"
+  x <- rbind(matrix(0, length(y) - 1, ncol(x)), x)
+  y <- c(y, rep.int(0, n - 1))
+  n <- length(y)
+  
+  x <- mvfft(mvfft(x) * Conj(fft(y)), inverse = TRUE)
+  
   (if (Real) Re(x) else x) / n
 }
