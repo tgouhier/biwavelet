@@ -1,3 +1,9 @@
+# This file contains some ad-hoc code snippets
+# There are some attempts to perform code profiling and benchmarking
+# It would be nice to split this into multiple files and rewrite
+# it in a nicer reproducible manner, including some plots and nice
+# reports - "Reproducible Research"
+
 if (!require("profvis", character.only = TRUE)) {
   devtools::install_github("rstudio/profvis")
   library(profvis)
