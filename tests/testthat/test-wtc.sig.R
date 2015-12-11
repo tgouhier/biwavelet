@@ -40,7 +40,7 @@ test_that("Testing whether all mother wavelets work for wtc.sig", {
   }
 })
 
-test_that("Number of Monte Carlo randomizations < 1 should behave nicely", {
+test_that("nrands<0 should behave nicely", {
   expect_equal(wtc.sig( nrands = 0,
                        lag1 = 0, dt = 0, ntimesteps = 0, s0 = 0, J1 = 0), NA)
 })

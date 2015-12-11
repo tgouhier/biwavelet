@@ -12,7 +12,7 @@ convolve2D_typeopen(x, y)
 \item{y}{Numeric sequence of length N.}
 }
 \description{
-Assumes \code{type = "open"}
+Equivalent to \code{convolve2D(x,y, type = "open")}
 }
 \seealso{
 \link{convolve2D}
