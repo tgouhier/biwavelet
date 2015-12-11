@@ -35,6 +35,10 @@ wtc_sig_parallel <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   
   NUMC <- getDoParWorkers()
   CLEN <- ceiling(nrands / NUMC)
+  
+  if (!quiet) {
+    prog.bar <- txtProgressBar(min = 0, max = NUMC, style = 3)
+  }
 
   CID <- NULL # this is only necessary for R CMD check --as-cran
   rand.rsq <- foreach(CID = seq_len(NUMC),
@@ -75,6 +79,15 @@ wtc_sig_parallel <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
     return(out)
   }
   
+  # TODO: the progressbar should be implemented properly
+  if (!quiet) {
+    setTxtProgressBar(prog.bar, NUMC)
+  }
+
+  if (!quiet) {
+    close(prog.bar)
+  }
+
   # The original slow implementation was using "apply" and "quantile" functions
   # apply(rand.rsq, MARGIN = c(1,2), quantile, sig.level, na.rm = TRUE)
   # This has been replaced with a C++ implementation taken from WGCNA package
