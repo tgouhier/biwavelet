@@ -1,3 +1,9 @@
+# This file contains some ad-hoc code snippets
+# There are some attempts to perform code profiling and benchmarking
+# It would be nice to split this into multiple files and rewrite
+# it in a nicer reproducible manner, including some plots and nice
+# reports - "Reproducible Research"
+
 if (!require("profvis", character.only = TRUE)) {
   devtools::install_github("rstudio/profvis")
   library(profvis)
@@ -16,11 +22,40 @@ n <- checked$y$n.obs
 s0 <- 2 * dt
 
 profvis({
-  wtcsig <- wtc.sig(nrands = 100, lag1 = c(d1.ar1, d2.ar1), dt = dt,
+  wtcsig <- wtc.sig(nrands = 400, lag1 = c(d1.ar1, d2.ar1), dt = dt,
                     ntimesteps = n,
                     pad = TRUE, dj = 1 / 12, s0 = s0,
                     J1 = NULL, max.scale = NULL, quiet = FALSE)
 })
+
+library(foreach)
+library(parallel)
+cl <- makeCluster(4, outfile = "") # number of cores. Notice 'outfile'
+registerDoParallel(cl)
+
+wtcsig <- wtc_sig_parallel(nrands = 4, lag1 = c(d1.ar1, d2.ar1), dt = dt,
+                           ntimesteps = n,
+                           pad = TRUE, dj = 1 / 12, s0 = s0,
+                           J1 = NULL, max.scale = NULL)
+
+wtcsig <- wtc_sig_parallel(nrands = 400, lag1 = c(d1.ar1, d2.ar1), dt = dt,
+                  ntimesteps = n,
+                  pad = TRUE, dj = 1 / 12, s0 = s0,
+                  J1 = NULL, max.scale = NULL)
+
+nrands <- 4
+foreach(r = seq_len(nrands),
+        .init = array(dim = c(3,3,nrands)),
+        .combine = function(y, x){
+          y[,,x$r] <- x$a
+          return(y)
+        }) %dopar% {
+          list(r = r, a = array(dim = c(3,3), (1:9)*r))
+        }
+
+stopCluster(cl) 
+
+
 
 image(wtcsig)
 

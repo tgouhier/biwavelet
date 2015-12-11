@@ -119,7 +119,7 @@ wt.sig <- function(d, dt, scale, sig.test = 0, sig.level = 0.95,
   # see also http://stackoverflow.com/a/7826352/855435
   switch( as.character(sig.test),
 
-    # no smoothing, DOF=dofmin
+    # no smoothing, DOF = dofmin
     "0" = {
       dof <- dofmin
       chisquare <- qchisq(sig.level, dof) / dof

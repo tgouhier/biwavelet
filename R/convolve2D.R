@@ -53,7 +53,7 @@ convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
 
 #' Speed-optimized version of convolve2D
 #' 
-#' Assumes \code{type = "open"}
+#' Equivalent to \code{convolve2D(x,y, type = "open")}
 #' 
 #' @inheritParams convolve2D
 #' @seealso \link{convolve2D}
