@@ -53,11 +53,14 @@ convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
 
 #' Speed-optimized version of convolve2D
 #' 
-#' Equivalent to \code{convolve2D(x,y, type = "open")}
+#' Equivalent to \code{convolve2D(x, y, type = "open")}
+#' The motivation for this function was that convolution is called many times
+#' in a loop from \link{smooth.wavelet}, always with the \code{type="open"}
+#' parameter.
 #' 
+#' @author Viliam Simko
 #' @inheritParams convolve2D
 #' @seealso \link{convolve2D}
-#' 
 convolve2D_typeopen <- function(x, y) {
   n <- nrow(x)
   Real <- is.numeric(x) && is.numeric(y)
