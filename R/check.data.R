@@ -22,9 +22,8 @@
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #' 
 #' @examples
-#' # Not run:
-#' t1=cbind(1:100, rnorm(100))
-#' check.data(y=t1)
+#' t1 <- cbind(1:100, rnorm(100))
+#' check.data(y = t1)
 #' 
 #' @export
 check.data <- function(y, x1 = NULL, x2 = NULL) {
