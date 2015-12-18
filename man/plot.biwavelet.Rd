@@ -112,6 +112,8 @@ Arrows pointing up mean that \code{y} leads \code{x} by \eqn{\pi/2}.
 Arrows pointing down mean that \code{x} leads \code{y} by \eqn{\pi/2}.
 }
 \examples{
+library(biwavelet)
+
 t1 <- cbind(1:100, rnorm(100))
 t2 <- cbind(1:100, rnorm(100))
 
@@ -152,6 +154,7 @@ plot(wt1, type = "power.norm", main = "Biased")
 # reduces the power of higher-frequency fluctuations.
 x1 <- xwt(cbind(1:1000, s), cbind(1:1000, s))
 par(mfrow = c(1,2))
+
 plot(x1, type = "power.corr.norm", main = "Bias-corrected")
 plot(x1, type = "power.norm", main = "Biased")
 
