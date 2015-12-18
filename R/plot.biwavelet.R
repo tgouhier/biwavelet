@@ -185,8 +185,6 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
     }
     locs <- pretty(range(zlim), n = 5)
     leg.lab <- locs
-  } else {
-    stop("Programming error! We should never reach this code.")
   }
 
   if (is.null(xlim)) {
