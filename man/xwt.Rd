@@ -67,6 +67,8 @@ Returns a \code{biwavelet} object containing:
 Compute cross-wavelet
 }
 \examples{
+library(biwavelet)
+
 t1 <- cbind(1:100, rnorm(100))
 t2 <- cbind(1:100, rnorm(100))
 
@@ -85,7 +87,6 @@ xwt.mei.npgo <- xwt(subset(enviro.data, select = c("date", "mei")),
 # Make room to the right for the color bar
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(xwt.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
-
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)
