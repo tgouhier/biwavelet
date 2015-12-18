@@ -86,7 +86,7 @@ wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
     }
     J1 <- round(log2(max.scale / s0) / dj)
   }
-  
+
   # This could be made more efficient by removing the +1
   # but this can lead to insufficient padding in some instances.
   # Currently the padding is the same as that of Torrence & Compo (1998)

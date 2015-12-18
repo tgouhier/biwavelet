@@ -66,8 +66,8 @@ convolve2D_typeopen <- function(x, y) {
   x <- rbind(matrix(0, length(y) - 1, ncol(x)), x)
   y <- c(y, rep.int(0, n - 1))
   n <- length(y)
-  
+
   x <- mvfft(mvfft(x) * Conj(fft(y)), inverse = TRUE)
-  
+
   (if (Real) Re(x) else x) / n
 }

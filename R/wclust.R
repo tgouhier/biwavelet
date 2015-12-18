@@ -39,7 +39,7 @@ wclust <- function(w.arr, quiet = FALSE) {
     for (j in seq_len(num_waves)) {
       dist.matrix[n,j] <- wdist(w.arr[n, ,], w.arr[j, ,])
       k <- k + 1
-      
+
       if (!quiet) {
         setTxtProgressBar(prog.bar, k)
       }

@@ -19,4 +19,3 @@ w.arr[3, , ] <- wt.t3$wave
 w.arr.dis <- wclust(w.arr)
 plot(hclust(w.arr.dis$dist.mat, method = "ward.D"),
      sub = "", main = "", ylab = "Dissimilarity", hang = -1)
-

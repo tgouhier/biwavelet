@@ -20,4 +20,3 @@ plot(pwtc.yx1, xlab = "", plot.cb = TRUE,
 
 plot(pwtc.yx2, plot.cb = TRUE,
      main = "Partial wavelet coherence of y and x2 | x1")
-
