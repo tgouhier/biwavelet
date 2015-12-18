@@ -12,7 +12,13 @@ convolve2D_typeopen(x, y)
 \item{y}{Numeric sequence of length N.}
 }
 \description{
-Equivalent to \code{convolve2D(x,y, type = "open")}
+Equivalent to \code{convolve2D(x, y, type = "open")}
+The motivation for this function was that convolution is called many times
+in a loop from \link{smooth.wavelet}, always with the \code{type="open"}
+parameter.
+}
+\author{
+Viliam Simko
 }
 \seealso{
 \link{convolve2D}

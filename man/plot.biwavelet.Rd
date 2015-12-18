@@ -133,9 +133,9 @@ par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(xwt.t1t2, plot.cb = TRUE)
 
 # Example of bias-correction
-t1 <- sin(seq(from = 0, to = 2*5*pi, length = 1000))
-t2 <- sin(seq(from = 0, to = 2*15*pi, length = 1000))
-t3 <- sin(seq(from = 0, to = 2*40*pi, length = 1000))
+t1 <- sin(seq(0, 2 * 5 * pi, length.out = 1000))
+t2 <- sin(seq(0, 2 * 15 * pi, length.out = 1000))
+t3 <- sin(seq(0, 2 * 40 * pi, length.out = 1000))
 
 # This aggregate time series should have the same power
 # at three distinct periods
@@ -157,7 +157,6 @@ par(mfrow = c(1,2))
 
 plot(x1, type = "power.corr.norm", main = "Bias-corrected")
 plot(x1, type = "power.norm", main = "Biased")
-
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)
