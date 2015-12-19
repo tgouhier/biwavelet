@@ -61,7 +61,7 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   ntseq <- seq_len(ntimesteps)
 
   d1 <- cbind(ntseq, ar1_ma0_sim(mr1, lag1[1], ntimesteps))
-  
+
   wt1 <- wt(d = d1, pad = pad, dj = dj, dt = dt, s0 = s0, J1 = J1,
            max.scale = max.scale, mother = mother, do.sig = FALSE)
 
@@ -117,7 +117,7 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
 #' @param ar The 'ar' part of AR(1)
 #' @return double
 get_minroots <- function(ar) {
-  min(Mod(polyroot(c(1, -ar)))) 
+  min(Mod(polyroot(c(1, -ar))))
 }
 
 #' Slightly faster arima.sim implementation which assumes AR(1) and ma=0.
@@ -127,13 +127,13 @@ get_minroots <- function(ar) {
 #' @param n Length of output series, before un-differencing. A strictly positive integer.
 #' @seealso arima.sim
 ar1_ma0_sim <- function(minroots, ar, n) {
-  
+
   if (minroots <= 1) {
     stop("'ar' part of model is not stationary")
   }
 
   nstart <- 2 + ceiling(6 / log(minroots))
-  
+
   x <- ts(data = rnorm(n + nstart), start = 1 - nstart)
   x <- filter(x, ar, method = "recursive")
   x[-seq_len(nstart)]

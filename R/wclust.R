@@ -5,6 +5,8 @@
 #'   in each wavelet spectrum and \code{t} is the number of time steps in each
 #'   wavelet spectrum.
 #' 
+#' @param quiet Do not display progress bar. Default is \code{FALSE}
+#' 
 #' @return Returns a list containing:
 #'   \item{diss.mat}{square dissimilarity matrix}
 #'   \item{dist.mat}{(lower triangular) distance matrix}
@@ -21,46 +23,33 @@
 #' 
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #' 
-#' @examples
-#' t1 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)))
-#' t2 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)+0.1*pi))
-#' t3 <- cbind(1:100, rnorm(100))
-#' 
-#' ## Compute wavelet spectra
-#' wt.t1 <- wt(t1)
-#' wt.t2 <- wt(t2)
-#' wt.t3 <- wt(t3)
-#' 
-#' ## Store all wavelet spectra into array
-#' w.arr <- array(NA, dim = c(3, NROW(wt.t1$wave), NCOL(wt.t1$wave)))
-#' w.arr[1, , ] <- wt.t1$wave
-#' w.arr[2, , ] <- wt.t2$wave
-#' w.arr[3, , ] <- wt.t3$wave
-#' 
-#' ## Compute dissimilarity and distance matrices
-#' w.arr.dis <- wclust(w.arr)
-#' plot(hclust(w.arr.dis$dist.mat, method = "ward"), sub = "", main = "", 
-#'      ylab = "Dissimilarity", hang = -1)
-#'
+#' @example inst/examples/example-wclust.R
 #' @export
-wclust <- function(w.arr) {
+wclust <- function(w.arr, quiet = FALSE) {
+
   num_waves <- nrow(w.arr)
   dist.matrix <- matrix(NA, nrow = num_waves, ncol = num_waves)
   k <- 1
-  waves_seq <- 1:num_waves
 
-  prog.bar <- txtProgressBar(min = 0, num_waves ^ 2, style = 3)
+  if (!quiet) {
+    prog.bar <- txtProgressBar(min = 0, num_waves ^ 2, style = 3)
+  }
 
-  for (n in waves_seq) {
-    for (j in waves_seq) {
+  for (n in seq_len(num_waves)) {
+    for (j in seq_len(num_waves)) {
       dist.matrix[n,j] <- wdist(w.arr[n, ,], w.arr[j, ,])
       k <- k + 1
-      setTxtProgressBar(prog.bar, k)
+
+      if (!quiet) {
+        setTxtProgressBar(prog.bar, k)
+      }
     }
   }
 
-  close(prog.bar)
+  if (!quiet) {
+    close(prog.bar)
+  }
 
-  list(diss.mat = dist.matrix,
-       dist.mat = as.dist(dist.matrix))
+  list(diss.mat = dist.matrix, # square dissimilarity matrix
+       dist.mat = as.dist(dist.matrix)) # lower triangular distance matrix
 }

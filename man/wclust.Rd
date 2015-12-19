@@ -4,13 +4,15 @@
 \alias{wclust}
 \title{Compute dissimilarity between multiple wavelet spectra}
 \usage{
-wclust(w.arr)
+wclust(w.arr, quiet = FALSE)
 }
 \arguments{
 \item{w.arr}{\code{N x p x t} array of wavelet spectra where \code{N} is the
 number of wavelet spectra to be compared, \code{p} is the number of periods
 in each wavelet spectrum and \code{t} is the number of time steps in each
 wavelet spectrum.}
+
+\item{quiet}{Do not display progress bar. Default is \code{FALSE}}
 }
 \value{
 Returns a list containing:
@@ -21,9 +23,11 @@ Returns a list containing:
 Compute dissimilarity between multiple wavelet spectra
 }
 \examples{
-t1 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)))
-t2 <- cbind(1:100, sin(seq(from = 0, to = 10*2*pi, length.out = 100)+0.1*pi))
-t3 <- cbind(1:100, rnorm(100))
+library(biwavelet)
+
+t1 <- cbind(1:100, sin(seq(0, 10 * 2 * pi, length.out = 100)))
+t2 <- cbind(1:100, sin(seq(0, 10 * 2 * pi, length.out = 100) + 0.1 * pi))
+t3 <- cbind(1:100, rnorm(100)) # white noise
 
 ## Compute wavelet spectra
 wt.t1 <- wt(t1)
@@ -31,16 +35,15 @@ wt.t2 <- wt(t2)
 wt.t3 <- wt(t3)
 
 ## Store all wavelet spectra into array
-w.arr <- array(NA, dim = c(3, NROW(wt.t1$wave), NCOL(wt.t1$wave)))
+w.arr <- array(dim = c(3, NROW(wt.t1$wave), NCOL(wt.t1$wave)))
 w.arr[1, , ] <- wt.t1$wave
 w.arr[2, , ] <- wt.t2$wave
 w.arr[3, , ] <- wt.t3$wave
 
 ## Compute dissimilarity and distance matrices
 w.arr.dis <- wclust(w.arr)
-plot(hclust(w.arr.dis$dist.mat, method = "ward"), sub = "", main = "", 
-     ylab = "Dissimilarity", hang = -1)
-
+plot(hclust(w.arr.dis$dist.mat, method = "ward.D"),
+     sub = "", main = "", ylab = "Dissimilarity", hang = -1)
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)

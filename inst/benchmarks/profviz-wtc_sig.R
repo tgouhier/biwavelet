@@ -50,12 +50,10 @@ foreach(r = seq_len(nrands),
           y[,,x$r] <- x$a
           return(y)
         }) %dopar% {
-          list(r = r, a = array(dim = c(3,3), (1:9)*r))
+          list(r = r, a = array(dim = c(3,3), (1:9) * r))
         }
 
-stopCluster(cl) 
-
-
+stopCluster(cl)
 
 image(wtcsig)
 
@@ -117,8 +115,7 @@ microbenchmark(
   function() {
     d1 <- cbind(ntseq, ar1_ma0_sim(mr1, lag1[1], ntimesteps))
     d2 <- cbind(ntseq, ar1_ma0_sim(mr2, lag1[2], ntimesteps))
-  }
-      
+  },
   times = 100000
 )
 
@@ -137,9 +134,8 @@ ar1_ma0_sim <- function(minroots, ar, n) {
   if (minroots <= 1) {
     stop("'ar' part of model is not stationary")
   }
-
   n.start <- 2 + ceiling(6 / log(minroots))
-  
+
   x <- ts(data = rnorm(n + n.start), start = 1 - n.start)
   x <- filter(x, ar, method = "recursive")
   x[-seq_len(n.start)] # maybe as.ts(x)
@@ -147,4 +143,4 @@ ar1_ma0_sim <- function(minroots, ar, n) {
 ts2 <- ar1_ma0_sim(minroots, ar = ar, 10)
 
 twave <- matrix(nrow = 100, ncol = 10, 1)
-ker = 1:3
+ker <- 1:3

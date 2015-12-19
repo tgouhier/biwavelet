@@ -43,7 +43,7 @@ smooth.wavelet <- function(wave, dt, dj, scale) {
   k2 <- k ^ 2
   snorm <- scale / dt
   smooth <- numeric(length = length(k2))
-  
+
   twave <- matrix(nrow = n, ncol = m, 0)
   for (ii in seq_len(n)) {
     F <- exp(-0.5 * (snorm[ii] ^ 2) * k2)

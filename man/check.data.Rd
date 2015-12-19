@@ -29,9 +29,8 @@ Returns a named list containing:
 Check the format of time series
 }
 \examples{
-# Not run:
-t1=cbind(1:100, rnorm(100))
-check.data(y=t1)
+t1 <- cbind(1:100, rnorm(100))
+check.data(y = t1)
 
 }
 \author{
