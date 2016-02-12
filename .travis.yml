@@ -2,13 +2,18 @@ language: r
 warnings_are_errors: true
 sudo: required
 
-cache: apt
+cache:
+  - apt
+  - packages
 
 notifications:
   email:
     on_success: change
     on_failure: change
 
+r_binary_packages:
+  - devtools
+  
 r_github_packages:
   - jimhester/covr
   - jimhester/lintr
