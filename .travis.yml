@@ -11,9 +11,6 @@ notifications:
     on_success: change
     on_failure: change
 
-r_binary_packages:
-  - devtools
-  
 r_github_packages:
   - hadley/devtools
   - jimhester/covr
