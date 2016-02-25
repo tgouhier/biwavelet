@@ -12,7 +12,6 @@ notifications:
     on_failure: change
 
 r_github_packages:
-  - hadley/devtools
   - jimhester/covr
   - jimhester/lintr
 
