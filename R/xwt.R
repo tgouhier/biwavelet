@@ -65,7 +65,7 @@
 #' Normalizing Scales. \emph{Journal of Atmospheric and Oceanic Technology} 
 #' 29:1401-1408.
 #' 
-#' @example inst/examples/example-xwt.R
+#' @example vignettes/example-xwt.R
 #' @export
 xwt <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
                 J1 = NULL, max.scale = NULL, mother = "morlet",
