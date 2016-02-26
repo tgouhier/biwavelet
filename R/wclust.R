@@ -23,7 +23,7 @@
 #' 
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #' 
-#' @example inst/examples/example-wclust.R
+#' @example vignettes/example-wclust.R
 #' @export
 wclust <- function(w.arr, quiet = FALSE) {
 

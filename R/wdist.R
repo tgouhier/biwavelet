@@ -23,7 +23,7 @@
 #' Analysing multiple time series and extending significance testing in
 #' wavelet analysis. \emph{Marine Ecology Progress Series} 359:11-23.
 #' 
-#' @example inst/examples/example-wdist.R
+#' @example vignettes/example-wdist.R
 #' @export
 wdist <- function(wt1, wt2, cutoff = 0.99) {
   wcov <- Re(wt1) %*% t(Re(wt2))

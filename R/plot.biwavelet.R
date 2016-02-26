@@ -85,7 +85,7 @@
 #' 
 #' @seealso \code{\link{image.plot}}
 #' 
-#' @example inst/examples/example-plot.biwavelet.R
+#' @example vignettes/example-plot.biwavelet.R
 #' @importFrom fields image.plot
 #' @export
 plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
