@@ -36,7 +36,7 @@ test_that("Testing whether all mother wavelets are working", {
                             lag1 = c(d1.ar1, d2.ar1),
                             dt = dt, ntimesteps = n, s0 = s0, J1 = NULL)
     expect_true( is.matrix(out) )
-    expect_equal( dim(out), c(42,64) )
+    expect_equal( dim(out), c(42, 64) )
   }
 })
 

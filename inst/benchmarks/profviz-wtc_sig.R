@@ -1,36 +1,9 @@
-# This file contains some ad-hoc code snippets
-# There are some attempts to perform code profiling and benchmarking
-# It would be nice to split this into multiple files and rewrite
-# it in a nicer reproducible manner, including some plots and nice
-# reports - "Reproducible Research"
-
-if (!require("profvis", character.only = TRUE)) {
-  devtools::install_github("rstudio/profvis")
-  library(profvis)
-}
-library(biwavelet)
-
-d1 <- cbind(1:100, rnorm(100))
-d2 <- cbind(1:100, rnorm(100))
-
-d1.ar1 <- arima(d1[,2], order = c(1, 0, 0))$coef[1]
-d2.ar1 <- arima(d2[,2], order = c(1, 0, 0))$coef[1]
-
-checked <- check.data(y = d1, x1 = d2)
-dt <- checked$y$dt
-n <- checked$y$n.obs
-s0 <- 2 * dt
-
-profvis({
-  wtcsig <- wtc.sig(nrands = 400, lag1 = c(d1.ar1, d2.ar1), dt = dt,
-                    ntimesteps = n,
-                    pad = TRUE, dj = 1 / 12, s0 = s0,
-                    J1 = NULL, max.scale = NULL, quiet = FALSE)
-})
 
 library(foreach)
 library(parallel)
 cl <- makeCluster(4, outfile = "") # number of cores. Notice 'outfile'
+
+library(doParallel)
 registerDoParallel(cl)
 
 wtcsig <- wtc_sig_parallel(nrands = 4, lag1 = c(d1.ar1, d2.ar1), dt = dt,
@@ -45,12 +18,12 @@ wtcsig <- wtc_sig_parallel(nrands = 400, lag1 = c(d1.ar1, d2.ar1), dt = dt,
 
 nrands <- 4
 foreach(r = seq_len(nrands),
-        .init = array(dim = c(3,3,nrands)),
+        .init = array(dim = c(3, 3, nrands)),
         .combine = function(y, x){
-          y[,,x$r] <- x$a
+          y[, , x$r] <- x$a
           return(y)
         }) %dopar% {
-          list(r = r, a = array(dim = c(3,3), (1:9) * r))
+          list(r = r, a = array(dim = c(3, 3), (1:9) * r))
         }
 
 stopCluster(cl)
@@ -79,17 +52,17 @@ out2 <- matrix(nrow = 10, ncol = 10)
 out3 <- matrix(nrow = 10, ncol = 10)
 microbenchmark(
   function() {
-    out1 <- apply(ts, MARGIN = c(1,2), quantile, 0.95, na.rm = TRUE)
+    out1 <- apply(ts, MARGIN = c(1, 2), quantile, 0.95, na.rm = TRUE)
   },
   function() {
     for (i in 1:10) {
-      out2[i,] <- row_quantile(ts[i,,], 0.95)
+      out2[i, ] <- row_quantile(ts[i, , ], 0.95)
     }
   },
   function() {
     # this version is the best
     for (i in 1:10) {
-      out3[,i] <- row_quantile(ts[,i,], 0.95)
+      out3[, i] <- row_quantile(ts[, i, ], 0.95)
     }
   },
   function() {

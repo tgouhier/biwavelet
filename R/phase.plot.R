@@ -35,14 +35,14 @@ phase.plot <- function(x, y, phases,
   a.row <- seq(1, NROW(phases), round(NROW(phases) / 30))
   a.col <- seq(1, NCOL(phases), round(NCOL(phases) / 40))
 
-  phases[-a.row,] <- NA
-  phases[,-a.col] <- NA
+  phases[-a.row, ] <- NA
+  phases[, -a.col] <- NA
 
   for (i in seq_len(NROW(phases))) {
     for (j in seq_len(NCOL(phases))) {
-      if (!is.na(phases[i,j])) {
+      if (!is.na(phases[i, j])) {
         arrow(x[j], y[i], l = arrow.len, w = arrow.lwd,
-              alpha = phases[i,j], col = arrow.col)
+              alpha = phases[i, j], col = arrow.col)
       }
     }
   }
