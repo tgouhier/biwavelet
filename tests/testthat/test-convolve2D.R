@@ -17,5 +17,3 @@ test_that("Circular convolve2D should identify length mismatch", {
     convolve2D(x,y, type = "circular"),
     regexp = "length mismatch")
 })
-
-
