@@ -19,8 +19,6 @@ knitr::opts_chunk$set(
 [![codecov.io](https://codecov.io/github/tgouhier/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/tgouhier/biwavelet?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet)
 ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/biwavelet)
-[![Issue Stats](http://issuestats.com/github/tgouhier/biwavelet/badge/pr)](http://issuestats.com/github/tgouhier/biwavelet)
-[![Issue Stats](http://issuestats.com/github/tgouhier/biwavelet/badge/issue)](http://issuestats.com/github/tgouhier/biwavelet)
 
 ## Download and Install
 
