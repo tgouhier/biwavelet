@@ -156,5 +156,6 @@ Veleda, D., R. Montagne, and M. Araujo. 2012.
 Journal of Atmospheric and Oceanic Technology 29:1401-1408.
 
 ## Other links
- * Old website hosted at r-forge: http://biwavelet.r-forge.r-project.org/
- * Old PDF Manual: http://biwavelet.r-forge.r-project.org/biwavelet-manual.pdf
+- Biwavelet listed at OpenHub: https://www.openhub.net/p/biwavelet
+- Old website hosted at r-forge: http://biwavelet.r-forge.r-project.org/
+- Old PDF Manual: http://biwavelet.r-forge.r-project.org/biwavelet-manual.pdf

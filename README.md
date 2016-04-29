@@ -102,5 +102,6 @@ References
 Other links
 -----------
 
+-   Biwavelet listed at OpenHub: <https://www.openhub.net/p/biwavelet>
 -   Old website hosted at r-forge: <http://biwavelet.r-forge.r-project.org/>
 -   Old PDF Manual: <http://biwavelet.r-forge.r-project.org/biwavelet-manual.pdf>
