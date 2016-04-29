@@ -1,4 +1,92 @@
+---
+title: "Profiling `biwavelet` package"
+author: "Viliam Simko"
+date: "February 27, 2016"
+output: html_document
+---
 
+```{r Setup, include=FALSE}
+library(biwavelet)
+if (!require("profvis", character.only = TRUE)) {
+  devtools::install_github("rstudio/profvis")
+  library(profvis)
+}
+```
+
+This document contains some attempts to perform code profiling and benchmarking.
+
+## Profiling `wtc.sig` function
+
+We need some parameters that the `wtc.sig` function expects.
+```{r Input data for wtc.sig}
+d1 <- cbind(1:100, rnorm(100))
+d2 <- cbind(1:100, rnorm(100))
+
+d1.ar1 <- arima(d1[, 2], order = c(1, 0, 0))$coef[1]
+d2.ar1 <- arima(d2[, 2], order = c(1, 0, 0))$coef[1]
+
+checked <- check.data(y = d1, x1 = d2)
+dt <- checked$y$dt
+n <- checked$y$n.obs
+s0 <- 2 * dt
+```
+
+Now, we can start profiling the code. The results are shown using an interactive
+HTML widget.
+```{r Profiling wtc.sig}
+profvis({
+  wtcsig <- wtc.sig(nrands = 100, lag1 = c(d1.ar1, d2.ar1), dt = dt,
+                    ntimesteps = n,
+                    pad = TRUE, dj = 1 / 12, s0 = s0,
+                    J1 = NULL, max.scale = NULL, quiet = TRUE)
+}, height = 300)
+```
+
+It looks like the function `smooth.wavelet` might be the best candidate for speed improvements.
+
+## Some microbenchmarks
+
+```{r}
+library(microbenchmark)
+
+out2 <- matrix(nrow = 10, ncol = 10)
+out3 <- matrix(nrow = 10, ncol = 10)
+
+apply_with_quantile <- function() {
+  apply(ts, MARGIN = c(1, 2), quantile, 0.95, na.rm = TRUE)
+  return
+}
+
+row_quantile_per_row <- function() {
+  for (i in 1:10) {
+    out2[i, ] <- row_quantile(ts[i, , ], 0.95)
+  }
+}
+
+row_quantile_per_col <- function() {
+  for (i in 1:10) {
+    out3[, i] <- row_quantile(ts[, i, ], 0.95)
+  }
+}
+
+apply_with_row_quantile <- function() {
+  apply(ts, 2, row_quantile, 0.95)
+}
+
+microbenchmark(
+  apply_with_quantile,
+  row_quantile_per_row,
+  row_quantile_per_col,
+  apply_with_row_quantile,
+  times = 100000
+)
+```
+
+## TODO: some old stuff
+
+The following code is not executed.
+
+```{r, eval=FALSE}
 library(foreach)
 library(parallel)
 cl <- makeCluster(4, outfile = "") # number of cores. Notice 'outfile'
@@ -117,3 +205,4 @@ ts2 <- ar1_ma0_sim(minroots, ar = ar, 10)
 
 twave <- matrix(nrow = 100, ncol = 10, 1)
 ker <- 1:3
+```
