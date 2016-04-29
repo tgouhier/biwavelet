@@ -9,7 +9,7 @@ library(biwavelet)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "inst/webimg/README-"
+  fig.path = "vignettes/webimg/README-"
 )
 ```
 
