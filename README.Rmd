@@ -94,13 +94,13 @@ par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
 ```
 
-<!-- Original image: ![MEI and NPGO wavelet coherence](inst/webimg/wtc.png) -->
+<!-- Original image: ![MEI and NPGO wavelet coherence](vignettes/webimg/wtc.png) -->
 
 The biwavelet package can also be used to compute the (dis)similarity between
 pairs of time series based on their wavelet spectrum:
 
 ![Similarity between pairs of time series based on their wavelet
-spectrum](inst/webimg/wclust.png)
+spectrum](vignettes/webimg/wclust.png)
 
 ## Additional Examples
 
