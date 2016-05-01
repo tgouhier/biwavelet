@@ -87,6 +87,8 @@
 #' 
 #' @example vignettes/example-plot.biwavelet.R
 #' @importFrom fields image.plot
+#' @importFrom grDevices adjustcolor colorRampPalette
+#' @importFrom graphics axTicks axis box contour image par polygon
 #' @export
 plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
                            xlab = "Time", ylab = "Period",

@@ -4,6 +4,8 @@
 #' @useDynLib biwavelet
 #' @exportPattern ^[[:alpha:]]+
 #' @importFrom Rcpp evalCpp
+#' @importFrom stats arima as.dist filter qchisq quantile rnorm sd ts var weighted.mean
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' 
 #' @title
 #' Conduct Univariate and Bivariate Wavelet Analyses
