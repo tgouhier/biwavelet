@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "vignettes/webimg/README-"
 )
+set.seed(0)
 ```
 
 # biwavelet R package
