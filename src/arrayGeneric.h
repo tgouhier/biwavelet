@@ -162,7 +162,6 @@ class CLASS_NAME {
     void colQuantile(double q, dArray & quantile);
     void rowQuantile(double q, dArray & quantile);
 
-    void sample(size_t size, CLASS_NAME & values, int replace = 0);
 
     // void sort();
     // vector <size_t> order();
@@ -326,37 +325,4 @@ void CLASS_NAME::copy2vector(size_t start, size_t length, vector <double> & resu
   for (size_t i=start; i<start + length; i++)
     result.push_back((double) *(data_+i));
 }
-
-/*
-   This function is designed to generate relatively small samples from large arrays.
-   replace is honored exactly. Using this function on samples that are relatively large will be quite
-   slow.
-*/
-void CLASS_NAME::sample(size_t size, CLASS_NAME & values, int replace)
-{
-  size_t len = length();
-  if (replace)
-  {
-    if (size > length())
-      throw(Exception(string("Attempt to sample too many samples without replacement.")));
-    values.setDim(size);
-    for (size_t i=0; i<size; i++)
-    {
-      size_t s = (size_t) (floor(unif_rand() * len));
-      values.linValue(i, linValue(s));
-    }
-  } else {
-    indArray taken(length(), false);
-    values.setDim(size);
-    for (size_t nSampled=0; nSampled < size; )
-    {
-      size_t s = (size_t) (floor(unif_rand() * len));
-      if (!taken.value(s))
-      {
-        values.linValue(nSampled, linValue(s));
-        taken.value(s, true);
-        nSampled++;
-      }
-    }
-  }
 }
