@@ -29,11 +29,18 @@
 #' @export
 wt.bases <- function(mother = "morlet", ...) {
   switch(mother,
-    morlet = rcpp_wt_bases_morlet(...), # original wt.bases.morlet(...),
-    paul = rcpp_wt_bases_paul(...), # original wt.bases.paul(...),
-    dog = rcpp_wt_bases_dog(...), # original wt.bases.dog(...),
-    stop(paste("mother wavelet parameter must be one of:",
-               paste(MOTHERS, collapse = ", ")))
+         
+         #morlet = wt.bases.morlet(...), # R
+         morlet = rcpp_wt_bases_morlet(...), # Rcpp
+         
+         #paul = wt.bases.paul(...), # R
+         paul = rcpp_wt_bases_paul(...), # Rcpp
+         
+         #dog = wt.bases.dog(...), # R
+         dog = rcpp_wt_bases_dog(...), # Rcpp
+         
+         stop(paste("mother wavelet parameter must be one of:",
+              paste(MOTHERS, collapse = ", ")))
   )
 }
 
