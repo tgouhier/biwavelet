@@ -13,22 +13,22 @@ class CLASS_NAME {
 
   #ifdef CheckDimensions
     TYPE value(size_t i)
-       { if (i<dims[1]) return data_[i]; 
-         else throw (Exception(string("Index out of range in variable" + name_).c_str())); 
+       { if (i<dims[1]) return data_[i];
+         else throw (Exception(string("Index out of range in variable" + name_).c_str()));
        }
-    TYPE value(size_t i, size_t j) 
+    TYPE value(size_t i, size_t j)
        { if (dims.size()==2)
            if ( (i<dims[0]) && (j<dims[1]) )
-              return data_[j*dims[0] + i]; 
+              return data_[j*dims[0] + i];
            else
                throw (Exception(string("Index out of range in variable" + name_)));
          else
             throw (Exception(string("incorrect number of dimensions accessing variable" + name_)));
        }
-    TYPE value(size_t i, size_t j, size_t k) 
+    TYPE value(size_t i, size_t j, size_t k)
        { if (dims.size()==3)
-           if ((k < dims[2]) && (j<dims[1]) && (i<dims[0])) 
-              return data_[(k*dims[1]+j)*dims[0] + i]; 
+           if ((k < dims[2]) && (j<dims[1]) && (i<dims[0]))
+              return data_[(k*dims[1]+j)*dims[0] + i];
            else
                throw (Exception(string("Index out of range in variable" + name_)));
          else
@@ -41,10 +41,10 @@ class CLASS_NAME {
          for (size_t di=0; di < dims.size(); di++) max *= dims[di];
          if (i<max)
             return data_[i];
-         else 
+         else
             throw (Exception(string("Linear index out of range in variable" + name_)));
        }
-         
+
     void setValue(size_t i, TYPE r)
        { if (i<dims[0]) data_[i] = r;
          else throw (Exception(string("Index out of range in variable" + name_)));
@@ -60,8 +60,8 @@ class CLASS_NAME {
        }
     void setValue(size_t i, size_t j, size_t k, TYPE r)
        { if (dims.size()==3)
-           if ((k < dims[2]) && (j<dims[1]) && (i<dims[0])) 
-              data_[(k*dims[1]+j)*dims[0] + i] = r; 
+           if ((k < dims[2]) && (j<dims[1]) && (i<dims[0]))
+              data_[(k*dims[1]+j)*dims[0] + i] = r;
            else
                throw (Exception(string("Index out of range in variable" + name_)));
          else
@@ -86,20 +86,20 @@ class CLASS_NAME {
        { return data_[i]; }
     TYPE value(size_t i)
        { return data_[i]; }
-    TYPE value(size_t i, size_t j) 
+    TYPE value(size_t i, size_t j)
        { return (data_[j*dims[0] + i]); }
-    TYPE value(size_t i, size_t j, size_t k) 
+    TYPE value(size_t i, size_t j, size_t k)
        { return (data_[(k*dims[1]+j)*dims[0] + i]); }
 
     void linValue(size_t i, TYPE r)
        { data_[i] = r; }
     void value(size_t i, TYPE r)
        { data_[i]; }
-    void value(size_t i, size_t j, TYPE r) 
+    void value(size_t i, size_t j, TYPE r)
        { data_[j*dims[0] + i] = r; }
-    void value(size_t i, size_t j, size_t k, TYPE r) 
+    void value(size_t i, size_t j, size_t k, TYPE r)
        { data_[(k*dims[1]+j)*dims[0] + i] = r; }
-    
+
 
   #endif
 
@@ -120,9 +120,9 @@ class CLASS_NAME {
     vector <size_t> dim() { return dims; }
 
     size_t size() { return size_; }
-    size_t length() 
-       { 
-          if (dims.size()==0) return 0; 
+    size_t length()
+       {
+          if (dims.size()==0) return 0;
           size_t prod = 1; for (size_t i=0; i<dims.size(); i++) prod *= dims[i];
           return prod;
        }
@@ -137,13 +137,13 @@ class CLASS_NAME {
           setDim(len);
        }
 
-    void wrap(TYPE * data, size_t nrow, size_t ncol)	
+    void wrap(TYPE * data, size_t nrow, size_t ncol)
        {
          wrap(data, nrow*ncol);
          setDim(nrow, ncol);
        }
 
-    void wrap(TYPE * data, size_t nrow, size_t ncol, size_t k)	
+    void wrap(TYPE * data, size_t nrow, size_t ncol, size_t k)
        {
          wrap(data, nrow*ncol*k);
          setDim(nrow, ncol, k);
@@ -280,7 +280,7 @@ vector <size_t> CLASS_NAME::table(vector <TYPE> & values)
 
 vector <size_t> CLASS_NAME::table()
 {
-  vector <TYPE> values;    
+  vector <TYPE> values;
   return table(values);
 }
 
@@ -294,7 +294,7 @@ void CLASS_NAME::setDim(vector <size_t> dims, size_t start)
   this->dims.reserve(dims.size()-start);
   for (size_t i=start; i<dims.size(); i++) this->dims.push_back(dims[i]);
 }
-  
+
 
 void CLASS_NAME::copy2vector(size_t start, size_t length, vector <int> & result)
 {
@@ -314,5 +314,4 @@ void CLASS_NAME::copy2vector(size_t start, size_t length, vector <double> & resu
   // result.reserve(length);
   for (size_t i=start; i<start + length; i++)
     result.push_back((double) *(data_+i));
-}
 }
