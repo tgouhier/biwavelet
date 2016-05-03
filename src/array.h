@@ -167,43 +167,6 @@ class dArray;
 #undef CLASS_NAME
 
 /**
- * Columnwise quantile of array.
- */
-void dArray::colQuantile(const double q, dArray & quant) {
-
-  if (dim().size() == 0) {
-    throw(Exception(string(
-       "Attempt to calculate columnwise quantile of array that has no dimensions set.")));
-  }
-
-  if (dim().size() == 1) {
-    quant.setDim(1);
-  } else {
-    quant.setDim(dim(), 1);
-  }
-
-
-  const size_t colLen = dim()[0], totLen = length();
-
-  if (colLen == 0) {
-    throw(Exception(string(
-        "colQuantile: Column length is zero in variable") + name()));
-  }
-
-  vector <double> column;
-  column.reserve(colLen);
-
-  int err;
-  double val;
-
-  for (size_t i = 0, col = 0; i < totLen; i += colLen, col++) {
-    copy2vector(i, colLen, column);
-    val = quantile(&(column[0]), colLen, q,  & err);
-    quant.linValue(col, val);
-  }
-}
-
-/**
  * Row-wise quantile of an array.
  */
 void dArray::rowQuantile(const double q, dArray &quant) {
@@ -245,38 +208,6 @@ void dArray::rowQuantile(const double q, dArray &quant) {
     }
     val = quantile(&(rowData[0]), rowLen, q, & err);
     quant.linValue(row, val);
-  }
-}
-
-void iArray::colQuantile(const double q, dArray & quant) {
-  if (dim().size() == 0) {
-    throw(Exception(string(
-        "Attempt to calculate columnwise quantile of array that has no dimensions set.")));
-  }
-
-  if (dim().size() == 1) {
-    quant.setDim(1);
-  } else {
-    quant.setDim(dim(), 1);
-  }
-
-  const size_t colLen = dim()[0];
-  const size_t totLen = length();
-
-  if (colLen == 0) {
-    throw(Exception(string(
-        "colQuantile: Column length is zero in variable") + name()));
-  }
-
-  vector <double> column;
-  column.reserve(colLen);
-
-  int err;
-  double val;
-  for (size_t i = 0, col = 0; i < totLen; i += colLen, col++) {
-    copy2vector(i, colLen, column);
-    val = quantile(&(column[0]), colLen, q, & err);
-    quant.linValue(col, val);
   }
 }
 

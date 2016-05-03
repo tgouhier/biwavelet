@@ -159,7 +159,6 @@ class CLASS_NAME {
 
     void copy2vector(size_t start, size_t length, vector <int> & result);
     void copy2vector(size_t start, size_t length, vector <double> & result);
-    void colQuantile(double q, dArray & quantile);
     void rowQuantile(double q, dArray & quantile);
 
     CLASS_NAME() { allocated = 0; data_ = (TYPE *) NULL; dims.clear(); }
