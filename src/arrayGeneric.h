@@ -159,7 +159,6 @@ class CLASS_NAME {
 
     void copy2vector(size_t start, size_t length, vector <int> & result);
     void copy2vector(size_t start, size_t length, vector <double> & result);
-    void colMWM(CLASS_NAME & minVal, INT_CLASS & which);
     void colQuantile(double q, dArray & quantile);
     void rowQuantile(double q, dArray & quantile);
 
@@ -326,40 +325,6 @@ void CLASS_NAME::copy2vector(size_t start, size_t length, vector <double> & resu
   // result.reserve(length);
   for (size_t i=start; i<start + length; i++)
     result.push_back((double) *(data_+i));
-}
-
-void CLASS_NAME::colMWM(CLASS_NAME & minVal, INT_CLASS & which)
-{
-  if (dim().size()==0)
-    throw(Exception(string(
-       "Attempt to calculate columnwise minimum of array that has no dimensions set.")));
-  if (dim().size()==1)
-  {
-    minVal.setDim(1);
-    which.setDim(1);
-  } else {
-    minVal.setDim(dim(), 1);
-    which.setDim(dim(), 1);
-  }
-
-  size_t colLen = dim()[0], totLen = length();
-
-  if (colLen==0)
-    throw(Exception(string("colMWM: Column length is zero in variable") + name()));
-  size_t col = 0; 
-  for (size_t i=0; i<totLen; i+=colLen, col++)
-  {
-    TYPE cmin = linValue(i);
-    size_t wmin = 0;
-    for (size_t j=i+1; j<i+colLen; j++)
-      if (linValue(j) < cmin)
-      {
-         cmin = linValue(j);
-         wmin = j-i;
-      }
-    minVal.linValue(col, cmin);
-    which.linValue(col, wmin);
-  }
 }
 
 /*
