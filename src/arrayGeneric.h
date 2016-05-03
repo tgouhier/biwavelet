@@ -162,19 +162,9 @@ class CLASS_NAME {
     void colQuantile(double q, dArray & quantile);
     void rowQuantile(double q, dArray & quantile);
 
-
-    // void sort();
-    // vector <size_t> order();
-    // vector <size_t> rank();
-
     CLASS_NAME() { allocated = 0; data_ = (TYPE *) NULL; dims.clear(); }
-
     CLASS_NAME(size_t size) { initData(size); setDim(size); }
-
     CLASS_NAME(size_t size, TYPE value) { initData(size, value); setDim(size); }
-
-    // CLASS_NAME(CLASS_NAME arr);	// This constructor will copy the data from arr into *this
-
     ~CLASS_NAME() { if (allocated) { delete data_; allocated = 0; } }
 
 };
