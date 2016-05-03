@@ -25,7 +25,7 @@ const double SQRT_ONE_HALF = sqrt(.5); // NOTE: sqrt(1/2) = 1/sqrt(2)
 //' @note This c++ implementation is approx. 60% faster than the original R code
 // [[Rcpp::export]]
 List rcpp_wt_bases_morlet(const NumericVector k,
-                       const int scale,
+                       const double scale,
                        const int param = -1) {
   
   const int k0 = param == -1 ? 6 : param;
