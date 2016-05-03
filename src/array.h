@@ -101,8 +101,6 @@ class indArray {
       return name_;
     }
 
-    void init(const size_t size);
-    void init(const size_t size, const bool value);
     size_t size() { return size_ * 8 * sizeof(size_t); }
     size_t * data() { return data_; }
 
@@ -119,36 +117,10 @@ class indArray {
       data_ = (size_t *) NULL;
     }
 
-    indArray(size_t size) { init(size); }
-
-    indArray(size_t size, bool value) { init(size, value); }
-
-    // indArray(indArray arr);      // This constructor will copy the data from arr into *this
-
     ~indArray() { if (allocated) { delete data_; allocated = 0; } }
 
 };
 
-void indArray::init(size_t size) {
-  size_t val = 1;
-  for (size_t i=0; i<8*sizeof(size_t); i++) {
-    mask[i] = val;
-    invMask[i] = ~mask[i];
-    if (i < 8*sizeof(size_t)-1) val*=2;
-  }
-  val32[0] = 0;
-  val32[1] = ~0;
-  size_ = (size_t)(ceil((size * 1.0) / (8 * sizeof(size_t))));
-  data_ = new size_t[size_];
-  allocated = 1;
-}
-
-void indArray::init(size_t size, bool value) {
-  init(size);
-  for (size_t i = 0; i < size_; i++) {
-    data_[i] = val32[(size_t) value];
-  }
-}
 
 #define INT_CLASS iArray
 
