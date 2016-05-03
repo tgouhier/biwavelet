@@ -107,7 +107,6 @@ class CLASS_NAME {
 
     void setDim(size_t length);
     void setDim(size_t nrow, size_t ncol);
-    void setDim(size_t nrow, size_t ncol, size_t k);
 
     void setDim(vector <size_t> dims, size_t start=0);
 
@@ -132,13 +131,6 @@ class CLASS_NAME {
          wrap(data, nrow*ncol);
          setDim(nrow, ncol);
        }
-
-    void wrap(TYPE * data, size_t nrow, size_t ncol, size_t k)
-       {
-         wrap(data, nrow*ncol*k);
-         setDim(nrow, ncol, k);
-       }
-
 
     TYPE * data() { return data_; }
 
@@ -174,21 +166,6 @@ void CLASS_NAME::setDim(size_t nrow, size_t ncol)
     dims.clear();
     dims.push_back(nrow);
     dims.push_back(ncol);
-  }
-}
-
-void CLASS_NAME::setDim(size_t nrow, size_t ncol, size_t k)
-{
-  if (nrow*ncol*k > size_)
-    throw (Exception("attempt to set 3-dim CLASS_NAME dimensions " + NumberToString(nrow)  + ", " +
-                     NumberToString(ncol) + ", " + NumberToString(k) + " higher than size " +
-                     NumberToString(size()) + " in variable " + name()));
-  else
-  {
-    dims.clear();
-    dims.push_back(nrow);
-    dims.push_back(ncol);
-    dims.push_back(k);
   }
 }
 
