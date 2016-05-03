@@ -2,27 +2,51 @@ context("Performance optimizations")
 
 test_that("Optimized version of wt.bases.dog is equal to original", {
   for (param in 1:4) {
+
+    # integer scale
     expect_equal(
       biwavelet:::wt.bases.dog(1:10, 2, param),
       biwavelet:::rcpp_wt_bases_dog(1:10, 2, param)
+    )
+
+    # floating point scale
+    expect_equal(
+      biwavelet:::wt.bases.dog(1:10, 1 / 3, param),
+      biwavelet:::rcpp_wt_bases_dog(1:10, 1 / 3, param)
     )
   }
 })
 
 test_that("Optimized version of wt.bases.paul is equal to original", {
   for (param in 1:4) {
+
+    # integer scale
     expect_equal(
       biwavelet:::wt.bases.paul(1:10, 2, param),
       biwavelet:::rcpp_wt_bases_paul(1:10, 2, param)
+    )
+
+    # floating point scale
+    expect_equal(
+      biwavelet:::wt.bases.paul(1:10, 1 / 3, param),
+      biwavelet:::rcpp_wt_bases_paul(1:10, 1 / 3, param)
     )
   }
 })
 
 test_that("Optimized version of wt.bases.morlet is equal to original", {
   for (param in 1:4) {
+
+    # integer scale
     expect_equal(
       biwavelet:::wt.bases.morlet(1:10, 2, param),
       biwavelet:::rcpp_wt_bases_morlet(1:10, 2, param)
+    )
+
+    # floating point scale
+    expect_equal(
+      biwavelet:::wt.bases.morlet(1:10, 1 / 3, param),
+      biwavelet:::rcpp_wt_bases_morlet(1:10, 1 / 3, param)
     )
   }
 })
