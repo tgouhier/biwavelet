@@ -105,9 +105,6 @@ class CLASS_NAME {
     void name(string n) {name_ = n; }
     string name() {return name_; }
 
-    void initData(size_t size);
-    void initData(size_t size, TYPE val);
-
     void setDim(size_t length);
     void setDim(size_t nrow, size_t ncol);
     void setDim(size_t nrow, size_t ncol, size_t k);
@@ -150,26 +147,9 @@ class CLASS_NAME {
     void rowQuantile(double q, dArray & quantile);
 
     CLASS_NAME() { allocated = 0; data_ = (TYPE *) NULL; dims.clear(); }
-    CLASS_NAME(size_t size) { initData(size); setDim(size); }
-    CLASS_NAME(size_t size, TYPE value) { initData(size, value); setDim(size); }
     ~CLASS_NAME() { if (allocated) { delete data_; allocated = 0; } }
 
 };
-
-void CLASS_NAME::initData(size_t size)
-{
-  size_ = size;
-  data_ = new TYPE[size];
-  allocated = 1;
-  dims.clear();
-  dims.push_back(size_);
-}
-
-void CLASS_NAME::initData(size_t size, TYPE val)
-{
-  initData(size);
-  for (size_t i=0; i<size; i++) data_[i] = val;
-}
 
 void CLASS_NAME::setDim(size_t length)
 {
