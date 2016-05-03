@@ -2,6 +2,16 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.19.2 (2016-05-03)}{
+  \subsection{fixed}{
+    \itemize{
+    \item Fixed Rcpp implementation of the \code{wt.bases} functions,
+    i.e., \code{rcpp_wt_bases_*.cpp}.
+    Replacing \code{int} type with \code{double} type for \code{scale} parameter
+    which caused small scales to be rendered incorrectly.
+    }
+  }
+}
 \section{Changes in biwavelet version 0.19.1 (2016-04-29)}{
   \subsection{fixed}{
     \itemize{
