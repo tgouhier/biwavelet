@@ -8,13 +8,35 @@
     \item Fixed interpretation of phase differences in \code{plot.biwavelet} help file
     }
   }
+  \subsection{changed}{
+    \itemize{
+      \item Added unit tests for approx 78\% of the code.
+      \item Implemented a parallelized Monte Carlo simulation function
+            \code{wtc_sig_parallel} which is 2 to 4 times faster on a 4-core CPU
+            than the original \code{wtc.sig}. The speedup is noticeable on:
+            \enumerate{
+              \item large simulations \code{nrads >= 800},
+              \item multiple simulations,
+              \item multi-core systems with 4+ cores.
+            }
+        However, parallelization involves a significant heat-up phase because all
+        the workers need to be started and they need to load all the required
+        packages. This will be addresses in future versions of biwavelet.
+      \item Added a speed-optimized version of \code{convolve2D}.
+      \item Replaced standard \code{arima.sim} function with a pair of functions
+        \code{get_minroots} and \code{ar1_ma0_sim}. These functions are still
+        implemented in R. We can reimplement them later in C.
+      \item Reimplemented \code{wt.bases} morlet, paul and dog in C.
+      \item Removed unused function \code{meshgrid}.
+    }
+  }
 }
 
 \section{Changes in biwavelet version 0.17.11 (2015-10-09)}{
   \subsection{fixed}{
     \itemize{
     \item close all progress bars after use
-    \item Function \code{wtc} can now handle non-finite values when computing 
+    \item Function \code{wtc} can now handle non-finite values when computing
     the quantiles of the rsq values from the Monte Carlo simulations
     }
   }
@@ -32,7 +54,7 @@
 \section{Changes in biwavelet version 0.17.9 (2015-04-29)}{
   \subsection{fixed}{
     \itemize{
-    \item Fixed limited padding issue, which could lead to weird edge effects. 
+    \item Fixed limited padding issue, which could lead to weird edge effects.
     Current padding level is identical to that of Torrence & Compo (1998).
     \item Changed the default \code{tol} value from 0.95 to 1 in the \code{plot} function.}
     }
@@ -125,7 +147,7 @@
     \subsection{fixed}{
 \itemize{
       \item Removed misleading examples showing how to compute the 'bias-corrected' wavelet coherence.
-      There is no bias for the wavelet coherence function, so using the default \code{type} argument in the 
+      There is no bias for the wavelet coherence function, so using the default \code{type} argument in the
       \code{plot} function is recommended.
       \item Fixed typos in the documentation of plot.biwavelet and xwt (thanks Lei Cheng).
     }
@@ -136,7 +158,7 @@
     \itemize{
       \item As of biwavelet version 0.14, the bias-corrected wavelet and
         cross-wavelet spectra are automatically computed and plotted by default
-        using the methods described by Liu et al. (2007) and Veleda et al. (2012). 
+        using the methods described by Liu et al. (2007) and Veleda et al. (2012).
         This correction is needed because the traditional approach for computing the power
         spectrum (e.g., Torrence and Compo 1998) leads to an artificial and systematic
         reduction in power at lower periods.
