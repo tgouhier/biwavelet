@@ -79,8 +79,6 @@ class CLASS_NAME {
             throw (Exception(string("Linear index out of range in variable" + name_)));
        }
 
-    // void copyData(CLASS_NAME arr, size_t start = 0, size_t length = -1)
-
   #else
 
     TYPE linValue(size_t i)
@@ -121,12 +119,6 @@ class CLASS_NAME {
     vector <size_t> dim() { return dims; }
 
     size_t size() { return size_; }
-    size_t length()
-       {
-          if (dims.size()==0) return 0;
-          size_t prod = 1; for (size_t i=0; i<dims.size(); i++) prod *= dims[i];
-          return prod;
-       }
 
     void wrap(TYPE * data, size_t len)	// Points the data_ pointer to given data. Will make sure the
                                         // data will not be deallocated in the destructor.
@@ -229,24 +221,4 @@ void CLASS_NAME::setDim(vector <size_t> dims, size_t start)
   this->dims.clear();
   this->dims.reserve(dims.size()-start);
   for (size_t i=start; i<dims.size(); i++) this->dims.push_back(dims[i]);
-}
-
-void CLASS_NAME::copy2vector(size_t start, size_t length, vector <int> & result)
-{
-  if (start + length > this->length())
-    throw(Exception(string("copy2vector: start+length exceed the actual length of the array.")));
-  result.clear();
-  // result.reserve(length);
-  for (size_t i=start; i<start + length; i++)
-    result.push_back((int) *(data_+i));
-}
-
-void CLASS_NAME::copy2vector(size_t start, size_t length, vector <double> & result)
-{
-  if (start + length > this->length())
-    throw(Exception(string("copy2vector: start+length exceed the actual length of the array.")));
-  result.clear();
-  // result.reserve(length);
-  for (size_t i=start; i<start + length; i++)
-    result.push_back((double) *(data_+i));
 }
