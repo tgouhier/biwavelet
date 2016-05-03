@@ -121,16 +121,7 @@ class indArray {
 
 };
 
-
-#define INT_CLASS iArray
-
 class dArray;
-
-#define TYPE int
-#define CLASS_NAME iArray
-#include "arrayGeneric.h"
-#undef TYPE
-#undef CLASS_NAME
 
 #define TYPE double
 #define CLASS_NAME dArray
