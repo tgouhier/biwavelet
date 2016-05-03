@@ -1,5 +1,5 @@
-// The name of this file ends in h so R CMD install doesn't compile it twice. Not very clean but works
-// for now.
+// The name of this file ends in h so R CMD install doesn't compile it twice.
+// Not very clean but works for now.
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ string NumberToString(int n) {
   sprintf(s, "%d", n);
   ss = s;
   return ss;
-} 
+}
 
 class indArray {
   protected:
@@ -39,7 +39,7 @@ class indArray {
     int 	  allocated;
     string	name_;
 
-    size_t	val32[2]; 
+    size_t	val32[2];
     size_t	mask[8 * sizeof(size_t)];
     size_t	invMask[8 * sizeof(size_t)];
 
@@ -96,7 +96,7 @@ class indArray {
     void name(string n) {
       name_ = n;
     }
-    
+
     string name() {
       return name_;
     }
@@ -132,7 +132,7 @@ class indArray {
 void indArray::init(size_t size) {
   size_t val = 1;
   for (size_t i=0; i<8*sizeof(size_t); i++) {
-    mask[i] = val; 
+    mask[i] = val;
     invMask[i] = ~mask[i];
     if (i < 8*sizeof(size_t)-1) val*=2;
   }
@@ -209,14 +209,14 @@ double min(const vector <double> v) {
   if (v.size() == 0) {
     throw(Exception(string("attempt to calculate min of an empty vector.")));
   }
-    
+
   double min = v[0];
   for (size_t i = 1; i < v.size(); i++) {
     if (!ISNAN(v[i]) && (v[i] < min)) {
       min = v[i];
     }
   }
-    
+
   return min;
 }
 
@@ -243,13 +243,13 @@ void dArray::colQuantile(const double q, dArray & quant) {
     throw(Exception(string(
        "Attempt to calculate columnwise quantile of array that has no dimensions set.")));
   }
-  
+
   if (dim().size() == 1) {
     quant.setDim(1);
   } else {
     quant.setDim(dim(), 1);
   }
-    
+
 
   const size_t colLen = dim()[0], totLen = length();
 
@@ -263,7 +263,7 @@ void dArray::colQuantile(const double q, dArray & quant) {
 
   int err;
   double val;
-  
+
   for (size_t i = 0, col = 0; i < totLen; i += colLen, col++) {
     copy2vector(i, colLen, column);
     val = quantile(&(column[0]), colLen, q,  & err);
@@ -279,7 +279,7 @@ void dArray::rowQuantile(const double q, dArray &quant) {
     throw(Exception(string(
         "Attempt to calculate row-wise quantile of array that has no dimensions set.")));
   }
-  
+
   if (dim().size() == 1) {
     quant.setDim(1);
   } else {
@@ -287,7 +287,7 @@ void dArray::rowQuantile(const double q, dArray &quant) {
       throw(Exception(string(
        "Row-wise quantiles are only defined for 2-dimensional arrays.")));
     }
-    
+
     vector <size_t> dim1 = dim();
     dim1.pop_back();
     quant.setDim(dim1);
@@ -321,7 +321,7 @@ void iArray::colQuantile(const double q, dArray & quant) {
     throw(Exception(string(
         "Attempt to calculate columnwise quantile of array that has no dimensions set.")));
   }
-  
+
   if (dim().size() == 1) {
     quant.setDim(1);
   } else {
