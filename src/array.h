@@ -34,7 +34,7 @@ string NumberToString(int n) {
 class indArray {
   protected:
 
-    size_t 	* data_;
+    size_t* data_;
     size_t 	size_;
     int 	  allocated;
     string	name_;
@@ -101,8 +101,13 @@ class indArray {
       return name_;
     }
 
-    size_t size() { return size_ * 8 * sizeof(size_t); }
-    size_t * data() { return data_; }
+    size_t size() {
+      return size_ * 8 * sizeof(size_t);
+    }
+
+    size_t * data() {
+      return data_;
+    }
 
     void show() {
      cout << "data_:";
@@ -114,11 +119,15 @@ class indArray {
 
     indArray() {
       allocated = 0;
-      data_ = (size_t *) NULL;
+      data_ = (size_t*) NULL;
     }
 
-    ~indArray() { if (allocated) { delete data_; allocated = 0; } }
-
+    ~indArray() {
+      if (allocated) {
+        delete data_;
+        allocated = 0;
+      }
+    }
 };
 
 class dArray;
@@ -132,21 +141,21 @@ class dArray;
 /**
  * Row-wise quantile of an array.
  */
-void dArray::rowQuantile(const double q, dArray &quant) {
+void dArray::rowQuantile(const double q, dArray& quant) {
   if (dim().size() == 0) {
-    throw(Exception(string(
-        "Attempt to calculate row-wise quantile of array that has no dimensions set.")));
+    throw(Exception(
+        string("Attempt to calculate row-wise quantile of array that has no dimensions set.")));
   }
 
   if (dim().size() == 1) {
     quant.setDim(1);
   } else {
-    if (dim().size()>2) {
+    if (dim().size() > 2) {
       throw(Exception(string(
        "Row-wise quantiles are only defined for 2-dimensional arrays.")));
     }
 
-    vector <size_t> dim1 = dim();
+    vector<size_t> dim1 = dim();
     dim1.pop_back();
     quant.setDim(dim1);
   }
@@ -155,11 +164,11 @@ void dArray::rowQuantile(const double q, dArray &quant) {
   const size_t nrow = dim()[0];
 
   if (rowLen == 0) {
-    throw(Exception(string(
-        "rowQuantile: Row length is zero in variable") + name()));
+    throw(Exception(
+        string("rowQuantile: Row length is zero in variable") + name()));
   }
 
-  vector <double> rowData;
+  vector<double> rowData;
   rowData.reserve(rowLen);
 
   int err;
@@ -169,7 +178,7 @@ void dArray::rowQuantile(const double q, dArray &quant) {
     for (size_t col = 0; col < rowLen; col++) {
       rowData.push_back(value(row, col));
     }
-    val = quantile(&(rowData[0]), rowLen, q, & err);
+    val = quantile(&(rowData[0]), rowLen, q, &err);
     quant.linValue(row, val);
   }
 }
