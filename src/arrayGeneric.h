@@ -153,9 +153,6 @@ class CLASS_NAME {
 
     TYPE * data() { return data_; }
 
-    vector <size_t> table();	// returns frequencies but no values
-    vector <size_t> table(vector <TYPE> & values); // returns frequencies and values
-
     void copy2vector(size_t start, size_t length, vector <int> & result);
     void copy2vector(size_t start, size_t length, vector <double> & result);
     void rowQuantile(double q, dArray & quantile);
@@ -223,32 +220,6 @@ void CLASS_NAME::setDim(size_t nrow, size_t ncol, size_t k)
   }
 }
 
-vector <size_t> CLASS_NAME::table(vector <TYPE> & values)
-{
-  vector <size_t> counts;
-  counts.clear();
-  values.clear();
-  for (size_t i=0; i<length(); i++)
-  {
-    TYPE v = linValue(i);
-    size_t j;
-    for (j=0; (j<values.size()) && (values[j]!=v); j++)
-    if (j==values.size())
-    {
-      values.push_back(v);
-      counts.push_back(0);
-    } else
-      counts[j]++;
-  }
-  return counts;
-}
-
-vector <size_t> CLASS_NAME::table()
-{
-  vector <TYPE> values;
-  return table(values);
-}
-
 void CLASS_NAME::setDim(vector <size_t> dims, size_t start)
 {
   size_t len = 1;
@@ -259,7 +230,6 @@ void CLASS_NAME::setDim(vector <size_t> dims, size_t start)
   this->dims.reserve(dims.size()-start);
   for (size_t i=start; i<dims.size(); i++) this->dims.push_back(dims[i]);
 }
-
 
 void CLASS_NAME::copy2vector(size_t start, size_t length, vector <int> & result)
 {
