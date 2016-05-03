@@ -1,4 +1,5 @@
-// The name of this file ends in .h so R CMD install does not attempt to compile it on its own.
+// The name of this file ends in .h so R CMD install does not attempt to compile
+// it on its own.
 
 class CLASS_NAME {
   protected:
@@ -152,8 +153,6 @@ class CLASS_NAME {
 
     TYPE * data() { return data_; }
 
-    TYPE max();
-    TYPE min();
     vector <size_t> table();	// returns frequencies but no values
     vector <size_t> table(vector <TYPE> & values); // returns frequencies and values
 
@@ -222,39 +221,6 @@ void CLASS_NAME::setDim(size_t nrow, size_t ncol, size_t k)
     dims.push_back(ncol);
     dims.push_back(k);
   }
-}
-
-/*
-
-void CLASS_NAME::copyData(CLASS_NAME arr, size_t start, size_t length)
-{
-  if (start >= arr.length())
-    throw(Exception("attempt to copy non-existent data from variable" + arr.name()));
-  if (length==-1) length = arr.length() - start;
-  if (length > size())
-    throw(Exception("attempt to copy data larger than target CLASS_NAME size."));
-}
-
-*/
-
-TYPE CLASS_NAME::max()
-{
-  if (length()==0)
-    throw(Exception(string("attempt to calculate max of an empty array.")));
-  TYPE max = linValue(0);
-  for (size_t i=1; i<length(); i++)
-    if (!ISNAN(linValue(i)) && (linValue(i) > max)) max = linValue(i);
-  return max;
-}
-
-TYPE CLASS_NAME::min()
-{
-  if (length()==0)
-    throw(Exception(string("attempt to calculate min of an empty array.")));
-  TYPE min = linValue(0);
-  for (size_t i=1; i<length(); i++)
-    if (!ISNAN(linValue(i)) && (linValue(i) < min)) min = linValue(i);
-  return min;
 }
 
 vector <size_t> CLASS_NAME::table(vector <TYPE> & values)
