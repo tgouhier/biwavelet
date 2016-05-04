@@ -63,13 +63,20 @@ check.datum <- function(x) {
     dt <- as.numeric(diffs[1])
     epsilon <- 0.1 * dt
 
-    if (any(abs(diff(t) - dt) > epsilon * dt)) {
+    if (any(abs(diff(t) - dt) > (epsilon * dt))) {
       stop("The step size must be constant ",
            "(see approx function to interpolate)")
     }
+
+    if (class(x[, 1])[1] == "Date" | class(x[,1])[1] == "POSIXct") {
+      tindex <- seq_len(NROW(x))
+    } else {
+      tindex <- x[, 1]
+    }
+
   } else {
     stop("Error: the data must be in the form of an n x 2 matrix ",
          "containing the time steps in column 1 and the values in column 2")
   }
-  return(list(t = t, dt = dt, n.obs = NROW(x)))
+  return(list(t = tindex, dt = dt, n.obs = NROW(x)))
 }
