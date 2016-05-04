@@ -37,7 +37,7 @@ check.data(y = t1)
 Tarik C. Gouhier (tarik.gouhier@gmail.com)
 }
 \references{
-Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
 \emph{Bulletin of the American Meteorological Society} 79:61-78.
 }
 
