@@ -19,8 +19,7 @@ class CLASS_NAME {
       if (i<dims[1]) {
         return data_[i];
       } else {
-        throw (Exception(
-            string("Index out of range in variable" + name_).c_str()));
+        stop("Index out of range in variable %s", name_);
       }
     }
 
@@ -29,12 +28,10 @@ class CLASS_NAME {
            if ( (i < dims[0]) && (j < dims[1]) ) {
              return data_[j * dims[0] + i];
            } else {
-             throw (Exception(
-                 string("Index out of range in variable" + name_)));
+             stop("Index out of range in variable %s", name_);
            }
       } else {
-        throw (Exception(
-            string("incorrect number of dimensions accessing variable" + name_)));
+        stop("incorrect number of dimensions accessing variable %s", name_);
       }
     }
 
@@ -48,8 +45,7 @@ class CLASS_NAME {
       if (i < max) {
         return data_[i];
       } else {
-        throw (Exception(
-            string("Linear index out of range in variable" + name_)));
+        stop("Linear index out of range in variable %s", name_);
       }
     }
 
@@ -57,7 +53,7 @@ class CLASS_NAME {
       if (i < dims[0]) {
         data_[i] = r;
       } else {
-        throw (Exception(string("Index out of range in variable" + name_)));
+        stop("Index out of range in variable %s", name_);
       }
     }
 
@@ -66,11 +62,10 @@ class CLASS_NAME {
         if ( (i < dims[0]) && (j < dims[1]) ) {
           data_[j * dims[0] + i] = r;
         } else {
-          throw (Exception(string("Index out of range in variable" + name_)));
+          stop("Index out of range in variable %s", name_);
         }
       } else {
-        throw (Exception(
-            string("incorrect number of dimensions accessing variable" + name_)));
+        stop("incorrect number of dimensions accessing variable %s", name_);
       }
     }
 
@@ -79,11 +74,10 @@ class CLASS_NAME {
         if ((k < dims[2]) && (j < dims[1]) && (i < dims[0])) {
           data_[(k * dims[1] + j) * dims[0] + i] = r;
         } else {
-          throw (Exception(string("Index out of range in variable" + name_)));
+          stop("Index out of range in variable", name_);
         }
       } else {
-        throw (Exception(
-            string("Incorrect number of dimensions accessing variable" + name_)));
+        stop("Incorrect number of dimensions accessing variable %s", name_);
       }
     }
 
@@ -96,8 +90,7 @@ class CLASS_NAME {
       if (i < max) {
         data_[i] = r;
       } else {
-        throw (Exception(
-            string("Linear index out of range in variable" + name_)));
+        stop("Linear index out of range in variable %s", name_);
       }
     }
 
@@ -192,11 +185,8 @@ class CLASS_NAME {
 
 void CLASS_NAME::setDim(size_t length) {
   if (length > size_) {
-    throw (Exception(
-        "attempt to set linear dimension " +
-        NumberToString(length) + " higher than size " +
-        NumberToString(size()) + " in variable " + name()
-    ));
+    stop("attempt to set linear dimension %d higher than size %d in variable %s",
+         length, size(), name());
   } else {
     dims.clear();
     dims.push_back(length);
@@ -205,11 +195,8 @@ void CLASS_NAME::setDim(size_t length) {
 
 void CLASS_NAME::setDim(size_t nrow, size_t ncol) {
   if (nrow*ncol > size()) {
-    throw (Exception(
-        "attempt to set matrix dimensions " + NumberToString(nrow) + ", " +
-        NumberToString(ncol) + " higher than size " +
-        NumberToString(size()) + " in variable " + name()
-    ));
+    stop("attempt to set matrix dimensions %d, %d higher than size %d in variable %s",
+         nrow, ncol, size(), name());
   } else {
     dims.clear();
     dims.push_back(nrow);
@@ -224,8 +211,7 @@ void CLASS_NAME::setDim(vector <size_t> dims, size_t start) {
   }
 
   if (len > size()) {
-    throw(Exception(
-        string("setDim: not enough space to accomodate given dimensions.")));
+    stop("setDim: not enough space to accomodate given dimensions.");
   }
 
   this->dims.clear();
