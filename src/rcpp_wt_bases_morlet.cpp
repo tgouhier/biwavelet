@@ -46,7 +46,7 @@ List rcpp_wt_bases_morlet(const NumericVector k,
 
   const int m = param == -1 ? 6 : param;
   if(m < 0 || m > 10) {
-    stop("Values for 'm' not within 0..10");
+    stop("Parameter 'm' must be within 0..10");
   }
 
   const int klen = k.length();
