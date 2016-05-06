@@ -17,7 +17,6 @@ test_that("R and C++ versions of quantile using 1xN matrix shold be equal", {
 })
 
 test_that("R and c++ version work the same on small inputs", {
-  data <- matrix(c(1))
   for (data in list(
     matrix(1),
     matrix(1:2, nrow = 1),
