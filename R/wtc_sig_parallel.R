@@ -1,7 +1,7 @@
 #' Parallelized Monte Carlo simulation using \code{doParallel} package.
-#' 
+#'
 #' Equivalent to \code{wtc.sig}
-#' 
+#'
 #' @examples
 #' # Not run: library(foreach)
 #' # library(parallel)
@@ -9,7 +9,7 @@
 #' # registerDoParallel(cl)
 #' # wtc_sig_parallel(your parameters go here)
 #' # stopCluster(cl)
-#' 
+#'
 #' @inheritParams wtc.sig
 #' @export
 #' @import foreach
@@ -93,6 +93,7 @@ wtc_sig_parallel <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   # This has been replaced with a C++ implementation taken from WGCNA package
   j <- NULL # this is only necessary for R CMD check --as-cran
   foreach(j = seq_len(ncol(rand.rsq)), .combine = cbind) %dopar% {
-    row_quantile(rand.rsq[,j,], sig.level)
+    # TODO: can be facter if we remove as.matrix()
+    rcpp_row_quantile(as.matrix(rand.rsq[,j,]), sig.level)
   }
 }

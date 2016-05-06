@@ -1,35 +1,17 @@
-// The name of this file ends in h so R CMD install doesn't compile it twice.
-// Not very clean but works for now.
+#ifndef __array_cc__
+#define __array_cc__
 
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <algorithm>
-#include <math.h>
-#include <R.h>
-#include "Exception.h"
+#include <Rcpp.h>
+using namespace Rcpp;
+using namespace std;
 
 extern "C" {
   #include "quantile.h"
 }
 
-#ifndef __array_cc__
-#define __array_cc__
-
-// #define ISNAN(x) false
-using namespace std;
-
 // define a class that can conveniently hold a big vector, matrix etc.
 #define NoDim	-1
 #define CheckDimensions
-
-string NumberToString(int n) {
-  char s[100];
-  string ss;
-  sprintf(s, "%d", n);
-  ss = s;
-  return ss;
-}
 
 class indArray {
   protected:
@@ -50,8 +32,7 @@ class indArray {
     bool value(const size_t i) {
       const size_t ii = (i / (8 * sizeof(size_t)));
       if (ii >= size_) {
-        throw(Exception(string(
-            "indArray::value: index out of range in variable") + name()));
+        stop("indArray::value: index out of range in variable %s", name());
       }
 
       const size_t j = (i % (8 * sizeof(size_t)));
@@ -61,11 +42,11 @@ class indArray {
     void value(const size_t i, const bool v) {
       const size_t ii = (i / (8 * sizeof(size_t)));
       if (ii >= size_) {
-        throw(Exception(string(
-            "indArray::value: index out of range in variable") + name()));
+        stop("indArray::value: index out of range in variable %s", name());
       }
 
       const size_t j = (i % (8 * sizeof(size_t)));
+
       if (v) {
         data_[ii] |= mask[j];
       } else {
@@ -143,16 +124,14 @@ class dArray;
  */
 void dArray::rowQuantile(const double q, dArray& quant) {
   if (dim().size() == 0) {
-    throw(Exception(
-        string("Attempt to calculate row-wise quantile of array that has no dimensions set.")));
+    stop("Attempt to calculate row-wise quantile of array that has no dimensions set.");
   }
 
   if (dim().size() == 1) {
     quant.setDim(1);
   } else {
     if (dim().size() > 2) {
-      throw(Exception(string(
-       "Row-wise quantiles are only defined for 2-dimensional arrays.")));
+      stop("Row-wise quantiles are only defined for 2-dimensional arrays.");
     }
 
     vector<size_t> dim1 = dim();
@@ -164,8 +143,7 @@ void dArray::rowQuantile(const double q, dArray& quant) {
   const size_t nrow = dim()[0];
 
   if (rowLen == 0) {
-    throw(Exception(
-        string("rowQuantile: Row length is zero in variable") + name()));
+    stop("rowQuantile: Row length is zero in variable %s", name());
   }
 
   vector<double> rowData;

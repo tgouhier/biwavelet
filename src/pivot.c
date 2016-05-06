@@ -3,8 +3,7 @@
  *  gcc --std=c99 -fPIC -O3 -o pivot.so -shared pivot.c
  */
 #include <stdlib.h>
-#include <R.h>
-#include <Rinternals.h>
+#include <math.h>
 #include "pivot.h"
 
 double vMax(double *v, const size_t len) {
@@ -29,19 +28,19 @@ double vMin(double * v, const size_t len) {
 
 double pivot(double * v, const size_t len, const double target) {
   if (len > 2) {
-    
+
     // pick the pivot, say as the median of the first, middle and last
     const size_t i1 = 0;
     const size_t i2 = len - 1;
     const size_t i3 = (len - 1) / 2;
     size_t ip;
-    
+
     if (v[i1] <= v[i2]) {
       if (v[i2] <= v[i3])
         ip = i2;
       else if (v[i3] >= v[i1])
          ip = i3;
-      else 
+      else
          ip = i1;
     } else {
       if (v[i1] <= v[i3])
@@ -73,7 +72,7 @@ double pivot(double * v, const size_t len, const double target) {
 
     // Did we find the target?
     const double crit = target - bound;
-    
+
     if (fabs(crit) > 1.0) {
       if (crit < 0) {
         return pivot(v, bound, target);
@@ -88,12 +87,12 @@ double pivot(double * v, const size_t len, const double target) {
     } // else
     const double v2 = vMin(v + bound + 1, len - bound - 1);
     return (vp * (1 - crit) + v2 * crit);
-    
+
   } else if (len == 2) {
 
       const double v1 = vMin(v, 2);
       const double v2 = vMax(v, 2);
-      
+
       if (target < 0) {
         return v1;
       } else if (target > 1) {

@@ -1,7 +1,7 @@
 context("Performance optimizations")
 
 test_that("Optimized version of wt.bases.dog is equal to original", {
-  for (param in 1:4) {
+  for (param in 1:10) {
 
     # integer scale
     expect_equal(
@@ -18,7 +18,7 @@ test_that("Optimized version of wt.bases.dog is equal to original", {
 })
 
 test_that("Optimized version of wt.bases.paul is equal to original", {
-  for (param in 1:4) {
+  for (param in 1:10) {
 
     # integer scale
     expect_equal(
@@ -35,7 +35,7 @@ test_that("Optimized version of wt.bases.paul is equal to original", {
 })
 
 test_that("Optimized version of wt.bases.morlet is equal to original", {
-  for (param in 1:4) {
+  for (param in 1:10) {
 
     # integer scale
     expect_equal(
@@ -49,6 +49,37 @@ test_that("Optimized version of wt.bases.morlet is equal to original", {
       biwavelet:::rcpp_wt_bases_morlet(1:10, 1 / 3, param)
     )
   }
+})
+
+test_that("Parameter m outside supported interval should fail", {
+
+  FMIN <- -2 # lower bound when the function should fail
+  FMAX <- 11 # upper bound when the function should fail
+  ERRMSG <- "must be within"
+
+  # dog
+  expect_error(biwavelet:::rcpp_wt_bases_dog(1:10, 2, FMIN), regexp = ERRMSG)
+  expect_error(biwavelet:::rcpp_wt_bases_dog(1:10, 2, FMAX), regexp = ERRMSG)
+
+  # morlet
+  expect_error(biwavelet:::rcpp_wt_bases_morlet(1:10, 2, FMIN), regexp = ERRMSG)
+  expect_error(biwavelet:::rcpp_wt_bases_morlet(1:10, 2, FMAX), regexp = ERRMSG)
+
+  # paul
+  expect_error(biwavelet:::rcpp_wt_bases_paul(1:10, 2, FMIN), regexp = ERRMSG)
+  expect_error(biwavelet:::rcpp_wt_bases_paul(1:10, 2, FMAX), regexp = ERRMSG)
+})
+
+test_that("Default 'param' values for rcpp_wt_bases", {
+  expect_equal(
+    biwavelet:::rcpp_wt_bases_dog(1:10, 2, -1),
+    biwavelet:::rcpp_wt_bases_dog(1:10, 2, 2))
+  expect_equal(
+    biwavelet:::rcpp_wt_bases_morlet(1:10, 2, -1),
+    biwavelet:::rcpp_wt_bases_morlet(1:10, 2, 6))
+  expect_equal(
+    biwavelet:::rcpp_wt_bases_paul(1:10, 2, -1),
+    biwavelet:::rcpp_wt_bases_paul(1:10, 2, 4))
 })
 
 test_that("replacing seq(1,N,1) with 1:N", {

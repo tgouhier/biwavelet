@@ -1,16 +1,14 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <sys/time.h>
-#include <R.h>
+#include <R_ext/Arith.h>
 #include "pivot.h"
 #include "quantile.h"
 
 /**
  * Here I first put all NAs to the end, then call the pivot function to find
  * the appropriate quantile of the remaining (finite) entries.
- * 
+ *
  * q is the quantile: 1/2 will give exactly the median above.
- * 
+ *
  * General notes about handling missing data, zero MAD etc:
  * The idea is that bicor should switch to cor whenever it is feasible, it helps, and it is requested:
  * (1) if median is NA, the mean would be NA as well, so there's no point in switching to Pearson
@@ -19,9 +17,9 @@
  *     zero (plus one for C indexing)
  */
 double quantile(double *x, const size_t n, const double q, int *err) {
-  
+
   *err = 0;
-  
+
   // Put all NA's at the end.
   size_t bound = n;
   for (size_t i = n; i>0;) {
@@ -38,5 +36,5 @@ double quantile(double *x, const size_t n, const double q, int *err) {
     return NA_REAL;
   }
 
-  return pivot(x, bound, ( 1.0 * (bound - 1)) * q);
+  return pivot(x, bound, 1.0 * (bound - 1) * q);
 }
