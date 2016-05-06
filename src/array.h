@@ -6,7 +6,7 @@ using namespace Rcpp;
 using namespace std;
 
 extern "C" {
-#include "quantile.h"
+  #include "quantile.h"
 }
 
 // define a class that can conveniently hold a big vector, matrix etc.

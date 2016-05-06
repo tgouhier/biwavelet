@@ -28,8 +28,8 @@ transform. Default is \code{TRUE}.}
 
 \item{max.scale}{maximum scale}
 
-\item{mother}{type of mother wavelet function to use. Can be set to 
-\code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}. 
+\item{mother}{type of mother wavelet function to use. Can be set to
+\code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
 Significance testing is only available for \code{morlet} wavelet.}
 
 \item{sig.level}{significance level to compute. Default is \code{0.95}}
