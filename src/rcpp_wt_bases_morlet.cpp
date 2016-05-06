@@ -1,9 +1,25 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-const double PI4 = 4 * PI;
 const double POWPI14 = pow(PI, -0.25);
 const double SQRT_ONE_HALF = sqrt(.5); // NOTE: sqrt(1/2) = 1/sqrt(2)
+
+// Used the following R code to generate:
+// options(digits = 22)
+// cat(sapply(0:10, function(m) 4 * pi / (m + sqrt(2 + m^2))), sep = ",\n")
+const double map_m_to_ffact[] = {
+  8.885765876316732203577,
+  4.599610878225720789203,
+  2.824227347583196046088,
+  1.989412230649865165333,
+  1.524556400231851682747,
+  1.232462020317988793394,
+  1.033043647749253723944,
+  0.8886210242379330992435,
+  0.779356281534662409527,
+  0.6938746418987127295708,
+  0.6252079667084186054282
+};
 
 //' Optimized "wt.bases.morlet" function.
 //'
@@ -28,14 +44,18 @@ List rcpp_wt_bases_morlet(const NumericVector k,
                        const double scale,
                        const int param = -1) {
 
-  const int k0 = param == -1 ? 6 : param;
+  const int m = param == -1 ? 6 : param;
+  if(m < 0 || m > 10) {
+    stop("Values for 'm' not within 0..10");
+  }
+
   const int klen = k.length();
 
-  // R: expnt <- -(scale * k - k0) ^ 2 / 2 * (k > 0)
+  // R: expnt <- -(scale * k - m) ^ 2 / 2 * (k > 0)
   // R: exp_expnt_kgtzero <- exp(expnt) * (k > 0)
   NumericVector exp_expnt_kgtzero(klen);
   for(int i=0; i<klen; ++i) {
-    exp_expnt_kgtzero[i] = (k[i] > 0) ? exp(-pow(scale*k[i]-k0, 2) * .5) : 0;
+    exp_expnt_kgtzero[i] = (k[i] > 0) ? exp(-pow(scale*k[i]-m, 2) * .5) : 0;
   }
 
   NumericVector daughter;
@@ -50,8 +70,9 @@ List rcpp_wt_bases_morlet(const NumericVector k,
     daughter = norm * exp_expnt_kgtzero;
   }
 
-  // R: fourier.factor <- 4 * pi / (k0 + sqrt(2 + k0 ^ 2))
-  const double ffact = PI4 / (k0 + sqrt((double) 2 + k0*k0));
+  // R: fourier.factor <- 4 * pi / (m + sqrt(2 + m ^ 2))
+  // using precomputed table
+  const double ffact = map_m_to_ffact[m];
 
   return List::create(
     _["daughter"] = daughter,
@@ -76,6 +97,7 @@ out <- microbenchmark(
   rcpp_wt_bases_morlet(k, s, p),
   times = 2000L
 )
+options(digits = 6)
 options(microbenchmark.unit = "t")
 print(out)
 options(microbenchmark.unit = "relative")

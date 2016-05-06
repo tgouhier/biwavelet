@@ -2,11 +2,11 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' Optimized "wt.bases.dog" function.
-#' 
+#'
 #' This si a C++ version optimized for speed.
 #' Computes the wavelet as a function of Fourier frequency
 #' for "dog" mother wavelet.
-#' 
+#'
 #' @author Viliam Simko
 #'
 #' @param k vector of frequencies at which to calculate the wavelet.
@@ -17,7 +17,7 @@
 #' \item{fourier.factor}{ratio of fourier period to scale}
 #' \item{coi}{cone of influence}
 #' \item{dof}{degrees of freedom for each point in wavelet power}
-#' 
+#'
 #' @note This c++ implementation is approx. 50% faster than the original R code
 rcpp_wt_bases_dog <- function(k, scale, param = -1L) {
     .Call('biwavelet_rcpp_wt_bases_dog', PACKAGE = 'biwavelet', k, scale, param)

@@ -1,7 +1,7 @@
 context("Performance optimizations")
 
 test_that("Optimized version of wt.bases.dog is equal to original", {
-  for (param in 1:4) {
+  for (param in 1:10) {
 
     # integer scale
     expect_equal(
@@ -18,7 +18,7 @@ test_that("Optimized version of wt.bases.dog is equal to original", {
 })
 
 test_that("Optimized version of wt.bases.paul is equal to original", {
-  for (param in 1:4) {
+  for (param in 1:10) {
 
     # integer scale
     expect_equal(
@@ -35,7 +35,7 @@ test_that("Optimized version of wt.bases.paul is equal to original", {
 })
 
 test_that("Optimized version of wt.bases.morlet is equal to original", {
-  for (param in 1:4) {
+  for (param in 1:10) {
 
     # integer scale
     expect_equal(
