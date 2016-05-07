@@ -5,7 +5,14 @@
 \section{Changes in biwavelet version 0.20.2 (2016-05-06)}{
   \subsection{fixed}{
     \itemize{
-    \item Fixed \code{check.datum}; hopefully for the last time
+    \item Fixed \code{check.datum}; hopefully for the last time.
+    \item Faster wt bases and row quantile (Rcpp implementations):
+      \itemize{
+      \item The \code{param} parameter for all \code{rcpp_wt_bases_*} must be
+            within interval (0..10).
+      \item The \code{rcpp_row_quantile} function requires
+            a matrix as a parameter (use \code{as.matrix()} for vectors).
+      }
     }
   }
 }
