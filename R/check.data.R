@@ -28,28 +28,30 @@
 #' @export
 check.data <- function(y, x1 = NULL, x2 = NULL) {
 
-  y <- check.datum(y)
+  y.check <- check.datum(y)
+  x1.check <- NULL
+  x2.check <- NULL
 
   if (!is.null(x1)) {
-    x1 <- check.datum(x1)
-    if (y$dt != x1$dt) {
+    x1.check <- check.datum(x1)
+    if (any(diff(y[, 1]) != diff(x1[, 1]))) {
       stop("The time series must have the same step size")
     }
-    if (y$n.obs != x1$n.obs) {
+    if (y.check$n.obs != x1.check$n.obs) {
       stop("The time series must have the same length (see merge command)")
     }
   }
 
   if (!is.null(x2)) {
-    x2 <- check.datum(x2)
-    if (y$dt != x2$dt) {
+    x2.check <- check.datum(x2)
+    if (any(diff(y[, 1]) != diff(x2[, 1]))) {
       stop("The time series must have the same step size")
     }
-    if (y$n.obs != x2$n.obs) {
+    if (y.check$n.obs != x2.check$n.obs) {
       stop("The time series must have the same length (see merge command)")
     }
   }
-  return(list(y = y, x1 = x1, x2 = x2))
+  return(list(y = y.check, x1 = x1.check, x2 = x2.check))
 }
 
 #' Helper function
