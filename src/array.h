@@ -74,7 +74,7 @@ class indArray {
 
 #endif
 
-    void name(string n) {
+    void name(const string n) {
       name_ = n;
     }
 

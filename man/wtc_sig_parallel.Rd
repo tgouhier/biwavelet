@@ -41,7 +41,7 @@ Equivalent to \code{wtc.sig}
 }
 \examples{
 # Not run: library(foreach)
-# library(parallel)
+# library(doParallel)
 # cl <- makeCluster(4, outfile="") # number of cores. Notice 'outfile'
 # registerDoParallel(cl)
 # wtc_sig_parallel(your parameters go here)

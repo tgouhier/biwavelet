@@ -15,38 +15,42 @@ class CLASS_NAME {
 
   #ifdef CheckDimensions
 
-    TYPE value(size_t i) {
-      if (i<dims[1]) {
-        return data_[i];
-      } else {
+    TYPE value(const size_t i) {
+      // fail fast
+      if(i >= dims[1]) {
         stop("Index out of range in variable %s", name_);
       }
+
+      return data_[i];
     }
 
-    TYPE value(size_t i, size_t j) {
-      if (dims.size() == 2) {
-           if ( (i < dims[0]) && (j < dims[1]) ) {
-             return data_[j * dims[0] + i];
-           } else {
-             stop("Index out of range in variable %s", name_);
-           }
-      } else {
+    TYPE value(const size_t i, const size_t j) {
+      // fail fast
+      if(dims.size() != 2) {
         stop("incorrect number of dimensions accessing variable %s", name_);
       }
+
+      // fail fast
+      if ( (i >= dims[0]) || (j >= dims[1]) ) {
+        stop("Index out of range in variable %s", name_);
+      }
+
+      return data_[j * dims[0] + i];
     }
 
-    TYPE linValue(size_t i) {
+    TYPE linValue(const size_t i) {
       size_t max = 1;
 
       for (size_t di = 0; di < dims.size(); di++) {
         max *= dims[di];
       }
 
-      if (i < max) {
-        return data_[i];
-      } else {
+      // fail fast
+      if (i >= max) {
         stop("Linear index out of range in variable %s", name_);
       }
+
+      return data_[i];
     }
 
     void setValue(size_t i, TYPE r) {

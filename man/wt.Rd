@@ -48,7 +48,7 @@ Returns a \code{biwavelet} object containing:
 \item{coi}{matrix containg cone of influence}
 \item{wave}{matrix containing the wavelet transform}
 \item{power}{matrix of power}
-\item{power.corr}{matrix of bias-corrected power using the method described 
+\item{power.corr}{matrix of bias-corrected power using the method described
                    by \code{Liu et al. (2007)}}
 \item{phase}{matrix of phases}
 \item{period}{vector of periods}
@@ -85,7 +85,7 @@ Code based on wavelet MATLAB program written by Christopher Torrence
 and Gibert P. Compo.
 }
 \references{
-Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
 \emph{Bulletin of the American Meteorological Society} 79:61-78.
 
 Liu, Y., X. San Liang, and R. H. Weisberg. 2007. Rectification of the Bias in
