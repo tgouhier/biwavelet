@@ -28,28 +28,30 @@
 #' @export
 check.data <- function(y, x1 = NULL, x2 = NULL) {
 
-  y <- check.datum(y)
+  y.check <- check.datum(y)
+  x1.check <- NULL
+  x2.check <- NULL
 
   if (!is.null(x1)) {
-    x1 <- check.datum(x1)
-    if (y$dt != x1$dt) {
+    x1.check <- check.datum(x1)
+    if (any(diff(y[, 1]) != diff(x1[, 1]))) {
       stop("The time series must have the same step size")
     }
-    if (y$n.obs != x1$n.obs) {
+    if (y.check$n.obs != x1.check$n.obs) {
       stop("The time series must have the same length (see merge command)")
     }
   }
 
   if (!is.null(x2)) {
-    x2 <- check.datum(x2)
-    if (y$dt != x2$dt) {
+    x2.check <- check.datum(x2)
+    if (any(diff(y[, 1]) != diff(x2[, 1]))) {
       stop("The time series must have the same step size")
     }
-    if (y$n.obs != x2$n.obs) {
+    if (y.check$n.obs != x2.check$n.obs) {
       stop("The time series must have the same length (see merge command)")
     }
   }
-  return(list(y = y, x1 = x1, x2 = x2))
+  return(list(y = y.check, x1 = x1.check, x2 = x2.check))
 }
 
 #' Helper function
@@ -58,25 +60,20 @@ check.data <- function(y, x1 = NULL, x2 = NULL) {
 #' @note This function is not exported
 check.datum <- function(x) {
   if (NCOL(x) > 1) {
-    diffs <- diff(x[, 1])
     t <- x[, 1]
+    diffs <- diff(t)
     dt <- as.numeric(diffs[1])
     epsilon <- 0.1 * dt
-
-    if (any(abs(diff(t) - dt) > (epsilon * dt))) {
+    if (any(abs(diff(t) - dt) > epsilon)) {
       stop("The step size must be constant ",
            "(see approx function to interpolate)")
-    }
-
-    if (class(x[, 1])[1] == "Date" | class(x[,1])[1] == "POSIXct") {
-      tindex <- seq_len(NROW(x))
     } else {
-      tindex <- x[, 1]
+      t <- seq_len(NROW(t))
+      dt <- diff(t)[1]
     }
-
   } else {
     stop("Error: the data must be in the form of an n x 2 matrix ",
          "containing the time steps in column 1 and the values in column 2")
   }
-  return(list(t = tindex, dt = dt, n.obs = NROW(x)))
+  return(list(t = t, dt = dt, n.obs = NROW(x)))
 }
