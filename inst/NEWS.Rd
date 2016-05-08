@@ -2,6 +2,15 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.3 (2016-05-08)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed displacement of COI, contours and phase arrows in \code{plot.biwavelet} when adding a color bar.
+    }
+  }
+}
+
+
 \section{Changes in biwavelet version 0.20.2 (2016-05-06)}{
   \subsection{fixed}{
     \itemize{
