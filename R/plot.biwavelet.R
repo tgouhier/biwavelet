@@ -266,7 +266,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
   }
   box()
 
-  ## Add color bar: this must happen after everything else is plotted otherwise chaos!
+  ## Add color bar: this must happen after everything else otherwise chaos!
   if (plot.cb) {
     image.plot(x$t,
                yvals,
