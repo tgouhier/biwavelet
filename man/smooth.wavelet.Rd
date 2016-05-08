@@ -19,7 +19,7 @@ smooth.wavelet(wave, dt, dj, scale)
 Returns the smoothed wavelet.
 }
 \description{
-The time smoothing uses a filter given by the absolute value of the wavelet 
+The time smoothing uses a filter given by the absolute value of the wavelet
 function at each scale, normalized to have a total weight of unity, which is
 a Gaussian function for the Morlet wavelet. The scale smoothing is done with
 a boxcar function of width 0.6, which corresponds to the decorrelation scale
