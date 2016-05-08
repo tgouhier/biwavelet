@@ -1,33 +1,32 @@
 #' Smooth wavelet in both the time and scale domains
-#' 
-#' The time smoothing uses a filter given by the absolute value of the wavelet 
+#'
+#' The time smoothing uses a filter given by the absolute value of the wavelet
 #' function at each scale, normalized to have a total weight of unity, which is
 #' a Gaussian function for the Morlet wavelet. The scale smoothing is done with
 #' a boxcar function of width 0.6, which corresponds to the decorrelation scale
 #' of the Morlet wavelet.
-#' 
+#'
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
-#' 
+#'
 #' Code based on WTC MATLAB package written by Aslak Grinsted.
-#' 
+#'
 #' @references
 #' Torrence, C., and P. J. Webster. 1998. The annual cycle of persistence in the
 #' El Nino/Southern Oscillation.
 #' \emph{Quarterly Journal of the Royal Meteorological Society} 124:1985-2004.
-#' 
+#'
 #' @note This function is used internally for computing wavelet coherence.
 #'   It is only appropriate for the morlet wavelet.
-#'   
+#'
 #' @examples
 #' # Not run: smooth.wt1 <- smooth.wavelet(wave, dt, dj, scale)
-#' 
+#'
 #' @param wave wavelet coefficients
 #' @param dt size of time steps
 #' @param dj number of octaves per scale
 #' @param scale wavelet scales
-#' 
+#'
 #' @return Returns the smoothed wavelet.
-#' @export
 smooth.wavelet <- function(wave, dt, dj, scale) {
 
   m <- NCOL(wave)
