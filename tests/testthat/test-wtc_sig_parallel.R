@@ -2,6 +2,8 @@ context("Parallelized significance of wavelet coherence")
 
 # Setup variables =====
 
+foreach::registerDoSEQ() # to avoid warning when calling %dopar%
+
 size <- 64
 d1 <- cbind(1:size, rnorm(size))
 d2 <- cbind(1:size, rnorm(size))
