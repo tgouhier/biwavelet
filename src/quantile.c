@@ -10,15 +10,16 @@
  * q is the quantile: 1/2 will give exactly the median above.
  *
  * General notes about handling missing data, zero MAD etc:
- * The idea is that bicor should switch to cor whenever it is feasible, it helps, and it is requested:
- * (1) if median is NA, the mean would be NA as well, so there's no point in switching to Pearson
- * (2) In the results, columns and rows corresponding to input with NA means/medians are NA'd out.
- * (3) The convention is that if zeroMAD is set to non-zero, it is the index of the column in which MAD is
- *     zero (plus one for C indexing)
+ * The idea is that bicor should switch to cor whenever it is feasible,
+ * it helps, and it is requested:
+ * (1) if median is NA, the mean would be NA as well, so there's no point in
+ *     switching to Pearson
+ * (2) In the results, columns and rows corresponding to input with NA
+ *     means/medians are NA'd out.
+ * (3) The convention is that if zeroMAD is set to non-zero, it is the index of
+ *     the column in which MAD is zero (plus one for C indexing)
  */
-double quantile(double *x, const size_t n, const double q, int *err) {
-
-  *err = 0;
+double quantile(double *x, const size_t n, const double q) {
 
   // Put all NA's at the end.
   size_t bound = n;

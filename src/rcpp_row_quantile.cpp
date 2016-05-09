@@ -1,6 +1,10 @@
-#include "array.h"
 #include <Rcpp.h>
 using namespace Rcpp;
+using namespace std;
+
+extern "C" {
+  #include "quantile.h"
+}
 
 //' Row-wise quantile of a matrix
 //'
@@ -21,25 +25,34 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
     stop("value 'q' is out of range 0 to 1");
   }
 
-  const int nr = data.nrow();
-  const int nc = data.ncol();
+  const size_t rowLen = data.ncol();
+  const size_t nrow = data.nrow();
+
+  if (rowLen == 0) {
+    stop("rowQuantile: Row length is zero"); // TODO
+  }
 
   // here we allocate space for the result
-  NumericVector result(nr);
+  NumericVector result(nrow);
 
-  dArray dataArrayWrapper;
-  dataArrayWrapper.wrap(data.begin(), nr, nc);
+  // code adapted from dArray
+  vector<double> rowData;
+  rowData.reserve(rowLen);
 
-  dArray resultArrayWrapper;
-  resultArrayWrapper.wrap(result.begin(), nr);
-
-  // compute the quantiles from data to result
-  dataArrayWrapper.rowQuantile(q, resultArrayWrapper);
+  for (size_t row = 0; row < nrow; row++) {
+    rowData.clear();
+    for (size_t col = 0; col < rowLen; col++) {
+      rowData.push_back(data.at(row, col));
+    }
+    result[row] = quantile(&(rowData[0]), rowLen, q);
+  }
 
   return result;
 }
 
 /*** R
 data <- matrix(rnorm(25), 5, 5)
+data <- matrix(rnorm(100), nrow = 1)
 rcpp_row_quantile(data, .75)
+sapply(1:5, function(x) quantile(data[x,], .75))
 */
