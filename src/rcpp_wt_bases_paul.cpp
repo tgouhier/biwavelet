@@ -24,7 +24,7 @@ const double map_m_to_ffact[] = {
 // Used the following R code to generate:
 // options(scipen = 999)
 // cat(sapply(0:10, function(m) prod(2:(2 * m - 1)) ), sep = ",\n")
-const unsigned long long map_m_to_prod[] = {
+const uint64_t map_m_to_prod[] = {
   0,                    // m = 0
   2,                    // m = 1
   6,                    // m = 2
@@ -83,7 +83,7 @@ List rcpp_wt_bases_paul(const NumericVector k,
   //   prod *= i;
   // }
   // ... but we can precompute the values in a table map_m_to_prod
-  const unsigned long long prod = map_m_to_prod[m]; // only works for m = 0..10
+  const uint64_t prod = map_m_to_prod[m]; // only works for m = 0..10
 
   // R: sqrt(scale * k[2]) * sqrt(length(k)) * (2^m) / sqrt(m * prod(2:(2 * m - 1)))
   // Note: k[2] in R is k[1] in c++ because vectors are indexed from 0
@@ -110,7 +110,6 @@ List rcpp_wt_bases_paul(const NumericVector k,
     _["dof"] = 2
   );
 }
-;
 
 /*** R
 library(microbenchmark)
