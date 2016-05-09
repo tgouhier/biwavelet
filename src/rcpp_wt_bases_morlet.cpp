@@ -81,7 +81,6 @@ List rcpp_wt_bases_morlet(const NumericVector k,
     _["dof"] = 2
   );
 }
-;
 
 /*** R
 library(microbenchmark)

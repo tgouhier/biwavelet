@@ -74,7 +74,6 @@ List rcpp_wt_bases_dog(const NumericVector k,
     _["dof"] = 1
   );
 }
-;
 
 /*** R
 library(microbenchmark)
