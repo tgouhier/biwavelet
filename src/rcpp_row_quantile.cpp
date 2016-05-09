@@ -1,6 +1,5 @@
 #include <Rcpp.h>
 using namespace Rcpp;
-using namespace std;
 
 extern "C" {
   #include "quantile.h"
@@ -35,16 +34,14 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
   // here we allocate space for the result
   NumericVector result(nrow);
 
-  // code adapted from dArray
-  vector<double> rowData;
-  rowData.reserve(rowLen);
+  // buffer for a row copy (needed by the quantile function)
+  double rowData[rowLen];
 
   for (size_t row = 0; row < nrow; row++) {
-    rowData.clear();
     for (size_t col = 0; col < rowLen; col++) {
-      rowData.push_back(data.at(row, col));
+      rowData[col] = data(row, col);
     }
-    result[row] = quantile(&(rowData[0]), rowLen, q);
+    result[row] = quantile(rowData, rowLen, q);
   }
 
   return result;
