@@ -16,7 +16,7 @@ test_that("R and C++ versions of quantile using 1xN matrix shold be equal", {
   }
 })
 
-test_that("R and c++ version work the same on small inputs", {
+test_that("R and C++ version work the same on small inputs", {
   for (data in list(
     matrix(1),
     matrix(1:2, nrow = 1),
@@ -37,10 +37,9 @@ test_that("rcpp_row_quantile should ignore NAs without errors", {
   }
 })
 
-test_that("Multiple quantiles as parameter should fail", {
-  data <- matrix(1:10, nrow = 2)
-  expect_error(rcpp_row_quantile(data, c(.5, .75)))
-  expect_error(rcpp_row_quantile(data, 1:5))
+test_that("Matrix without columns should produce NAs", {
+  data <- matrix(nrow = 10, ncol = 0)
+  expect_equal(rcpp_row_quantile(data, .7), rep(NA_real_, 10))
 })
 
 test_that("Multiple quantiles as parameter are not supported", {
