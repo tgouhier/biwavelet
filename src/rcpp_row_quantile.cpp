@@ -27,8 +27,9 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
   const size_t rowLen = data.ncol();
   const size_t nrow = data.nrow();
 
+  // a vector of NAs is returned for matrices without columns
   if (rowLen == 0) {
-    stop("rowQuantile: Row length is zero"); // TODO
+    return NumericVector(nrow, NA_REAL);
   }
 
   // here we allocate space for the result
