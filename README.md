@@ -2,7 +2,7 @@
 biwavelet R package
 ===================
 
-[![Build Status](https://travis-ci.org/tgouhier/biwavelet.svg)](https://travis-ci.org/tgouhier/biwavelet) [![codecov.io](https://codecov.io/github/tgouhier/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/tgouhier/biwavelet?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet) ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/biwavelet)
+[![Build Status](https://travis-ci.org/tgouhier/biwavelet.svg)](https://travis-ci.org/tgouhier/biwavelet) [![codecov.io](https://codecov.io/github/tgouhier/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/tgouhier/biwavelet?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet) ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/biwavelet) [![Research software impact](http://depsy.org/api/package/cran/biwavelet/badge.svg)](http://depsy.org/package/r/biwavelet)
 
 Download and Install
 --------------------
@@ -103,5 +103,6 @@ Other links
 -----------
 
 -   Biwavelet listed at OpenHub: <https://www.openhub.net/p/biwavelet>
+-   Research software impact of Biwavelet (by Depsy): <http://depsy.org/package/r/biwavelet>
 -   Old website hosted at r-forge: <http://biwavelet.r-forge.r-project.org/>
 -   Old PDF Manual: <http://biwavelet.r-forge.r-project.org/biwavelet-manual.pdf>
