@@ -1,12 +1,12 @@
 bibentry("Manual",
 		title="biwavelet: Conduct univariate and bivariate wavelet analyses",
-		author="Tarik Gouhier",
+		author="Tarik C. Gouhier, Aslak Grinsted, Viliam Simko",
 		year="2015",
-		note="(Version 0.17.11)",
+		note="(Version 0.20.4)",
 		url="http://github.com/tgouhier/biwavelet",
 
 		textVersion =
-		paste("Gouhier, T. (2015). ",
+		paste("T.C. Gouhier, A. Grinstead and V. Simko (2016). ",
 				"biwavelet: Conduct univariate and bivariate wavelet analyses (Version 0.17.11). ",
 				"Available from http://github.com/tgouhier/biwavelet",
 				sep=""),

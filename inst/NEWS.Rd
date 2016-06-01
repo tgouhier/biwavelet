@@ -2,6 +2,14 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.6 (2016-06-01)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed x-axis in \code{plot.biwavelet}.
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.3 (2016-05-08)}{
   \subsection{fixed}{
     \itemize{
@@ -9,7 +17,6 @@
     }
   }
 }
-
 
 \section{Changes in biwavelet version 0.20.2 (2016-05-06)}{
   \subsection{fixed}{
