@@ -108,9 +108,6 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
                            xlim = NULL, ylim = NULL, zlim = NULL,
                            xaxt = "s", yaxt = "s", form = "%Y", ...) {
 
-  if (class(x$xaxis) != "Date")
-    x$t <- x$xaxis
-
   if (is.null(fill.cols)) {
     if (bw) {
       fill.cols <- c("black", "white")

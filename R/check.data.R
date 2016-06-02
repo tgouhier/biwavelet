@@ -68,8 +68,10 @@ check.datum <- function(x) {
       stop("The step size must be constant ",
            "(see approx function to interpolate)")
     } else {
-      t <- seq_len(NROW(t))
-      dt <- diff(t)[1]
+      if (class(t) == "Date") {
+        t <- seq_len(NROW(t))
+        dt <- diff(t)[1]
+      }
     }
   } else {
     stop("Error: the data must be in the form of an n x 2 matrix ",
