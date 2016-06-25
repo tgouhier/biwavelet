@@ -1,8 +1,8 @@
 bibentry("Manual",
 		title="biwavelet: Conduct univariate and bivariate wavelet analyses",
 		author="Tarik C. Gouhier, Aslak Grinsted, Viliam Simko",
-		year="2015",
-		note="(Version 0.20.7)",
+		year="2016",
+		note="(Version 0.20.8)",
 		url="http://github.com/tgouhier/biwavelet",
 
 		textVersion =

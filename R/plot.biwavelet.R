@@ -222,14 +222,14 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
   } else {
     if (xaxt != "n") {
       xlocs <- axTicks(1)
-      axis(side = 1, at = xlocs)
+      axis(side = 1, at = xlocs, ...)
     }
   }
 
   if (yaxt != "n") {
     axis.locs <- axTicks(2)
     yticklab <- format(2 ^ axis.locs, dig = 1)
-    axis(2, at = axis.locs, labels = yticklab)
+    axis(2, at = axis.locs, labels = yticklab, ...)
   }
 
   # COI
@@ -266,7 +266,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
   }
   box()
 
-  ## Add color bar: this must happen after everything else otherwise chaos!
+  ## Add color bar: this must happen after everything, otherwise chaos ensues!
   if (plot.cb) {
     image.plot(x$t,
                yvals,
@@ -280,7 +280,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
                horizontal = legend.horiz,
                legend.only = TRUE,
                axis.args =
-                 list(at = locs, labels = format(leg.lab, dig = 2)),
+                 list(at = locs, labels = format(leg.lab, dig = 2), ...),
                xpd = NA)
   }
 }
