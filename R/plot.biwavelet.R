@@ -217,7 +217,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
   if (class(x$xaxis)[1] == "Date" | class(x$xaxis)[1] == "POSIXct") {
     if (xaxt != "n") {
       xlocs <- pretty(x$t) + 1
-      axis(side = 1, at = xlocs, labels = format(x$xaxis[xlocs], form))
+      axis(side = 1, at = xlocs, labels = format(x$xaxis[xlocs], form, ...))
     }
   } else {
     if (xaxt != "n") {
