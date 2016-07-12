@@ -1,11 +1,11 @@
 #' Compute wavelet coherence
-#' 
+#'
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
-#' 
+#'
 #' Code based on WTC MATLAB package written by Aslak Grinsted.
-#' 
-#' @param d1 time series 1 in matrix format (\code{n} rows x 2 columns). The 
-#'   first column should contain the time steps and the second column should 
+#'
+#' @param d1 time series 1 in matrix format (\code{n} rows x 2 columns). The
+#'   first column should contain the time steps and the second column should
 #'   contain the values.
 #' @param d2 time series 2 in matrix format (\code{n} rows x 2 columns). The
 #'   first column should contain the time steps and the second column should
@@ -27,14 +27,14 @@
 #'   2, then do a scale-average test.
 #' @param nrands number of Monte Carlo randomizations. Default is 300.
 #' @param quiet Do not display progress bar. Default is \code{FALSE}
-#' 
+#'
 #' @return Return a \code{biwavelet} object containing:
 #' \item{coi}{matrix containg cone of influence}
 #' \item{wave}{matrix containing the cross-wavelet transform}
 #' \item{wave.corr}{matrix containing the bias-corrected cross-wavelet transform
 #'                  using the method described by \code{Veleda et al. (2012)}}
 #' \item{power}{matrix of power}
-#' \item{power.corr}{matrix of bias-corrected cross-wavelet power using the method described 
+#' \item{power.corr}{matrix of bias-corrected cross-wavelet power using the method described
 #'                   by \code{Veleda et al. (2012)}}
 #' \item{rsq}{matrix of wavelet coherence}
 #' \item{phase}{matrix of phases}
@@ -54,24 +54,24 @@
 #'
 #' @references
 #' Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
-#' and N. C. Stenseth. 2008. Wavelet analysis of ecological time series. 
+#' and N. C. Stenseth. 2008. Wavelet analysis of ecological time series.
 #' \emph{Oecologia} 156:287-304.
-#' 
-#' Grinsted, A., J. C. Moore, and S. Jevrejeva. 2004. Application of the cross 
-#' wavelet transform and wavelet coherence to geophysical time series. 
+#'
+#' Grinsted, A., J. C. Moore, and S. Jevrejeva. 2004. Application of the cross
+#' wavelet transform and wavelet coherence to geophysical time series.
 #' \emph{Nonlinear Processes in Geophysics} 11:561-566.
-#' 
-#' Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+#'
+#' Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
 #' \emph{Bulletin of the American Meteorological Society} 79:61-78.
-#' 
+#'
 #' Torrence, C., and P. J. Webster. 1998. The annual cycle of persistence in the
 #' El Nino/Southern Oscillation. \emph{Quarterly Journal of the Royal
 #' Meteorological Society} 124:1985-2004.
-#' 
+#'
 #' Veleda, D., R. Montagne, and M. Araujo. 2012. Cross-Wavelet Bias Corrected by
 #' Normalizing Scales. \emph{Journal of Atmospheric and Oceanic Technology}
 #' 29:1401-1408.
-#' 
+#'
 #' @note The Monte Carlo randomizations can be extremely slow for large
 #'   datasets. For instance, 1000 randomizations of a dataset consisting of 1000
 #'   samples will take ~30 minutes on a 2.66 GHz dual-core Xeon processor.
@@ -79,15 +79,15 @@
 #' @examples
 #' t1 <- cbind(1:100, rnorm(100))
 #' t2 <- cbind(1:100, rnorm(100))
-#' 
+#'
 #' ## Wavelet coherence
 #' wtc.t1t2 <- wtc(t1, t2, nrands = 10)
-#' 
+#'
 #' ## Plot wavelet coherence and phase difference (arrows)
 #' ## Make room to the right for the color bar
 #' par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 #' plot(wtc.t1t2, plot.cb = TRUE, plot.phase = TRUE)
-#' 
+#'
 #' @export
 wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
                 J1 = NULL, max.scale = NULL, mother = "morlet",
@@ -111,18 +111,21 @@ wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
     J1 <- round(log2(max.scale / s0) / dj)
   }
 
-  # Get AR(1) coefficients for each time series
-  d1.ar1 <- arima(d1[,2], order = c(1, 0, 0))$coef[1]
-  d2.ar1 <- arima(d2[,2], order = c(1, 0, 0))$coef[1]
+  if (is.null(lag1)) {
+    # Get AR(1) coefficients for each time series
+    d1.ar1 <- arima(d1[,2], order = c(1, 0, 0))$coef[1]
+    d2.ar1 <- arima(d2[,2], order = c(1, 0, 0))$coef[1]
+    lag1 <- c(d1.ar1, d2.ar1)
+  }
 
   # Get CWT of each time series
   wt1 <- wt(d = d1, pad = pad, dj = dj, s0 = s0, J1 = J1,
             max.scale = max.scale, mother = mother, param = param,
-            sig.level = sig.level, sig.test = sig.test, lag1 = lag1)
+            sig.level = sig.level, sig.test = sig.test, lag1 = lag1[1])
 
   wt2 <- wt(d = d2, pad = pad, dj = dj, s0 = s0, J1 = J1,
             max.scale = max.scale, mother = mother, param = param,
-            sig.level = sig.level, sig.test = sig.test, lag1 = lag1)
+            sig.level = sig.level, sig.test = sig.test, lag1 = lag1[2])
 
   # Standard deviation for each time series
   d1.sigma <- sd(d1[,2], na.rm = T)
@@ -156,7 +159,7 @@ wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   # Phase difference
   phase <- atan2(Im(CW), Re(CW))
   if (nrands > 0) {
-    signif <- wtc.sig(nrands = nrands, lag1 = c(d1.ar1, d2.ar1),
+    signif <- wtc.sig(nrands = nrands, lag1 = lag1,
                       dt = dt, n, pad = pad, dj = dj, J1 = J1, s0 = s0,
                       max.scale = max.scale, mother = mother,
                       sig.level = sig.level, quiet = quiet)
