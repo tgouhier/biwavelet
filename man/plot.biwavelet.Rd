@@ -32,7 +32,7 @@ color palette.}
 \item{tol}{tolerance level for significance contours. Sigificance contours
 will be drawn around all regions of the spectrum where
 \code{spectrum/percentile >= tol}. Default is \code{1}. If strict
-\code{i^{th}} percentile regions are desired, then must be set to
+\code{i^{th}} percentile regions are desired, then
 \code{tol} must be set to \code{1}.}
 
 \item{plot.cb}{plot color bar if TRUE. Default is FALSE.}
@@ -79,8 +79,10 @@ transparency). Default is 0.5.}
 
 \item{arrow.lwd}{width/thickness of arrows. Default is arrow.len*0.3.}
 
-\item{arrow.cutoff}{cutoff value for plotting arrows. z-values that fall
-below the \code{arrow.cutoff} quantile will not be plotted. Default is 0.9.}
+\item{arrow.cutoff}{cutoff value for plotting phase arrows. Phase arrows will be
+be plotted in regions where the significance of the zvalues exceeds \code{arrow.cutoff}.
+If the object being plotted does not have a significance field, regions
+whose zvalues exceed the \code{arrow.cutoff} quantile will be plotted. Default is 0.95.}
 
 \item{arrow.col}{Color of arrows. Default is \code{black}.}
 

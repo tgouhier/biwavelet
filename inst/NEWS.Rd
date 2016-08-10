@@ -2,6 +2,17 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.10 (2016-09-10)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Function \code{phase.biwavelet} now plots the regions whose significance
+            exceeds \code{arrow.cutoff}. If the object being plotted does not have
+            a significance field, regions whose zvalues exceed the \code{arrow.cutoff}
+            quantile will be plotted.
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.9 (2016-07-12)}{
   \subsection{fixed}{
     \itemize{

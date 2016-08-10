@@ -14,7 +14,7 @@
 #' @param tol tolerance level for significance contours. Sigificance contours
 #'   will be drawn around all regions of the spectrum where
 #'   \code{spectrum/percentile >= tol}. Default is \code{1}. If strict
-#'   \code{i^{th}} percentile regions are desired, then must be set to
+#'   \code{i^{th}} percentile regions are desired, then
 #'   \code{tol} must be set to \code{1}.
 #' @param plot.cb plot color bar if TRUE. Default is FALSE.
 #' @param plot.phase Plot phases with black arrows. Default is FALSE.
@@ -43,8 +43,10 @@
 #' @param arrow.len size of the arrows. Default is based on plotting region
 #'   (min(par()$pin[2]/30,par()$pin[1]/40).
 #' @param arrow.lwd width/thickness of arrows. Default is arrow.len*0.3.
-#' @param arrow.cutoff cutoff value for plotting arrows. z-values that fall
-#'   below the \code{arrow.cutoff} quantile will not be plotted. Default is 0.9.
+#' @param arrow.cutoff cutoff value for plotting phase arrows. Phase arrows will be
+#'        be plotted in regions where the significance of the zvalues exceeds \code{arrow.cutoff}.
+#'        If the object being plotted does not have a significance field, regions
+#'        whose zvalues exceed the \code{arrow.cutoff} quantile will be plotted. Default is 0.95.
 #' @param arrow.col Color of arrows. Default is \code{black}.
 #' @param xlim the x limits. The default is \code{NULL}.
 #' @param ylim the y limits. The default is \code{NULL}.
@@ -257,7 +259,16 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
     a <- x$phase
 
     # Remove phases where power is weak
-    locs.phases <- which(zvals < quantile(zvals, arrow.cutoff))
+    if (!is.null(x$type)) {
+      if (x$type %in% c("wt", "xwt")) {
+        locs.phases <- which(x$signif <= arrow.cutoff)
+      } else {
+        v <- x$rsq / x$signif
+        locs.phases <- which(v <= arrow.cutoff)
+      }
+    } else {
+      locs.phases <- which(zvals < quantile(zvals, arrow.cutoff))
+    }
     a[locs.phases] <- NA
 
     phase.plot(x$t, log2(x$period), a,
