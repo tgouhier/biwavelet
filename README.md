@@ -104,5 +104,3 @@ Other links
 
 -   Biwavelet listed at OpenHub: <https://www.openhub.net/p/biwavelet>
 -   Research software impact of Biwavelet (by Depsy): <http://depsy.org/package/r/biwavelet>
--   Old website hosted at r-forge: <http://biwavelet.r-forge.r-project.org/>
--   Old PDF Manual: <http://biwavelet.r-forge.r-project.org/biwavelet-manual.pdf>
