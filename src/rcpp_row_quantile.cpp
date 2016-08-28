@@ -1,4 +1,5 @@
 #include <Rcpp.h>
+#include <vector>
 using namespace Rcpp;
 
 extern "C" {
@@ -36,7 +37,10 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
   NumericVector result(nrow);
 
   // buffer for a row copy (needed by the quantile function)
-  double rowData[rowLen];
+  // double rowData[rowLen];
+  std::vector<double> rowDataVec;
+  rowDataVec.resize(rowLen);
+  double* rowData = &rowDataVec[0];
 
   for (size_t row = 0; row < nrow; row++) {
     for (size_t col = 0; col < rowLen; col++) {
