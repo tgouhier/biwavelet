@@ -11,6 +11,8 @@ vignette: >
 
 ```{r Setup, include=FALSE}
 library(biwavelet)
+if (!require("profvis"))
+  install.packages("profvis")
 library(profvis)
 ```
 
