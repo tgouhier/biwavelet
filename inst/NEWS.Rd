@@ -22,7 +22,6 @@
   }
 }
 
-
 \section{Changes in biwavelet version 0.20.8 (2016-06-25)}{
   \subsection{fixed}{
     \itemize{
@@ -30,7 +29,6 @@
     }
   }
 }
-
 
 \section{Changes in biwavelet version 0.20.7 (2016-06-01)}{
   \subsection{fixed}{
