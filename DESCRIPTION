@@ -10,7 +10,8 @@ Description: This is a port of the WTC MATLAB package written by Aslak Grinsted
     Compo. This package can be used to perform univariate and bivariate
     (cross-wavelet, wavelet coherence, wavelet clustering) analyses.
 License: GPL (>=2)
-URL: http://github.com/tgouhier/biwavelet
+URL: https://github.com/tgouhier/biwavelet
+BugReports: https://github.com/tgouhier/biwavelet/issues
 LazyData: yes
 LinkingTo: Rcpp
 Imports:
