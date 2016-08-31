@@ -18,5 +18,10 @@ Imports:
     foreach,
     Rcpp (>= 0.12.2)
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    devtools,
+    profvis,
+    microbenchmark
+VignetteBuilder: knitr
 RoxygenNote: 5.0.1

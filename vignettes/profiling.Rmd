@@ -3,14 +3,15 @@ title: "Profiling `biwavelet` package"
 author: "Viliam Simko"
 date: "February 27, 2016"
 output: html_document
+vignette: >
+  %\VignetteIndexEntry{Profiling `biwavelet` package}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r Setup, include=FALSE}
 library(biwavelet)
-if (!require("profvis", character.only = TRUE)) {
-  devtools::install_github("rstudio/profvis")
-  library(profvis)
-}
+library(profvis)
 ```
 
 This document contains some attempts to perform code profiling and benchmarking.

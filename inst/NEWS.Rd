@@ -9,6 +9,7 @@
             exceeds \code{arrow.cutoff}. If the object being plotted does not have
             a significance field, regions whose zvalues exceed the \code{arrow.cutoff}
             quantile will be plotted.
+      \item Fixed C++ warning about unsupported dynamically sized arrays
     }
   }
 }

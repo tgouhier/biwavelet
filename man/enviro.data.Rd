@@ -30,14 +30,14 @@ head(enviro.data)
 
 }
 \references{
-Di Lorenzo, E., N. Schneider, K. M. Cobb, P. J. S. Franks, K. Chhak, A. J. Miller, 
-J. C. McWilliams, S. J. Bograd, H. Arango, E. Curchitser, T. M. Powell, and 
-P. Riviere. 2008. North Pacific Gyre Oscillation links ocean climate and 
+Di Lorenzo, E., N. Schneider, K. M. Cobb, P. J. S. Franks, K. Chhak, A. J. Miller,
+J. C. McWilliams, S. J. Bograd, H. Arango, E. Curchitser, T. M. Powell, and
+P. Riviere. 2008. North Pacific Gyre Oscillation links ocean climate and
 ecosystem change. \emph{Geophys. Res. Lett.} 35:L08607.
-  
+
 Mantua, N. J., and S. R. Hare. 2002. The Pacific decadal oscillation.
 \emph{Journal of Oceanography} 58:35-44.
-  
+
 Zhang, Y., J. M. Wallace, and D. S. Battisti. 1997. ENSO-like interdecadal
 variability: 1900-93. \emph{Journal of Climate} 10:1004-1020.
 }
