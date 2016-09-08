@@ -1,2 +1,3 @@
 PKG_LIBS = -lpthread
 PKG_CPPFLAGS = -DWITH_THREADS
+# For debugging: PKG_CPPFLAGS = -DWITH_THREADS -pedantic -Wall -Werror

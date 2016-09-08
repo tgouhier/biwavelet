@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-#include <vector>
 using namespace Rcpp;
 
 extern "C" {
@@ -37,10 +36,14 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
   NumericVector result(nrow);
 
   // buffer for a row copy (needed by the quantile function)
+
+  // VLA (variable size arrays) are forbidden in ISO C++,
+  // the following line won't work with -Werror-Wall -pedantic flags
   // double rowData[rowLen];
-  std::vector<double> rowDataVec;
-  rowDataVec.resize(rowLen);
-  double* rowData = &rowDataVec[0];
+
+  // therefore use heap allocation
+  // (just don't forget to call delete before return)
+  double* rowData = new double[rowLen];
 
   for (size_t row = 0; row < nrow; row++) {
     for (size_t col = 0; col < rowLen; col++) {
@@ -49,6 +52,7 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
     result[row] = quantile(rowData, rowLen, q);
   }
 
+  delete[] rowData;
   return result;
 }
 
