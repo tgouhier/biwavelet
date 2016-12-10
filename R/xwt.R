@@ -70,7 +70,7 @@
 xwt <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
                 J1 = NULL, max.scale = NULL, mother = "morlet",
                 param = -1, lag1 = NULL, sig.level = 0.95,
-                sig.test = 0) {
+                sig.test = 0, arima.method='CSS') {
 
   mother <- match.arg(tolower(mother), MOTHERS)
 
@@ -90,8 +90,8 @@ xwt <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   }
 
   # Get AR(1) coefficients for each time series
-  d1.ar1 <- arima(d1[,2], order = c(1, 0, 0))$coef[1]
-  d2.ar1 <- arima(d2[,2], order = c(1, 0, 0))$coef[1]
+  d1.ar1 <- arima(d1[,2], order = c(1, 0, 0), method=arima.method)$coef[1]
+  d2.ar1 <- arima(d2[,2], order = c(1, 0, 0), method=arima.method)$coef[1]
 
   # Get CWT of each time series
   wt1 <- wt(d = d1, pad = pad, dj = dj, s0 = s0, J1 = J1,
