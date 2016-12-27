@@ -262,8 +262,11 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
     if (!is.null(x$type)) {
       if (x$type %in% c("wt", "xwt")) {
         locs.phases <- which(x$signif <= arrow.cutoff)
-      } else {
+      } else if (x$type == "wtc") {
         v <- x$rsq / x$signif
+        locs.phases <- which(v <= arrow.cutoff)
+      } else {
+        v <- x$rsq
         locs.phases <- which(v <= arrow.cutoff)
       }
     } else {
