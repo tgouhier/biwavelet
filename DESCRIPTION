@@ -2,7 +2,11 @@ Package: biwavelet
 Type: Package
 Title: Conduct Univariate and Bivariate Wavelet Analyses
 Version: 0.20.12
+<<<<<<< HEAD
 Date: 2016-12-27
+=======
+Date: 2016-09-09
+>>>>>>> a76e0f8612ac99ffa626f492a767d6f7584be3af
 Author: Tarik C. Gouhier, Aslak Grinsted, Viliam Simko
 Maintainer: Tarik C. Gouhier <tarik.gouhier@gmail.com>
 Description: This is a port of the WTC MATLAB package written by Aslak Grinsted
