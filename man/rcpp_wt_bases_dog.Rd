@@ -21,7 +21,7 @@ Returns a list containing:
 \item{dof}{degrees of freedom for each point in wavelet power}
 }
 \description{
-This si a C++ version optimized for speed.
+This is a C++ version optimized for speed.
 Computes the wavelet as a function of Fourier frequency
 for "dog" mother wavelet.
 }

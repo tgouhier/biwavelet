@@ -18,7 +18,7 @@ rcpp_row_quantile <- function(data, q) {
 
 #' Optimized "wt.bases.dog" function.
 #'
-#' This si a C++ version optimized for speed.
+#' This is a C++ version optimized for speed.
 #' Computes the wavelet as a function of Fourier frequency
 #' for "dog" mother wavelet.
 #'
