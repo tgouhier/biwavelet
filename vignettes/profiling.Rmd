@@ -11,8 +11,10 @@ vignette: >
 
 ```{r Setup, include=FALSE}
 library(biwavelet)
+if (!require("microbenchmark"))
+  install.packages("microbenchmark", repos = "http://cran.rstudio.com/")
 if (!require("profvis"))
-  install.packages("profvis")
+  install.packages("profvis", repos = "http://cran.rstudio.com/")
 library(profvis)
 ```
 
