@@ -2,6 +2,25 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.13 (2016-12-27)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed \code{plot.biwavelet} so that the \code{arrow.cutoff}
+            argument applies to rsq values for wtc and pwtc objects
+    }
+  }
+}
+
+
+\section{Changes in biwavelet version 0.20.12 (2016-12-27)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed \code{plot.biwavelet} so that the \code{arrow.cutoff}
+            argument applies to rsq values
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.11 (2016-08-31)}{
   \subsection{added}{
     \itemize{

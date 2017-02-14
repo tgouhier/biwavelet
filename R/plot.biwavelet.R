@@ -44,9 +44,11 @@
 #'   (min(par()$pin[2]/30,par()$pin[1]/40).
 #' @param arrow.lwd width/thickness of arrows. Default is arrow.len*0.3.
 #' @param arrow.cutoff cutoff value for plotting phase arrows. Phase arrows will be
-#'        be plotted in regions where the significance of the zvalues exceeds \code{arrow.cutoff}.
+#'        be plotted in regions where the significance of the zvalues exceeds \code{arrow.cutoff}
+#'        for wt and xwt objects. For pwtc and wtc objects, phase arrows will be
+#'        plotted in regions where the rsq value exceeds \code{arrow.cutoff}.
 #'        If the object being plotted does not have a significance field, regions
-#'        whose zvalues exceed the \code{arrow.cutoff} quantile will be plotted. Default is 1.
+#'        whose zvalues exceed the \code{arrow.cutoff} quantile will be plotted. Default is 0.8.
 #' @param arrow.col Color of arrows. Default is \code{black}.
 #' @param xlim the x limits. The default is \code{NULL}.
 #' @param ylim the y limits. The default is \code{NULL}.
@@ -105,7 +107,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
                            arrow.len = min(par()$pin[2] / 30,
                                            par()$pin[1] / 40),
                            arrow.lwd = arrow.len * 0.3,
-                           arrow.cutoff = 1,
+                           arrow.cutoff = 0.8,
                            arrow.col = "black",
                            xlim = NULL, ylim = NULL, zlim = NULL,
                            xaxt = "s", yaxt = "s", form = "%Y", ...) {
@@ -262,8 +264,9 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
     if (!is.null(x$type)) {
       if (x$type %in% c("wt", "xwt")) {
         locs.phases <- which(x$signif <= arrow.cutoff)
-      } else {
-        v <- x$rsq / x$signif
+      } else if (x$type %in% c("wtc", "pwtc")) {
+        # v <- x$rsq / x$signif
+        v <- x$rsq
         locs.phases <- which(v <= arrow.cutoff)
       }
     } else {
