@@ -15,4 +15,3 @@ double
 \description{
 Helper function
 }
-

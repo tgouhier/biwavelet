@@ -37,9 +37,6 @@ wt.t2 <- wt(t2)
 # Compute dissimilarity
 wdist(wt.t1$wave, wt.t2$wave)
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-}
 \references{
 Rouyer, T., J. M. Fromentin, F. Menard, B. Cazelles, K. Briand, R. Pianet, 
 B. Planque, and N. C. Stenseth. 2008. Complex interplays among population
@@ -50,4 +47,6 @@ Rouyer, T., J. M. Fromentin, N. C. Stenseth, and B. Cazelles. 2008.
 Analysing multiple time series and extending significance testing in
 wavelet analysis. \emph{Marine Ecology Progress Series} 359:11-23.
 }
-
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
+}

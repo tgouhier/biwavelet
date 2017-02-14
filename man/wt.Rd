@@ -78,12 +78,6 @@ par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wt.t1, plot.cb = TRUE, plot.phase = FALSE)
 
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-
-Code based on wavelet MATLAB program written by Christopher Torrence
-and Gibert P. Compo.
-}
 \references{
 Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
 \emph{Bulletin of the American Meteorological Society} 79:61-78.
@@ -92,4 +86,9 @@ Liu, Y., X. San Liang, and R. H. Weisberg. 2007. Rectification of the Bias in
 the Wavelet Power Spectrum. \emph{Journal of Atmospheric and Oceanic
 Technology} 24:2093-2102.
 }
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
 
+Code based on wavelet MATLAB program written by Christopher Torrence
+and Gibert P. Compo.
+}

@@ -13,4 +13,3 @@ The list of supported mother wavelets is used in multiple places
 therefore, we provide it as a lazily evaluated promise.
 }
 \keyword{datasets}
-

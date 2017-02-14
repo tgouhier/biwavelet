@@ -22,4 +22,3 @@ This is a C++ speed-optimized version. It is equivalent to R version
 \author{
 Viliam Simko
 }
-

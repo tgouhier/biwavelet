@@ -21,10 +21,6 @@ Generate the power spectrum of a random time series with a specific AR(1) coeffi
 p <- ar1.spectrum(0.5, 1:25)
 
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-Code based on WTC MATLAB package written by Aslak Grinsted.
-}
 \references{
 Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
 and N. C. Stenseth. 2008. Wavelet analysis of ecological time series. 
@@ -37,4 +33,7 @@ wavelet transform and wavelet coherence to geophysical time series.
 Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
 \emph{Bulletin of the American Meteorological Society} 79:61-78.
 }
-
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
+Code based on WTC MATLAB package written by Aslak Grinsted.
+}

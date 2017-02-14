@@ -23,4 +23,3 @@ Returns a list containing:
 \description{
 Helper method (not exported)
 }
-

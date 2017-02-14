@@ -17,10 +17,9 @@ The motivation for this function was that convolution is called many times
 in a loop from \link{smooth.wavelet}, always with the \code{type="open"}
 parameter.
 }
-\author{
-Viliam Simko
-}
 \seealso{
 \link{convolve2D}
 }
-
+\author{
+Viliam Simko
+}

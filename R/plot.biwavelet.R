@@ -16,7 +16,7 @@
 #'   \code{spectrum/percentile >= tol}. Default is \code{1}. If strict
 #'   \code{i^{th}} percentile regions are desired, then
 #'   \code{tol} must be set to \code{1}.
-#' @param plot.cb plot color bar if TRUE. Default is FALSE.
+#' @param plot.cb Plot color bar if TRUE. Default is FALSE.
 #' @param plot.phase Plot phases with black arrows. Default is FALSE.
 #' @param type type of plot to create. Can be \code{power} to plot the power,
 #'   \code{power.corr} to plot the bias-corrected power, \code{power.norm} to

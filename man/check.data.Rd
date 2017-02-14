@@ -33,11 +33,10 @@ t1 <- cbind(1:100, rnorm(100))
 check.data(y = t1)
 
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-}
 \references{
 Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
 \emph{Bulletin of the American Meteorological Society} 79:61-78.
 }
-
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
+}

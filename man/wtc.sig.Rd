@@ -52,11 +52,6 @@ The Monte Carlo randomizations can be extremely slow for large
 #                            pad, dj, J1, s0, mother = "morlet")
 
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-
-Code based on WTC MATLAB package written by Aslak Grinsted.
-}
 \references{
 Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
 and N. C. Stenseth. 2008. Wavelet analysis of ecological time series.
@@ -73,4 +68,8 @@ Torrence, C., and P. J. Webster. 1998. The annual cycle of persistence in the
 El Nino/Southern Oscillation. \emph{Quarterly Journal of the Royal
 Meteorological Society} 124:1985-2004.
 }
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
 
+Code based on WTC MATLAB package written by Aslak Grinsted.
+}

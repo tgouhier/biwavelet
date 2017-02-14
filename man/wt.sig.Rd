@@ -47,14 +47,13 @@ Determine significance of wavelet transform
 #                 dof = -1, mother = "morlet", sigma2 = 1)
 
 }
+\references{
+Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
+\emph{Bulletin of the American Meteorological Society} 79:61-78.
+}
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)
 
 Code based on wavelet MATLAB program written by Christopher Torrence
 and Gibert P. Compo.
 }
-\references{
-Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
-\emph{Bulletin of the American Meteorological Society} 79:61-78.
-}
-

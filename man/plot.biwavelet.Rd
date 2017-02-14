@@ -160,10 +160,6 @@ par(mfrow = c(1,2))
 plot(x1, type = "power.corr.norm", main = "Bias-corrected")
 plot(x1, type = "power.norm", main = "Biased")
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-Code based on WTC MATLAB package written by Aslak Grinsted.
-}
 \references{
 Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier, and
 N. C. Stenseth. 2008. Wavelet analysis of ecological time series.
@@ -183,4 +179,7 @@ the Wavelet Power Spectrum. \emph{Journal of Atmospheric and Oceanic Technology}
 \seealso{
 \code{\link{image.plot}}
 }
-
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
+Code based on WTC MATLAB package written by Aslak Grinsted.
+}

@@ -33,14 +33,13 @@ This function is used internally for computing wavelet coherence.
 # Not run: smooth.wt1 <- smooth.wavelet(wave, dt, dj, scale)
 
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-
-Code based on WTC MATLAB package written by Aslak Grinsted.
-}
 \references{
 Torrence, C., and P. J. Webster. 1998. The annual cycle of persistence in the
 El Nino/Southern Oscillation.
 \emph{Quarterly Journal of the Royal Meteorological Society} 124:1985-2004.
 }
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
 
+Code based on WTC MATLAB package written by Aslak Grinsted.
+}

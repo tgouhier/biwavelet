@@ -31,4 +31,3 @@ This c++ implementation is approx. 50% faster than the original R code
 \author{
 Viliam Simko
 }
-
