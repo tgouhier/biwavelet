@@ -22,6 +22,7 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
   // fail fast
   if ((q < 0) || (q > 1)) {
     stop("value 'q' is out of range 0 to 1");
+    return NULL;
   }
 
   const size_t rowLen = data.ncol();

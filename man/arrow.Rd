@@ -22,4 +22,3 @@ arrow(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black")
 \description{
 Helper function for phase.plot
 }
-

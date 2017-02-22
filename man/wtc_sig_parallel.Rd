@@ -48,4 +48,3 @@ Equivalent to \code{wtc.sig}
 # stopCluster(cl)
 
 }
-

@@ -44,4 +44,3 @@ that allows for more accurate phase arrows.
 
 Original code based on WTC MATLAB package written by Aslak Grinsted.
 }
-

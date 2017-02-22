@@ -23,7 +23,7 @@ const double map_m_to_ffact[] = {
 
 //' Optimized "wt.bases.dog" function.
 //'
-//' This si a C++ version optimized for speed.
+//' This is a C++ version optimized for speed.
 //' Computes the wavelet as a function of Fourier frequency
 //' for "dog" mother wavelet.
 //'
@@ -47,6 +47,7 @@ List rcpp_wt_bases_dog(const NumericVector k,
   const int m = param == -1 ? 2 : param;
   if(m < 0 || m > 10) {
     stop("Parameter 'm' must be within 0..10");
+    return NULL;
   }
 
   const NumericVector expnt = -0.5 * pow(scale * k, 2);

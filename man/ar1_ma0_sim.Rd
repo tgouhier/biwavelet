@@ -19,4 +19,3 @@ Slightly faster arima.sim implementation which assumes AR(1) and ma=0.
 \seealso{
 arima.sim
 }
-

@@ -103,10 +103,6 @@ plot(pwtc.yx1, xlab = "", plot.cb = TRUE,
 plot(pwtc.yx2, plot.cb = TRUE,
      main = "Partial wavelet coherence of y and x2 | x1")
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-Code based on WTC MATLAB package written by Aslak Grinsted.
-}
 \references{
 Aguiar-Conraria, L., and M. J. Soares. 2013. The Continuous Wavelet
 Transform: moving beyond uni- and bivariate analysis. \emph{Journal of
@@ -131,4 +127,7 @@ Torrence, C., and P. J. Webster. 1998. The annual cycle of persistence in the
 El Nino/Southern Oscillation. \emph{Quarterly Journal of the Royal
 Meteorological Society} 124:1985-2004.
 }
-
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
+Code based on WTC MATLAB package written by Aslak Grinsted.
+}

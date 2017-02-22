@@ -43,4 +43,3 @@ This function was copied from \code{waveslim} to limit package dependencies.
 \author{
 Brandon Whitcher
 }
-

@@ -18,4 +18,3 @@ Helper function
 \note{
 This function is not exported
 }
-

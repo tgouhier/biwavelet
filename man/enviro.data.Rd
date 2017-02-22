@@ -42,4 +42,3 @@ Zhang, Y., J. M. Wallace, and D. S. Battisti. 1997. ENSO-like interdecadal
 variability: 1900-93. \emph{Journal of Climate} 10:1004-1020.
 }
 \keyword{dataset}
-

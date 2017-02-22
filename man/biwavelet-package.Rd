@@ -2,8 +2,8 @@
 % Please edit documentation in R/biwavelet-package.R
 \docType{package}
 \name{biwavelet-package}
-\alias{biwavelet}
 \alias{biwavelet-package}
+\alias{biwavelet}
 \title{Conduct Univariate and Bivariate Wavelet Analyses}
 \description{
 This is a port of the WTC MATLAB package written by Aslak Grinsted and the
@@ -87,14 +87,6 @@ w.arr.dis <- wclust(w.arr)
 plot(hclust(w.arr.dis$dist.mat, method = "ward.D"), sub = "", main = "",
      ylab = "Dissimilarity", hang = -1)
 }
-\author{
-Tarik C. Gouhier
-
-Maintainer: Tarik C. Gouhier <tarik.gouhier@gmail.com>
-
-Code based on WTC MATLAB package written by Aslak Grinsted and the wavelet
-MATLAB program written by Christopher Torrence and Gibert P. Compo.
-}
 \references{
 Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
 and N. C. Stenseth. 2008. Wavelet analysis of ecological time series.
@@ -127,7 +119,14 @@ El Nino/Southern Oscillation.
 Veleda, D., R. Montagne, and M. Araujo. 2012. Cross-Wavelet Bias Corrected by Normalizing Scales.
 \emph{Journal of Atmospheric and Oceanic Technology} 29:1401-1408.
 }
+\author{
+Tarik C. Gouhier
+
+Maintainer: Tarik C. Gouhier <tarik.gouhier@gmail.com>
+
+Code based on WTC MATLAB package written by Aslak Grinsted and the wavelet
+MATLAB program written by Christopher Torrence and Gibert P. Compo.
+}
 \keyword{coherence}
 \keyword{cross-wavelet}
 \keyword{wavelet}
-

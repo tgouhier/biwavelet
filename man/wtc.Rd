@@ -92,11 +92,6 @@ par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wtc.t1t2, plot.cb = TRUE, plot.phase = TRUE)
 
 }
-\author{
-Tarik C. Gouhier (tarik.gouhier@gmail.com)
-
-Code based on WTC MATLAB package written by Aslak Grinsted.
-}
 \references{
 Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
 and N. C. Stenseth. 2008. Wavelet analysis of ecological time series.
@@ -117,4 +112,8 @@ Veleda, D., R. Montagne, and M. Araujo. 2012. Cross-Wavelet Bias Corrected by
 Normalizing Scales. \emph{Journal of Atmospheric and Oceanic Technology}
 29:1401-1408.
 }
+\author{
+Tarik C. Gouhier (tarik.gouhier@gmail.com)
 
+Code based on WTC MATLAB package written by Aslak Grinsted.
+}
