@@ -120,6 +120,17 @@ plot(xwt_noise12, plot.cb = TRUE, plot.phase = TRUE,
      main = "Cross wavelet power and phase difference (arrows)")
 ```
 
+## How to cite
+
+The R core development team and the very active community of package authors
+have invested a lot of time and effort in creating R as it is today. Please give
+credit where credit is due and cite R and R packages when you use them for data
+analysis.
+
+```{r Cite me}
+citation("biwavelet")
+```
+
 ## References
 
 <a id="Cazelles2008"/>
