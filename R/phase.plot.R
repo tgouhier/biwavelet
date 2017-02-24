@@ -59,8 +59,6 @@ phase.plot <- function(x, y, phases,
 #' @examples
 #' plot.new()
 #' arrow(0,0, alpha = 0)
-#'
-#' @noRd
 arrow <- function(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black") {
   l2 <- l / 3
   w2 <- w / 6

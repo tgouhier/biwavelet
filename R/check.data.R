@@ -58,7 +58,6 @@ check.data <- function(y, x1 = NULL, x2 = NULL) {
 #' @param x matrix
 #' @return list(t, dt, n.obs)
 #' @note This function is not exported
-#' @noRd
 check.datum <- function(x) {
   if (NCOL(x) > 1) {
     t <- x[, 1]

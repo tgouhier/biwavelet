@@ -117,7 +117,6 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
 #' Helper function
 #' @param ar The 'ar' part of AR(1)
 #' @return double
-#' @noRd
 get_minroots <- function(ar) {
   min(Mod(polyroot(c(1, -ar))))
 }
