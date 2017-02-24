@@ -83,3 +83,27 @@ arrow <- function(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black") {
   Y <- (par()$usr[4] - par()$usr[3]) / par()$pin[2] * c(y1,y2,y3,y4,y5,y6,y7)
   polygon(x + X, y + Y, col = col, ljoin = 1, border = NA)
 }
+
+#' This is an alternative helper function that plots arrows.
+#' It uses text() to print a character using a default font.
+#' This way, it is possible to render different types of arrows.
+#'
+#' @param x X-coordinate of the arrow.
+#' @param y Y-coordinate of the arrow.
+#' @param angle Angle in radians
+#' @param size Similar to \code{arrow.len} parameter. Notice that we don't need
+#' the arrow.lwd anymore
+#' @param col Color of the arrow.
+#' @param chr Character representing the arrow. You can write the character
+#' directly or as a C octal escaped UTF-8.
+#'
+#' @noRd
+#' @examples
+#' # Not run: arrow2(x[j], y[i], angle = phases[i, j],
+#'                   col = arrow.col, size = arrow.len)
+arrow2 <- function(x, y, angle, size = .1, col = "black",
+                   chr = "\342\236\233") {
+  # speed optimized: 180/pi =~= 57.29578
+  # note: size is 10x smaller to be compatible with the old implementation
+  text(x,y, labels = chr, col = col, cex = 10 * size, srt = 57.29578 * angle)
+}
