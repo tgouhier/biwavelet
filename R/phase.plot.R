@@ -99,7 +99,7 @@ arrow <- function(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black") {
 #' # Not run: arrow2(x[j], y[i], angle = phases[i, j],
 #' # Not run:        col = arrow.col, size = arrow.len)
 arrow2 <- function(x, y, angle, size = .1, col = "black",
-                   chr = "\u279B") {
+                   chr =  intToUtf8(0x279B)) {
   # speed optimized: 180/pi =~= 57.29578
   # note: size is 10x smaller to be compatible with the old implementation
   text(x,y, labels = chr, col = col, cex = 10 * size, srt = 57.29578 * angle)
