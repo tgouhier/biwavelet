@@ -82,6 +82,32 @@ plot(xwt_noise12, plot.cb = TRUE, plot.phase = TRUE,
 
 ![](vignettes/webimg/README-xwt_example-1.png)
 
+How to cite
+-----------
+
+The R core development team and the very active community of package authors have invested a lot of time and effort in creating R as it is today. Please give credit where credit is due and cite R and R packages when you use them for data analysis.
+
+``` r
+citation("biwavelet")
+#> 
+#> To cite biwavelet in publications use:
+#> 
+#>   Tarik C. Gouhier, Aslak Grinsted, Viliam Simko (2016). R package
+#>   "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses
+#>   (Version 0.20.13). Available from
+#>   https://github.com/tgouhier/biwavelet
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {R package "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses},
+#>     author = {Tarik C. Gouhier and Aslak Grinsted and Viliam Simko},
+#>     year = {2016},
+#>     note = {(Version 0.20.13)},
+#>     url = {https://github.com/tgouhier/biwavelet},
+#>   }
+```
+
 References
 ----------
 
