@@ -2,6 +2,16 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+
+\section{Changes in biwavelet version 0.20.14 (2017-02-24)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed \code{plot.biwavelet} so that the COI extends all
+      the way to the bottom of the plot (max of periods)
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.13 (2016-12-27)}{
   \subsection{fixed}{
     \itemize{

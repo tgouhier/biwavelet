@@ -238,9 +238,13 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
 
   # COI
   if (plot.coi) {
+    # polygon(x = c(x$t, rev(x$t)), lty = lty.coi, lwd = lwd.coi,
+    #         y = c(log2(x$coi),
+    #               rep(max(log2(x$coi), na.rm = TRUE), length(x$coi))),
+    #         col = adjustcolor(col.coi, alpha.f = alpha.coi), border = col.coi)
     polygon(x = c(x$t, rev(x$t)), lty = lty.coi, lwd = lwd.coi,
-            y = c(log2(x$coi),
-                  rep(max(log2(x$coi), na.rm = TRUE), length(x$coi))),
+            y = c(log2(x$coi), rep(max(c(log2(x$coi), x$period), na.rm = TRUE),
+                                   length(x$coi))),
             col = adjustcolor(col.coi, alpha.f = alpha.coi), border = col.coi)
   }
 
