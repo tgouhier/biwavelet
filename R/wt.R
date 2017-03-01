@@ -69,7 +69,7 @@
 wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
                J1 = NULL, max.scale = NULL, mother = "morlet",
                param = -1, lag1 = NULL, sig.level = 0.95,
-               sig.test = 0, do.sig = TRUE) {
+               sig.test = 0, do.sig = TRUE, arima.method='CSS') {
 
   # Check data format
   checked <- check.datum(d)
@@ -124,7 +124,7 @@ wt <- function(d, pad = TRUE, dt = NULL, dj = 1 / 12, s0 = 2 * dt,
   if (do.sig) {
     signif <- wt.sig(d = d, dt = dt, scale = scale, sig.test = sig.test,
                      sig.level = sig.level, lag1 = lag1, dof = -1,
-                     mother = mother, sigma2 = 1)$signif
+                     mother = mother, sigma2 = 1, arima.method=arima.method)$signif
 
     signif <- matrix(signif, nrow = length(signif), ncol = 1) %*% rep(1, n.obs)
     signif <- power / (sigma2 * signif)
