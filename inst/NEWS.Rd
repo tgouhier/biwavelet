@@ -21,7 +21,6 @@
   }
 }
 
-
 \section{Changes in biwavelet version 0.20.12 (2016-12-27)}{
   \subsection{fixed}{
     \itemize{

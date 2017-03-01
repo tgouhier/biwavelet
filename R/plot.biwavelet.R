@@ -126,7 +126,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
   fill.colors <- col.pal(ncol)
 
   types <- c("power.corr.norm", "power.corr", "power.norm",
-             "power", "wavelet", "phase", 'timing.err')
+             "power", "wavelet", "phase", "timing.err")
 
   type <- match.arg(tolower(type), types)
 
