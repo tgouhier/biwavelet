@@ -92,9 +92,9 @@ citation("biwavelet")
 #> 
 #> To cite biwavelet in publications use:
 #> 
-#>   Tarik C. Gouhier, Aslak Grinsted, Viliam Simko (2016). R package
+#>   Tarik C. Gouhier, Aslak Grinsted, Viliam Simko (2017). R package
 #>   "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses
-#>   (Version 0.20.13). Available from
+#>   (Version 0.20.15). Available from
 #>   https://github.com/tgouhier/biwavelet
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -102,8 +102,8 @@ citation("biwavelet")
 #>   @Manual{,
 #>     title = {R package "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses},
 #>     author = {Tarik C. Gouhier and Aslak Grinsted and Viliam Simko},
-#>     year = {2016},
-#>     note = {(Version 0.20.13)},
+#>     year = {2017},
+#>     note = {(Version 0.20.15)},
 #>     url = {https://github.com/tgouhier/biwavelet},
 #>   }
 ```
