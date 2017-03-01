@@ -37,7 +37,7 @@
 #' @export
 wt.sig <- function(d, dt, scale, sig.test = 0, sig.level = 0.95,
                    dof = 2, lag1 = NULL, mother = "morlet",
-                   param = -1, sigma2 = NULL) {
+                   param = -1, sigma2 = NULL, arima.method='CSS') {
 
   mother <- match.arg(tolower(mother), MOTHERS)
 
@@ -45,7 +45,7 @@ wt.sig <- function(d, dt, scale, sig.test = 0, sig.level = 0.95,
 
   # Find the AR1 coefficient
   if (is.null(lag1)) {
-    lag1 <- arima(x, order = c(1, 0, 0))$coef[1]
+    lag1 <- arima(x, order = c(1, 0, 0), method=arima.method)$coef[1]
   }
 
   J1 <- length(scale) - 1
