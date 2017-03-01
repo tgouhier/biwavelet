@@ -19,14 +19,14 @@ extern "C" {
 // [[Rcpp::export]]
 NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
 
+  const size_t rowLen = data.ncol();
+  const size_t nrow = data.nrow();
+
   // fail fast
   if ((q < 0) || (q > 1)) {
     stop("value 'q' is out of range 0 to 1");
-    return NULL;
+    return NumericVector(nrow, NA_REAL);
   }
-
-  const size_t rowLen = data.ncol();
-  const size_t nrow = data.nrow();
 
   // a vector of NAs is returned for matrices without columns
   if (rowLen == 0) {
@@ -59,7 +59,6 @@ NumericVector rcpp_row_quantile(NumericMatrix data, const double q) {
 
 /*** R
 data <- matrix(rnorm(25), 5, 5)
-data <- matrix(rnorm(100), nrow = 1)
 rcpp_row_quantile(data, .75)
 sapply(1:5, function(x) quantile(data[x,], .75))
 */
