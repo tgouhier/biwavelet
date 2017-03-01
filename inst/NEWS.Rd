@@ -2,6 +2,14 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.15 (2017-03-01)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed return NULL issues with Windows platforms
+    }
+  }
+}
+
 
 \section{Changes in biwavelet version 0.20.14 (2017-02-24)}{
   \subsection{fixed}{
