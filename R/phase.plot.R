@@ -1,31 +1,31 @@
 #' Plot phases with arrows
-#' 
+#'
 #' @param x x-coordinates
 #' @param y y-coordinates
 #' @param phases phases
 #' @param arrow.len size of the arrows. Default is based on plotting region (min(par()$pin[2]/30,par()$pin[1]/40).
 #' @param arrow.lwd width/thickness of arrows. Default is arrow.len * 0.3.
 #' @param arrow.col arrow line color. Default is \code{black}.
-#' 
+#'
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
-#' 
+#'
 #' Huidong Tian provided a much better implementation of the phase.plot function
 #' that allows for more accurate phase arrows.
-#' 
+#'
 #' Original code based on WTC MATLAB package written by Aslak Grinsted.
-#' 
+#'
 #' @note
 #' Arrows pointing to the right mean that \code{x} and \code{y} are in phase.
-#' 
+#'
 #' Arrows pointing to the left mean that \code{x} and \code{y} are in anti-phase.
-#' 
+#'
 #' Arrows pointing up mean that \code{y} leads \code{x} by \eqn{\pi/2}.
-#' 
+#'
 #' Arrows pointing down mean that \code{x} leads \code{y} by \eqn{\pi/2}.
-#' 
+#'
 #' @examples
 #' # Not run: phase.plot(x, y, phases)
-#' 
+#'
 #' @export
 phase.plot <- function(x, y, phases,
                        arrow.len = min(par()$pin[2] / 30, par()$pin[1] / 40),
@@ -49,12 +49,16 @@ phase.plot <- function(x, y, phases,
 }
 
 #' Helper function for phase.plot
-#' @param x TODO
-#' @param y TODO
-#' @param l TODO
-#' @param w TODO
-#' @param alpha TODO
-#' @param col TODO
+#' @param x X-coordinate of the arrow.
+#' @param y Y-coordinate of the arrow.
+#' @param l Length of the arrow.
+#' @param w Width of the arrow.
+#' @param alpha Angle of the arrow in radians (0 .. 2*pi).
+#' @param col Color of the arrow.
+#'
+#' @examples
+#' plot.new()
+#' arrow(0,0, alpha = 0)
 arrow <- function(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black") {
   l2 <- l / 3
   w2 <- w / 6
@@ -76,4 +80,27 @@ arrow <- function(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black") {
   X <- (par()$usr[2] - par()$usr[1]) / par()$pin[1] * c(x1,x2,x3,x4,x5,x6,x7)
   Y <- (par()$usr[4] - par()$usr[3]) / par()$pin[2] * c(y1,y2,y3,y4,y5,y6,y7)
   polygon(x + X, y + Y, col = col, ljoin = 1, border = NA)
+}
+
+#' This is an alternative helper function that plots arrows.
+#' It uses text() to print a character using a default font.
+#' This way, it is possible to render different types of arrows.
+#'
+#' @param x X-coordinate of the arrow.
+#' @param y Y-coordinate of the arrow.
+#' @param angle Angle in radians
+#' @param size Similar to \code{arrow.len} parameter. Notice that we don't need
+#' the arrow.lwd anymore
+#' @param col Color of the arrow.
+#' @param chr Character representing the arrow. You should provide the character
+#'   as escaped UTF-8.
+#' @importFrom graphics text
+#' @examples
+#' # Not run: arrow2(x[j], y[i], angle = phases[i, j],
+#' # Not run:        col = arrow.col, size = arrow.len)
+arrow2 <- function(x, y, angle, size = .1, col = "black",
+                   chr =  intToUtf8(0x279B)) {
+  # speed optimized: 180/pi =~= 57.29578
+  # note: size is 10x smaller to be compatible with the old implementation
+  text(x,y, labels = chr, col = col, cex = 10 * size, srt = 57.29578 * angle)
 }

@@ -2,7 +2,7 @@
 biwavelet R package
 ===================
 
-[![Build Status](https://travis-ci.org/tgouhier/biwavelet.svg)](https://travis-ci.org/tgouhier/biwavelet) [![codecov.io](https://codecov.io/github/tgouhier/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/tgouhier/biwavelet?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet) ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/biwavelet) [![Research software impact](http://depsy.org/api/package/cran/biwavelet/badge.svg)](http://depsy.org/package/r/biwavelet)
+[![Build Status](https://travis-ci.org/tgouhier/biwavelet.svg)](https://travis-ci.org/tgouhier/biwavelet) [![codecov.io](https://codecov.io/github/tgouhier/biwavelet/coverage.svg?branch=master)](https://codecov.io/github/tgouhier/biwavelet?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/biwavelet)](http://cran.r-project.org/package=biwavelet) ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/biwavelet) [![Research software impact](http://depsy.org/api/package/cran/biwavelet/badge.svg)](http://depsy.org/package/r/biwavelet) [![Support badge](https://img.shields.io/badge/support-biwavelet-yellowgreen.svg)](http://stackoverflow.com/questions/tagged/biwavelet)
 
 Download and Install
 --------------------

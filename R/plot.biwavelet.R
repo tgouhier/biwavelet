@@ -286,8 +286,9 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
     }
     a[locs.phases] <- NA
 
-    phase.plot(x$t, log2(x$period), a,
-               arrow.len = arrow.len, arrow.lwd = arrow.lwd,
+    phase.plot(x$t, log2(x$period), phases = a,
+               arrow.len = arrow.len,
+               arrow.lwd = arrow.lwd,
                arrow.col = arrow.col)
   }
   box()

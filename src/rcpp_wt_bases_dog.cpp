@@ -47,7 +47,7 @@ List rcpp_wt_bases_dog(const NumericVector k,
   const int m = param == -1 ? 2 : param;
   if(m < 0 || m > 10) {
     stop("Parameter 'm' must be within 0..10");
-    return NULL;
+    return List::create();
   }
 
   const NumericVector expnt = -0.5 * pow(scale * k, 2);
