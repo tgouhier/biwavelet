@@ -95,7 +95,7 @@ p <- 4
 out <- microbenchmark(
   wt.bases.morlet(k, s, p),
   rcpp_wt_bases_morlet(k, s, p),
-  times = 2000L
+  times = 100000L
 )
 options(digits = 6)
 options(microbenchmark.unit = "t")

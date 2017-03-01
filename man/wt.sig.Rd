@@ -5,7 +5,8 @@
 \title{Determine significance of wavelet transform}
 \usage{
 wt.sig(d, dt, scale, sig.test = 0, sig.level = 0.95, dof = 2,
-  lag1 = NULL, mother = "morlet", param = -1, sigma2 = NULL)
+  lag1 = NULL, mother = "morlet", param = -1, sigma2 = NULL,
+  arima.method = "CSS")
 }
 \arguments{
 \item{d}{time series in matrix format (\code{n} rows x 2 columns). The first
@@ -33,6 +34,9 @@ patterns.}
 \item{param}{nondimensional parameter specific to the wavelet function.}
 
 \item{sigma2}{variance of time series}
+
+\item{arima.method}{Fitting method. This parameter is passed as the
+\code{method} parameter to the \link{arima} function.}
 }
 \value{
 Returns a list containing:

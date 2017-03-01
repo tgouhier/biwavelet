@@ -88,7 +88,7 @@ p <- 4
 out <- microbenchmark(
   wt.bases.dog(k, s, p),
   rcpp_wt_bases_dog(k, s, p),
-  times = 2000L
+  times = 100000L
 )
 options(microbenchmark.unit = "t")
 print(out)

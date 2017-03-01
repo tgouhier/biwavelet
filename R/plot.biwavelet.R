@@ -126,7 +126,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
   fill.colors <- col.pal(ncol)
 
   types <- c("power.corr.norm", "power.corr", "power.norm",
-             "power", "wavelet", "phase")
+             "power", "wavelet", "phase", "timing.err")
 
   type <- match.arg(tolower(type), types)
 
@@ -191,7 +191,15 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
     }
     locs <- pretty(range(zlim), n = 5)
     leg.lab <- locs
+  } else if (type == "timing.err") {
+    zvals <- x$timing.err
+    if (is.null(zlim)) {
+      zlim <- range(zvals)
+    }
+    locs <- pretty(range(zlim), n = 5)
+    leg.lab <- locs
   }
+
 
   if (is.null(xlim)) {
     xlim <- range(x$t)

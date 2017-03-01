@@ -6,7 +6,7 @@
 \usage{
 wt(d, pad = TRUE, dt = NULL, dj = 1/12, s0 = 2 * dt, J1 = NULL,
   max.scale = NULL, mother = "morlet", param = -1, lag1 = NULL,
-  sig.level = 0.95, sig.test = 0, do.sig = TRUE)
+  sig.level = 0.95, sig.test = 0, do.sig = TRUE, arima.method = "CSS")
 }
 \arguments{
 \item{d}{time series in matrix format (\code{n} rows x 2 columns). The first
@@ -42,6 +42,9 @@ If set to 2, then do a scale-average test.}
 
 \item{do.sig}{perform significance testing if \code{TRUE}. Default is
 \code{TRUE}.}
+
+\item{arima.method}{Fitting method. This parameter is passed as the
+\code{method} parameter to the \link{arima} function.}
 }
 \value{
 Returns a \code{biwavelet} object containing:
