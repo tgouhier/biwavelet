@@ -4,11 +4,11 @@
 #' each column of a matrix.
 #'
 #' @author Brandon Whitcher
-#' @note This function was copied from \link{waveslim} to limit package
+#' @note This function was copied from \code{waveslim} to limit package
 #'   dependencies.
-#' @details This is a corrupted version of convolve made by replacing \link{fft}
-#'   with \link{mvfft} in a few places. It would be nice to submit this to the R
-#'   Developers for inclusion.
+#' @details This is a corrupted version of convolve made by replacing
+#'   \code{\link{fft}} with \code{\link{mvfft}} in a few places. It would be
+#'   nice to submit this to the R Developers for inclusion.
 #'
 #' @param x M \code{x} n matrix.
 #' @param y Numeric sequence of length N.
@@ -54,14 +54,13 @@ convolve2D <- function(x, y, conj = TRUE, type = c("circular", "open")) {
 
 #' Speed-optimized version of convolve2D
 #'
-#' Equivalent to \code{convolve2D(x, y, type = "open")}
-#' The motivation for this function was that convolution is called many times
-#' in a loop from \link{smooth.wavelet}, always with the \code{type = "open"}
-#' parameter.
+#' Equivalent to \code{convolve2D(x, y, type = "open")}. The motivation for this
+#' function was that convolution is called many times in a loop from
+#' \code{\link{smooth.wavelet}}, always with the \code{type = "open"} parameter.
 #'
 #' @author Viliam Simko
 #' @inheritParams convolve2D
-#' @seealso \link{convolve2D}
+#' @seealso \code{\link{convolve2D}}
 convolve2D_typeopen <- function(x, y) {
   n <- nrow(x)
   Real <- is.numeric(x) && is.numeric(y)

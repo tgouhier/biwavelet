@@ -7,10 +7,10 @@
 wt.bases(mother = "morlet", ...)
 }
 \arguments{
-\item{mother}{type of mother wavelet function to use. Can be set to
+\item{mother}{Type of mother wavelet function to use. Can be set to
 \code{morlet}, \code{dog}, or \code{paul}.}
 
-\item{...}{see parameters \code{k}, \code{scale} and \code{param} in
+\item{...}{See parameters \code{k}, \code{scale} and \code{param} in
 functions: \code{\link{wt.bases.morlet}}, \code{\link{wt.bases.paul}} and
           \code{\link{wt.bases.dog}}}
 }

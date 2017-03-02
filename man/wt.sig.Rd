@@ -9,34 +9,34 @@ wt.sig(d, dt, scale, sig.test = 0, sig.level = 0.95, dof = 2,
   arima.method = "CSS")
 }
 \arguments{
-\item{d}{time series in matrix format (\code{n} rows x 2 columns). The first
+\item{d}{Time series in matrix format (\code{n} rows x 2 columns). The first
 column should contain the time steps and the second column should contain
 the values.}
 
-\item{dt}{length of a time step.}
+\item{dt}{Length of a time step.}
 
-\item{scale}{the wavelet scale.}
+\item{scale}{The wavelet scale.}
 
-\item{sig.test}{type of significance test. If set to 0, use a regular
-\eqn{\chi^2} test. If set to 1, then perform a time-average test.
-If set to 2, then do a scale-average test.}
+\item{sig.test}{Type of significance test. If set to 0, use a regular
+\eqn{\chi^2} test. If set to 1, then perform a time-average test. If set to
+2, then do a scale-average test.}
 
-\item{sig.level}{significance level.}
+\item{sig.level}{Significance level.}
 
-\item{dof}{degrees of freedom for each point in wavelet power.}
+\item{dof}{Degrees of freedom for each point in wavelet power.}
 
 \item{lag1}{AR(1) coefficient of time series used to test for significant
 patterns.}
 
-\item{mother}{type of mother wavelet function to use. Can be set to
+\item{mother}{Type of mother wavelet function to use. Can be set to
 \code{morlet}, \code{dog}, or \code{paul}.}
 
-\item{param}{nondimensional parameter specific to the wavelet function.}
+\item{param}{Nondimensional parameter specific to the wavelet function.}
 
-\item{sigma2}{variance of time series}
+\item{sigma2}{Variance of time series}
 
 \item{arima.method}{Fitting method. This parameter is passed as the
-\code{method} parameter to the \link{arima} function.}
+\code{method} Parameter to the \code{\link{arima}} function.}
 }
 \value{
 Returns a list containing:

@@ -2,7 +2,7 @@
 % Please edit documentation in R/phase.plot.R
 \name{arrow}
 \alias{arrow}
-\title{Helper function for phase.plot}
+\title{Helper function for \code{\link{phase.plot}} (not exported)}
 \usage{
 arrow(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black")
 }
@@ -20,7 +20,7 @@ arrow(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black")
 \item{col}{Color of the arrow.}
 }
 \description{
-Helper function for phase.plot
+Helper function for \code{\link{phase.plot}} (not exported)
 }
 \examples{
 plot.new()

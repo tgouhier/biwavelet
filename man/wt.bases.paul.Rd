@@ -7,11 +7,11 @@
 wt.bases.paul(k, scale, param = -1)
 }
 \arguments{
-\item{k}{vector of frequencies at which to calculate the wavelet.}
+\item{k}{Vector of frequencies at which to calculate the wavelet.}
 
-\item{scale}{the wavelet scale.}
+\item{scale}{The wavelet scale.}
 
-\item{param}{nondimensional parameter specific to the wavelet function.}
+\item{param}{Nondimensional parameter specific to the wavelet function.}
 }
 \value{
 Returns a list containing:

@@ -1,19 +1,19 @@
 #' Check the format of time series
 #'
-#' @param y time series y in matrix format (\code{n} rows x 2 columns). The
-#'   first column should contain the time steps and the second column should
+#' @param y Time series \code{y} in matrix format (\code{n} rows x 2 columns).
+#'   The first column should contain the time steps and the second column should
 #'   contain the values.
-#' @param x1 time series x1 in matrix format (\code{n} rows x 2 columns). The
-#'   first column should contain the time steps and the second column should
+#' @param x1 Time series \code{x1} in matrix format (\code{n} rows x 2 columns).
+#'   The first column should contain the time steps and the second column should
 #'   contain the values.
-#' @param x2 time series x2 in matrix format (\code{n} rows x 2 columns). The
-#'   first column should contain the time steps and the second column should
+#' @param x2 Time series \code{x2} in matrix format (\code{n} rows x 2 columns).
+#'   The first column should contain the time steps and the second column should
 #'   contain the values.
 #'
 #' @return Returns a named list containing:
-#' \item{t}{time steps}
-#' \item{dt}{size of a time step}
-#' \item{n.obs}{number of observations}
+#' \item{t}{Time steps}
+#' \item{dt}{Size of a time step}
+#' \item{n.obs}{Number of observations}
 #'
 #' @references
 #' Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.

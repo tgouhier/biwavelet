@@ -2,7 +2,7 @@
 % Please edit documentation in R/wtc.sig.R
 \name{get_minroots}
 \alias{get_minroots}
-\title{Helper function}
+\title{Helper function (not exported)}
 \usage{
 get_minroots(ar)
 }
@@ -13,5 +13,5 @@ get_minroots(ar)
 double
 }
 \description{
-Helper function
+Helper function (not exported)
 }

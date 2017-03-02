@@ -8,30 +8,30 @@ wtc.sig(nrands = 300, lag1, dt, ntimesteps, pad = TRUE, dj = 1/12, s0, J1,
   max.scale = NULL, mother = "morlet", sig.level = 0.95, quiet = FALSE)
 }
 \arguments{
-\item{nrands}{number of Monte Carlo randomizations.}
+\item{nrands}{Number of Monte Carlo randomizations.}
 
-\item{lag1}{vector containing the AR(1) coefficient of each time series.}
+\item{lag1}{Vector containing the AR(1) coefficient of each time series.}
 
-\item{dt}{length of a time step.}
+\item{dt}{Length of a time step.}
 
-\item{ntimesteps}{number of time steps in time series.}
+\item{ntimesteps}{Number of time steps in time series.}
 
-\item{pad}{pad the values will with zeros to increase the speed of the
+\item{pad}{Pad the values will with zeros to increase the speed of the
 transform.}
 
-\item{dj}{spacing between successive scales.}
+\item{dj}{Spacing between successive scales.}
 
-\item{s0}{smallest scale of the wavelet.}
+\item{s0}{Smallest scale of the wavelet.}
 
-\item{J1}{number of scales - 1.}
+\item{J1}{Number of scales - 1.}
 
-\item{max.scale}{maximum scale}
+\item{max.scale}{Maximum scale.}
 
-\item{mother}{type of mother wavelet function to use. Can be set to
+\item{mother}{Type of mother wavelet function to use. Can be set to
 \code{morlet}, \code{dog}, or \code{paul}.
 Significance testing is only available for \code{morlet} wavelet.}
 
-\item{sig.level}{significance level to compute.}
+\item{sig.level}{Significance level to compute.}
 
 \item{quiet}{Do not display progress bar.}
 }

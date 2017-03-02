@@ -9,53 +9,55 @@ pwtc(y, x1, x2, pad = TRUE, dj = 1/12, s0 = 2 * dt, J1 = NULL,
   sig.level = 0.95, sig.test = 0, nrands = 300, quiet = FALSE)
 }
 \arguments{
-\item{y}{time series y in matrix format (\code{n} rows x 2 columns). The
-first column should contain the time steps and the second column should
+\item{y}{Time series \code{y} in matrix format (\code{n} rows x 2 columns).
+The first column should contain the time steps and the second column should
 contain the values.}
 
-\item{x1}{time series x1 in matrix format (\code{n} rows x 2 columns). The
-first column should contain the time steps and the second column should
+\item{x1}{Time series \code{x1} in matrix format (\code{n} rows x 2 columns).
+The first column should contain the time steps and the second column should
 contain the values.}
 
-\item{x2}{time series x2 whose effects should be partialled out in matrix
-format (\code{n} rows x 2 columns). The first column should contain the
-time steps and the second column should contain the values.}
+\item{x2}{Time series \code{x2} whose effects should be partialled out in
+matrix format (\code{n} rows x 2 columns). The first column should contain
+the time steps and the second column should contain the values.}
 
-\item{pad}{pad the values will with zeros to increase the speed of the
+\item{pad}{Pad the values will with zeros to increase the speed of the
 transform.}
 
-\item{dj}{spacing between successive scales.}
+\item{dj}{Spacing between successive scales.}
 
-\item{s0}{smallest scale of the wavelet.}
+\item{s0}{Smallest scale of the wavelet.}
 
-\item{J1}{number of scales - 1.}
+\item{J1}{Number of scales - 1.}
 
-\item{max.scale}{maximum scale. Computed automatically if left unspecified.}
+\item{max.scale}{Maximum scale. Computed automatically if left unspecified.}
 
-\item{mother}{type of mother wavelet function to use. Can be set to
-\code{morlet}, \code{dog}, or \code{paul}.
-Significance testing is only available for \code{morlet} wavelet.}
+\item{mother}{Type of mother wavelet function to use. Can be set to
+\code{morlet}, \code{dog}, or \code{paul}. Significance testing is only
+available for \code{morlet} wavelet.}
 
-\item{param}{nondimensional parameter specific to the wavelet function.}
+\item{param}{Nondimensional parameter specific to the wavelet function.}
 
-\item{lag1}{vector containing the AR(1) coefficient of each time series.}
+\item{lag1}{Vector containing the AR(1) coefficient of each time series.}
 
-\item{sig.level}{significance level.}
+\item{sig.level}{Significance level.}
 
-\item{sig.test}{type of significance test. If set to 0, use a regular
+\item{sig.test}{Type of significance test. If set to 0, use a regular
 \eqn{\chi^2} test. If set to 1, then perform a time-average test. If set to
 2, then do a scale-average test.}
 
-\item{nrands}{number of Monte Carlo randomizations.}
+\item{nrands}{Number of Monte Carlo randomizations.}
 
 \item{quiet}{Do not display progress bar.}
 }
 \value{
 Return a \code{biwavelet} object containing:
 \item{coi}{matrix containg cone of influence}
-\item{wave}{matrix containing the cross-wavelet transform of y and x1}
-\item{rsq}{matrix of partial wavelet coherence between y and x1 (with x2 partialled out)}
-\item{phase}{matrix of phases between y and x1}
+\item{wave}{matrix containing the cross-wavelet transform of \code{y} and
+  \code{x1}}
+\item{rsq}{matrix of partial wavelet coherence between \code{y} and \code{x1}
+  (with \code{x2} partialled out)}
+\item{phase}{matrix of phases between \code{y} and \code{x1}}
 \item{period}{vector of periods}
 \item{scale}{vector of scales}
 \item{dt}{length of a time step}
@@ -63,12 +65,12 @@ Return a \code{biwavelet} object containing:
 \item{xaxis}{vector of values used to plot xaxis}
 \item{s0}{smallest scale of the wavelet }
 \item{dj}{spacing between successive scales}
-\item{y.sigma}{standard deviation of y}
-\item{x1.sigma}{standard deviation of x1}
+\item{y.sigma}{standard deviation of \code{y}}
+\item{x1.sigma}{standard deviation of \code{x1}}
 \item{mother}{mother wavelet used}
-\item{type}{type of \code{biwavelet} object created (\code{pwtc})}
-\item{signif}{matrix containg \code{sig.level} percentiles of wavelet coherence
-              based on the Monte Carlo AR(1) time series}
+\item{type}{type of \code{biwavelet} object created (\code{\link{pwtc}})}
+\item{signif}{matrix containg \code{sig.level} percentiles of wavelet
+  coherence based on the Monte Carlo AR(1) time series}
 }
 \description{
 Compute partial wavelet coherence between \code{y} and \code{x1} by

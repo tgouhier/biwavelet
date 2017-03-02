@@ -1,11 +1,11 @@
 #' Plot phases with arrows
 #'
-#' @param x x-coordinates
-#' @param y y-coordinates
-#' @param phases phases
-#' @param arrow.len size of the arrows. Default is based on plotting region.
-#' @param arrow.lwd width/thickness of arrows.
-#' @param arrow.col arrow line color.
+#' @param x X-coordinates
+#' @param y Y-coordinates
+#' @param phases Phases
+#' @param arrow.len Size of the arrows. Default is based on plotting region.
+#' @param arrow.lwd Width/thickness of arrows.
+#' @param arrow.col Arrow line color.
 #'
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #'
@@ -48,7 +48,7 @@ phase.plot <- function(x, y, phases,
   }
 }
 
-#' Helper function for phase.plot
+#' Helper function for \code{\link{phase.plot}} (not exported)
 #' @param x X-coordinate of the arrow.
 #' @param y Y-coordinate of the arrow.
 #' @param l Length of the arrow.
@@ -83,14 +83,16 @@ arrow <- function(x, y, l = 0.1, w = 0.3 * l, alpha, col = "black") {
 }
 
 #' This is an alternative helper function that plots arrows.
-#' It uses text() to print a character using a default font.
+#' It uses \code{\link{text}()} to print a character using a default font.
 #' This way, it is possible to render different types of arrows.
+#'
+#' @author Viliam Simko
 #'
 #' @param x X-coordinate of the arrow.
 #' @param y Y-coordinate of the arrow.
-#' @param angle Angle in radians
+#' @param angle Angle in radians.
 #' @param size Similar to \code{arrow.len} parameter. Notice that we don't need
-#' the arrow.lwd anymore
+#'   the \code{arrow.lwd} anymore
 #' @param col Color of the arrow.
 #' @param chr Character representing the arrow. You should provide the character
 #'   as escaped UTF-8.

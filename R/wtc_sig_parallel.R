@@ -1,6 +1,6 @@
-#' Parallelized Monte Carlo simulation using \code{doParallel} package.
+#' Parallel \code{\link{wtc.sig}}
 #'
-#' Equivalent to \code{wtc.sig}
+#' Parallelized Monte Carlo simulation equivalent to \code{\link{wtc.sig}}.
 #'
 #' @examples
 #' # Not run: library(foreach)
@@ -9,6 +9,10 @@
 #' # registerDoParallel(cl)
 #' # wtc_sig_parallel(your parameters go here)
 #' # stopCluster(cl)
+#'
+#' @seealso \code{\link[doParallel]{doParallel}}
+#' @seealso \code{\link[foreach]{foreach}}
+#' @seealso \code{\link{wtc.sig}}
 #'
 #' @inheritParams wtc.sig
 #' @export

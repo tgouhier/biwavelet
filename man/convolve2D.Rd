@@ -33,12 +33,12 @@ Use the Fast Fourier Transform to perform convolutions between a sequence and
 each column of a matrix.
 }
 \details{
-This is a corrupted version of convolve made by replacing \link{fft}
-  with \link{mvfft} in a few places. It would be nice to submit this to the R
-  Developers for inclusion.
+This is a corrupted version of convolve made by replacing
+  \code{\link{fft}} with \code{\link{mvfft}} in a few places. It would be
+  nice to submit this to the R Developers for inclusion.
 }
 \note{
-This function was copied from \link{waveslim} to limit package
+This function was copied from \code{waveslim} to limit package
   dependencies.
 }
 \author{
