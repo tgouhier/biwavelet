@@ -12,18 +12,18 @@ convolve2D(x, y, conj = TRUE, type = c("circular", "open"))
 \item{y}{Numeric sequence of length N.}
 
 \item{conj}{Logical; if \code{TRUE}, take the complex conjugate before
-back-transforming. Default is \code{TRUE} and used for usual convolution.}
+back-transforming. \code{TRUE} is used for usual convolution.}
 
 \item{type}{Character; one of \code{circular}, \code{open} (beginning of word
-is ok).
+  is ok).
 
-For \code{circular}, the two sequences are treated as circular, i.e.,
-periodic.
+  For \code{circular}, the two sequences are treated as circular, i.e.,
+  periodic.
 
-For \code{open} and \code{filter}, the sequences are padded with zeros
-(from left and right) first; \code{filter} returns the middle sub-vector of
-open, namely, the result of running a weighted mean of \code{x} with
-weights \code{y}.}
+  For \code{open} and \code{filter}, the sequences are padded with zeros
+  (from left and right) first; \code{filter} returns the middle sub-vector of
+  open, namely, the result of running a weighted mean of \code{x} with
+  weights \code{y}.}
 }
 \value{
 M \code{x} n matrix
@@ -33,12 +33,13 @@ Use the Fast Fourier Transform to perform convolutions between a sequence and
 each column of a matrix.
 }
 \details{
-This is a corrupted version of convolve made by replacing \code{fft} with
-  \code{mvfft} in a few places. It would be nice to submit this to the R Developers
-  for inclusion.
+This is a corrupted version of convolve made by replacing \link{fft}
+  with \link{mvfft} in a few places. It would be nice to submit this to the R
+  Developers for inclusion.
 }
 \note{
-This function was copied from \code{waveslim} to limit package dependencies.
+This function was copied from \link{waveslim} to limit package
+  dependencies.
 }
 \author{
 Brandon Whitcher

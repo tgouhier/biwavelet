@@ -22,33 +22,33 @@ format (\code{n} rows x 2 columns). The first column should contain the
 time steps and the second column should contain the values.}
 
 \item{pad}{pad the values will with zeros to increase the speed of the
-transform. Default is TRUE.}
+transform.}
 
-\item{dj}{spacing between successive scales. Default is 1/12.}
+\item{dj}{spacing between successive scales.}
 
-\item{s0}{smallest scale of the wavelet. Default is \code{2*dt}.}
+\item{s0}{smallest scale of the wavelet.}
 
 \item{J1}{number of scales - 1.}
 
 \item{max.scale}{maximum scale. Computed automatically if left unspecified.}
 
 \item{mother}{type of mother wavelet function to use. Can be set to
-\code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
+\code{morlet}, \code{dog}, or \code{paul}.
 Significance testing is only available for \code{morlet} wavelet.}
 
 \item{param}{nondimensional parameter specific to the wavelet function.}
 
 \item{lag1}{vector containing the AR(1) coefficient of each time series.}
 
-\item{sig.level}{significance level. Default is \code{0.95}.}
+\item{sig.level}{significance level.}
 
 \item{sig.test}{type of significance test. If set to 0, use a regular
 \eqn{\chi^2} test. If set to 1, then perform a time-average test. If set to
 2, then do a scale-average test.}
 
-\item{nrands}{number of Monte Carlo randomizations. Default is 300.}
+\item{nrands}{number of Monte Carlo randomizations.}
 
-\item{quiet}{Do not display progress bar. Default is \code{FALSE}.}
+\item{quiet}{Do not display progress bar.}
 }
 \value{
 Return a \code{biwavelet} object containing:
@@ -109,18 +109,18 @@ Transform: moving beyond uni- and bivariate analysis. \emph{Journal of
 Economic Surveys} In press.
 
 Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
-and N. C. Stenseth. 2008. Wavelet analysis of ecological time series. 
+and N. C. Stenseth. 2008. Wavelet analysis of ecological time series.
 \emph{Oecologia} 156:287-304.
 
-Grinsted, A., J. C. Moore, and S. Jevrejeva. 2004. Application of the cross 
-wavelet transform and wavelet coherence to geophysical time series. 
+Grinsted, A., J. C. Moore, and S. Jevrejeva. 2004. Application of the cross
+wavelet transform and wavelet coherence to geophysical time series.
 \emph{Nonlinear Processes in Geophysics} 11:561-566.
 
 Ng, E. K. W., and J. C. L. Chan. 2012. Geophysical applications of partial
 wavelet coherence and multiple wavelet coherence. \emph{Journal of
 Atmospheric and Oceanic Technology} 29:1845-1853.
 
-Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
 \emph{Bulletin of the American Meteorological Society} 79:61-78.
 
 Torrence, C., and P. J. Webster. 1998. The annual cycle of persistence in the

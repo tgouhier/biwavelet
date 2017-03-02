@@ -14,11 +14,11 @@ phase.plot(x, y, phases, arrow.len = min(par()$pin[2]/30, par()$pin[1]/40),
 
 \item{phases}{phases}
 
-\item{arrow.len}{size of the arrows. Default is based on plotting region (min(par()$pin[2]/30,par()$pin[1]/40).}
+\item{arrow.len}{size of the arrows. Default is based on plotting region.}
 
-\item{arrow.col}{arrow line color. Default is \code{black}.}
+\item{arrow.col}{arrow line color.}
 
-\item{arrow.lwd}{width/thickness of arrows. Default is arrow.len * 0.3.}
+\item{arrow.lwd}{width/thickness of arrows.}
 }
 \description{
 Plot phases with arrows

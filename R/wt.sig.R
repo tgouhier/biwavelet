@@ -13,12 +13,12 @@
 #' @param sig.test type of significance test. If set to 0, use a regular
 #'   \eqn{\chi^2} test. If set to 1, then perform a time-average test.
 #'   If set to 2, then do a scale-average test.
-#' @param sig.level significance level. Default is 0.95.
+#' @param sig.level significance level.
 #' @param dof degrees of freedom for each point in wavelet power.
 #' @param lag1 AR(1) coefficient of time series used to test for significant
 #'   patterns.
 #' @param mother type of mother wavelet function to use. Can be set to
-#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
+#'   \code{morlet}, \code{dog}, or \code{paul}.
 #' @param param nondimensional parameter specific to the wavelet function.
 #' @param sigma2 variance of time series
 #' @param arima.method Fitting method. This parameter is passed as the

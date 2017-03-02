@@ -3,9 +3,9 @@
 #' @param x x-coordinates
 #' @param y y-coordinates
 #' @param phases phases
-#' @param arrow.len size of the arrows. Default is based on plotting region (min(par()$pin[2]/30,par()$pin[1]/40).
-#' @param arrow.lwd width/thickness of arrows. Default is arrow.len * 0.3.
-#' @param arrow.col arrow line color. Default is \code{black}.
+#' @param arrow.len size of the arrows. Default is based on plotting region.
+#' @param arrow.lwd width/thickness of arrows.
+#' @param arrow.col arrow line color.
 #'
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #'

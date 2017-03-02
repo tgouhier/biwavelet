@@ -8,7 +8,7 @@ wt.bases(mother = "morlet", ...)
 }
 \arguments{
 \item{mother}{type of mother wavelet function to use. Can be set to
-\code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.}
+\code{morlet}, \code{dog}, or \code{paul}.}
 
 \item{...}{see parameters \code{k}, \code{scale} and \code{param} in
 functions: \code{\link{wt.bases.morlet}}, \code{\link{wt.bases.paul}} and
@@ -29,7 +29,7 @@ Computes the wavelet as a function of Fourier frequency.
 
 }
 \references{
-Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis. 
+Torrence, C., and G. P. Compo. 1998. A Practical Guide to Wavelet Analysis.
 \emph{Bulletin of the American Meteorological Society} 79:61-78.
 }
 \author{

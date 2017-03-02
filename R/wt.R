@@ -9,23 +9,22 @@
 #'   column should contain the time steps and the second column should contain
 #'   the values.
 #' @param pad pad the values will with zeros to increase the speed of the
-#'   transform. Default is TRUE.
+#'   transform.
 #' @param dt length of a time step.
-#' @param dj spacing between successive scales. Default is 1/12.
-#' @param s0 smallest scale of the wavelet. Default is \code{2*dt}
+#' @param dj spacing between successive scales.
+#' @param s0 smallest scale of the wavelet.
 #' @param J1 number of scales - 1.
 #' @param max.scale maximum scale. Computed automatically if left unspecified.
 #' @param mother type of mother wavelet function to use. Can be set to
-#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
+#'   \code{morlet}, \code{dog}, or \code{paul}.
 #' @param param nondimensional parameter specific to the wavelet function.
 #' @param lag1 AR(1) coefficient of time series used to test for significant
 #'   patterns.
-#' @param sig.level significance level. Default is 0.95.
+#' @param sig.level significance level.
 #' @param sig.test type of significance test. If set to 0, use a regular
 #'   \eqn{\chi^2} test. If set to 1, then perform a time-average test.
 #'   If set to 2, then do a scale-average test.
-#' @param do.sig perform significance testing if \code{TRUE}. Default is
-#'   \code{TRUE}.
+#' @param do.sig perform significance testing if \code{TRUE}.
 #'
 #' @param arima.method Fitting method. This parameter is passed as the
 #' \code{method} parameter to the \link{arima} function.

@@ -11,22 +11,22 @@
 #'   first column should contain the time steps and the second column should
 #'   contain the values.
 #' @param pad pad the values will with zeros to increase the speed of the
-#'   transform. Default is TRUE.
-#' @param dj spacing between successive scales. Default is 1/12.
-#' @param s0 smallest scale of the wavelet. Default is \code{2*dt}.
+#'   transform.
+#' @param dj spacing between successive scales.
+#' @param s0 smallest scale of the wavelet.
 #' @param J1 number of scales - 1.
 #' @param max.scale maximum scale. Computed automatically if left unspecified.
 #' @param mother type of mother wavelet function to use. Can be set to
-#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
-#'   Significance testing is only available for \code{morlet} wavelet.
+#'   \code{morlet}, \code{dog}, or \code{paul}. Significance testing is only
+#'   available for \code{morlet} wavelet.
 #' @param param nondimensional parameter specific to the wavelet function.
 #' @param lag1 vector containing the AR(1) coefficient of each time series.
-#' @param sig.level significance level. Default is \code{0.95}.
+#' @param sig.level significance level.
 #' @param sig.test type of significance test. If set to 0, use a regular
 #'   \eqn{\chi^2} test. If set to 1, then perform a time-average test. If set to
 #'   2, then do a scale-average test.
-#' @param nrands number of Monte Carlo randomizations. Default is 300.
-#' @param quiet Do not display progress bar. Default is \code{FALSE}
+#' @param nrands number of Monte Carlo randomizations.
+#' @param quiet Do not display progress bar.
 #'
 #' @return Return a \code{biwavelet} object containing:
 #' \item{coi}{matrix containg cone of influence}
@@ -48,9 +48,9 @@
 #' \item{d1.sigma}{standard deviation of time series 1}
 #' \item{d2.sigma}{standard deviation of time series 2}
 #' \item{mother}{mother wavelet used}
-#' \item{type}{type of \code{biwavelet} object created (\code{wtc})}
-#' \item{signif}{matrix containg \code{sig.level} percentiles of wavelet coherence
-#'               based on the Monte Carlo AR(1) time series}
+#' \item{type}{type of \code{biwavelet} object created (\link{wtc})}
+#' \item{signif}{matrix containing \code{sig.level} percentiles of wavelet
+#' coherence based on the Monte Carlo AR(1) time series}
 #'
 #' @references
 #' Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,

@@ -21,7 +21,7 @@ the values.}
 \eqn{\chi^2} test. If set to 1, then perform a time-average test.
 If set to 2, then do a scale-average test.}
 
-\item{sig.level}{significance level. Default is 0.95.}
+\item{sig.level}{significance level.}
 
 \item{dof}{degrees of freedom for each point in wavelet power.}
 
@@ -29,7 +29,7 @@ If set to 2, then do a scale-average test.}
 patterns.}
 
 \item{mother}{type of mother wavelet function to use. Can be set to
-\code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.}
+\code{morlet}, \code{dog}, or \code{paul}.}
 
 \item{param}{nondimensional parameter specific to the wavelet function.}
 

@@ -11,7 +11,8 @@ ar1_ma0_sim(minroots, ar, n)
 
 \item{ar}{The 'ar' part of AR(1)}
 
-\item{n}{Length of output series, before un-differencing. A strictly positive integer.}
+\item{n}{Length of output series, before un-differencing. A strictly positive
+integer.}
 }
 \description{
 Slightly faster arima.sim implementation which assumes AR(1) and ma=0.
