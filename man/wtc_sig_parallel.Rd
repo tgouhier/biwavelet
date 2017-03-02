@@ -49,8 +49,6 @@ Parallelized Monte Carlo simulation equivalent to \code{\link{wtc.sig}}.
 
 }
 \seealso{
-\code{\link[doParallel]{doParallel}}
-
 \code{\link[foreach]{foreach}}
 
 \code{\link{wtc.sig}}

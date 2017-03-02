@@ -10,7 +10,6 @@
 #' # wtc_sig_parallel(your parameters go here)
 #' # stopCluster(cl)
 #'
-#' @seealso \code{\link[doParallel]{doParallel}}
 #' @seealso \code{\link[foreach]{foreach}}
 #' @seealso \code{\link{wtc.sig}}
 #'
