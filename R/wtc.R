@@ -89,7 +89,8 @@
 #' plot(wtc.t1t2, plot.cb = TRUE, plot.phase = TRUE)
 #'
 #' @export
-wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
+wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12,
+                s0 = 2 * dt, # dt will be evaluated later (s0 is a promise)
                 J1 = NULL, max.scale = NULL, mother = "morlet",
                 param = -1, lag1 = NULL, sig.level = 0.95,
                 sig.test = 0, nrands = 300, quiet = FALSE) {
@@ -160,8 +161,8 @@ wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   phase <- atan2(Im(CW), Re(CW))
   if (nrands > 0) {
     signif <- wtc.sig(nrands = nrands, lag1 = lag1,
-                      dt = dt, n, pad = pad, dj = dj, J1 = J1, s0 = s0,
-                      max.scale = max.scale, mother = mother,
+                      dt = dt, ntimesteps = n, pad = pad, dj = dj, J1 = J1,
+                      s0 = s0, max.scale = max.scale, mother = mother,
                       sig.level = sig.level, quiet = quiet)
   } else {
     signif <- NA
