@@ -8,17 +8,17 @@ phase.plot(x, y, phases, arrow.len = min(par()$pin[2]/30, par()$pin[1]/40),
   arrow.col = "black", arrow.lwd = arrow.len * 0.3)
 }
 \arguments{
-\item{x}{x-coordinates}
+\item{x}{X-coordinates}
 
-\item{y}{y-coordinates}
+\item{y}{Y-coordinates}
 
-\item{phases}{phases}
+\item{phases}{Phases}
 
-\item{arrow.len}{size of the arrows. Default is based on plotting region (min(par()$pin[2]/30,par()$pin[1]/40).}
+\item{arrow.len}{Size of the arrows. Default is based on plotting region.}
 
-\item{arrow.col}{arrow line color. Default is \code{black}.}
+\item{arrow.col}{Arrow line color.}
 
-\item{arrow.lwd}{width/thickness of arrows. Default is arrow.len * 0.3.}
+\item{arrow.lwd}{Width/thickness of arrows.}
 }
 \description{
 Plot phases with arrows

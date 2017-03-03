@@ -4,29 +4,29 @@
 #'
 #' Code based on WTC MATLAB package written by Aslak Grinsted.
 #'
-#' @param d1 time series 1 in matrix format (\code{n} rows x 2 columns). The
+#' @param d1 Time series 1 in matrix format (\code{n} rows x 2 columns). The
 #'   first column should contain the time steps and the second column should
 #'   contain the values.
-#' @param d2 time series 2 in matrix format (\code{n} rows x 2 columns). The
+#' @param d2 Time series 2 in matrix format (\code{n} rows x 2 columns). The
 #'   first column should contain the time steps and the second column should
 #'   contain the values.
-#' @param pad pad the values will with zeros to increase the speed of the
-#'   transform. Default is TRUE.
-#' @param dj spacing between successive scales. Default is 1/12.
-#' @param s0 smallest scale of the wavelet. Default is \code{2*dt}.
-#' @param J1 number of scales - 1.
-#' @param max.scale maximum scale. Computed automatically if left unspecified.
-#' @param mother type of mother wavelet function to use. Can be set to
-#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
-#'   Significance testing is only available for \code{morlet} wavelet.
-#' @param param nondimensional parameter specific to the wavelet function.
-#' @param lag1 vector containing the AR(1) coefficient of each time series.
-#' @param sig.level significance level. Default is \code{0.95}.
-#' @param sig.test type of significance test. If set to 0, use a regular
+#' @param pad Pad the values will with zeros to increase the speed of the
+#'   transform.
+#' @param dj Spacing between successive scales.
+#' @param s0 Smallest scale of the wavelet.
+#' @param J1 Number of scales - 1.
+#' @param max.scale Maximum scale. Computed automatically if left unspecified.
+#' @param mother Type of mother wavelet function to use. Can be set to
+#'   \code{morlet}, \code{dog}, or \code{paul}. Significance testing is only
+#'   available for \code{morlet} wavelet.
+#' @param param Nondimensional parameter specific to the wavelet function.
+#' @param lag1 Vector containing the AR(1) coefficient of each time series.
+#' @param sig.level Significance level.
+#' @param sig.test Type of significance test. If set to 0, use a regular
 #'   \eqn{\chi^2} test. If set to 1, then perform a time-average test. If set to
 #'   2, then do a scale-average test.
-#' @param nrands number of Monte Carlo randomizations. Default is 300.
-#' @param quiet Do not display progress bar. Default is \code{FALSE}
+#' @param nrands Number of Monte Carlo randomizations.
+#' @param quiet Do not display progress bar.
 #'
 #' @return Return a \code{biwavelet} object containing:
 #' \item{coi}{matrix containg cone of influence}
@@ -48,9 +48,9 @@
 #' \item{d1.sigma}{standard deviation of time series 1}
 #' \item{d2.sigma}{standard deviation of time series 2}
 #' \item{mother}{mother wavelet used}
-#' \item{type}{type of \code{biwavelet} object created (\code{wtc})}
-#' \item{signif}{matrix containg \code{sig.level} percentiles of wavelet coherence
-#'               based on the Monte Carlo AR(1) time series}
+#' \item{type}{type of \code{biwavelet} object created (\code{\link{wtc}})}
+#' \item{signif}{matrix containing \code{sig.level} percentiles of wavelet
+#' coherence based on the Monte Carlo AR(1) time series}
 #'
 #' @references
 #' Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
@@ -89,7 +89,8 @@
 #' plot(wtc.t1t2, plot.cb = TRUE, plot.phase = TRUE)
 #'
 #' @export
-wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
+wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12,
+                s0 = 2 * dt, # dt will be evaluated later (s0 is a promise)
                 J1 = NULL, max.scale = NULL, mother = "morlet",
                 param = -1, lag1 = NULL, sig.level = 0.95,
                 sig.test = 0, nrands = 300, quiet = FALSE) {
@@ -160,8 +161,8 @@ wtc <- function(d1, d2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   phase <- atan2(Im(CW), Re(CW))
   if (nrands > 0) {
     signif <- wtc.sig(nrands = nrands, lag1 = lag1,
-                      dt = dt, n, pad = pad, dj = dj, J1 = J1, s0 = s0,
-                      max.scale = max.scale, mother = mother,
+                      dt = dt, ntimesteps = n, pad = pad, dj = dj, J1 = J1,
+                      s0 = s0, max.scale = max.scale, mother = mother,
                       sig.level = sig.level, quiet = quiet)
   } else {
     signif <- NA

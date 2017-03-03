@@ -1,28 +1,28 @@
 #' Compute dissimilarity between multiple wavelet spectra
-#' 
+#'
 #' @param w.arr \code{N x p x t} array of wavelet spectra where \code{N} is the
 #'   number of wavelet spectra to be compared, \code{p} is the number of periods
 #'   in each wavelet spectrum and \code{t} is the number of time steps in each
 #'   wavelet spectrum.
-#' 
-#' @param quiet Do not display progress bar. Default is \code{FALSE}
-#' 
+#'
+#' @param quiet Do not display progress bar.
+#'
 #' @return Returns a list containing:
 #'   \item{diss.mat}{square dissimilarity matrix}
 #'   \item{dist.mat}{(lower triangular) distance matrix}
-#' 
+#'
 #' @references
-#' Rouyer, T., J. M. Fromentin, F. Menard, B. Cazelles, K. Briand, R. Pianet, 
-#' B. Planque, and N. C. Stenseth. 2008. Complex interplays among population 
-#' dynamics, environmental forcing, and exploitation in fisheries. 
+#' Rouyer, T., J. M. Fromentin, F. Menard, B. Cazelles, K. Briand, R. Pianet,
+#' B. Planque, and N. C. Stenseth. 2008. Complex interplays among population
+#' dynamics, environmental forcing, and exploitation in fisheries.
 #' \emph{Proceedings of the National Academy of Sciences} 105:5420-5425.
-#' 
-#' Rouyer, T., J. M. Fromentin, N. C. Stenseth, and B. Cazelles. 2008. 
-#' Analysing multiple time series and extending significance testing in 
-#' wavelet analysis. \emph{Marine Ecology Progress Series} 359:11-23. 
-#' 
+#'
+#' Rouyer, T., J. M. Fromentin, N. C. Stenseth, and B. Cazelles. 2008.
+#' Analysing multiple time series and extending significance testing in
+#' wavelet analysis. \emph{Marine Ecology Progress Series} 359:11-23.
+#'
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
-#' 
+#'
 #' @example vignettes/example-wclust.R
 #' @export
 wclust <- function(w.arr, quiet = FALSE) {

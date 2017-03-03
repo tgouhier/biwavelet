@@ -3,7 +3,7 @@
 \name{arrow2}
 \alias{arrow2}
 \title{This is an alternative helper function that plots arrows.
-It uses text() to print a character using a default font.
+It uses \code{\link{text}()} to print a character using a default font.
 This way, it is possible to render different types of arrows.}
 \usage{
 arrow2(x, y, angle, size = 0.1, col = "black", chr = intToUtf8(10139))
@@ -13,10 +13,10 @@ arrow2(x, y, angle, size = 0.1, col = "black", chr = intToUtf8(10139))
 
 \item{y}{Y-coordinate of the arrow.}
 
-\item{angle}{Angle in radians}
+\item{angle}{Angle in radians.}
 
 \item{size}{Similar to \code{arrow.len} parameter. Notice that we don't need
-the arrow.lwd anymore}
+the \code{arrow.lwd} anymore}
 
 \item{col}{Color of the arrow.}
 
@@ -25,10 +25,13 @@ as escaped UTF-8.}
 }
 \description{
 This is an alternative helper function that plots arrows.
-It uses text() to print a character using a default font.
+It uses \code{\link{text}()} to print a character using a default font.
 This way, it is possible to render different types of arrows.
 }
 \examples{
 # Not run: arrow2(x[j], y[i], angle = phases[i, j],
 # Not run:        col = arrow.col, size = arrow.len)
+}
+\author{
+Viliam Simko
 }

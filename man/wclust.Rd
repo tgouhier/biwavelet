@@ -12,7 +12,7 @@ number of wavelet spectra to be compared, \code{p} is the number of periods
 in each wavelet spectrum and \code{t} is the number of time steps in each
 wavelet spectrum.}
 
-\item{quiet}{Do not display progress bar. Default is \code{FALSE}}
+\item{quiet}{Do not display progress bar.}
 }
 \value{
 Returns a list containing:
@@ -46,13 +46,13 @@ plot(hclust(w.arr.dis$dist.mat, method = "ward.D"),
      sub = "", main = "", ylab = "Dissimilarity", hang = -1)
 }
 \references{
-Rouyer, T., J. M. Fromentin, F. Menard, B. Cazelles, K. Briand, R. Pianet, 
-B. Planque, and N. C. Stenseth. 2008. Complex interplays among population 
-dynamics, environmental forcing, and exploitation in fisheries. 
+Rouyer, T., J. M. Fromentin, F. Menard, B. Cazelles, K. Briand, R. Pianet,
+B. Planque, and N. C. Stenseth. 2008. Complex interplays among population
+dynamics, environmental forcing, and exploitation in fisheries.
 \emph{Proceedings of the National Academy of Sciences} 105:5420-5425.
 
-Rouyer, T., J. M. Fromentin, N. C. Stenseth, and B. Cazelles. 2008. 
-Analysing multiple time series and extending significance testing in 
+Rouyer, T., J. M. Fromentin, N. C. Stenseth, and B. Cazelles. 2008.
+Analysing multiple time series and extending significance testing in
 wavelet analysis. \emph{Marine Ecology Progress Series} 359:11-23.
 }
 \author{

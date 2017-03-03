@@ -9,42 +9,41 @@ wt(d, pad = TRUE, dt = NULL, dj = 1/12, s0 = 2 * dt, J1 = NULL,
   sig.level = 0.95, sig.test = 0, do.sig = TRUE, arima.method = "CSS")
 }
 \arguments{
-\item{d}{time series in matrix format (\code{n} rows x 2 columns). The first
+\item{d}{Time series in matrix format (\code{n} rows x 2 columns). The first
 column should contain the time steps and the second column should contain
 the values.}
 
-\item{pad}{pad the values will with zeros to increase the speed of the
-transform. Default is TRUE.}
+\item{pad}{Pad the values will with zeros to increase the speed of the
+transform.}
 
-\item{dt}{length of a time step.}
+\item{dt}{Length of a time step.}
 
-\item{dj}{spacing between successive scales. Default is 1/12.}
+\item{dj}{Spacing between successive scales.}
 
-\item{s0}{smallest scale of the wavelet. Default is \code{2*dt}}
+\item{s0}{Smallest scale of the wavelet.}
 
-\item{J1}{number of scales - 1.}
+\item{J1}{Number of scales - 1.}
 
-\item{max.scale}{maximum scale. Computed automatically if left unspecified.}
+\item{max.scale}{Maximum scale. Computed automatically if left unspecified.}
 
-\item{mother}{type of mother wavelet function to use. Can be set to
-\code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.}
+\item{mother}{Type of mother wavelet function to use. Can be set to
+\code{morlet}, \code{dog}, or \code{paul}.}
 
-\item{param}{nondimensional parameter specific to the wavelet function.}
+\item{param}{Nondimensional parameter specific to the wavelet function.}
 
 \item{lag1}{AR(1) coefficient of time series used to test for significant
 patterns.}
 
-\item{sig.level}{significance level. Default is 0.95.}
+\item{sig.level}{Significance level.}
 
-\item{sig.test}{type of significance test. If set to 0, use a regular
+\item{sig.test}{Type of significance test. If set to 0, use a regular
 \eqn{\chi^2} test. If set to 1, then perform a time-average test.
 If set to 2, then do a scale-average test.}
 
-\item{do.sig}{perform significance testing if \code{TRUE}. Default is
-\code{TRUE}.}
+\item{do.sig}{Perform significance testing if \code{TRUE}.}
 
 \item{arima.method}{Fitting method. This parameter is passed as the
-\code{method} parameter to the \link{arima} function.}
+\code{method} Parameter to the \code{\link{arima}} function.}
 }
 \value{
 Returns a \code{biwavelet} object containing:
@@ -52,7 +51,7 @@ Returns a \code{biwavelet} object containing:
 \item{wave}{matrix containing the wavelet transform}
 \item{power}{matrix of power}
 \item{power.corr}{matrix of bias-corrected power using the method described
-                   by \code{Liu et al. (2007)}}
+  by \code{Liu et al. (2007)}}
 \item{phase}{matrix of phases}
 \item{period}{vector of periods}
 \item{scale}{vector of scales}
@@ -63,7 +62,7 @@ Returns a \code{biwavelet} object containing:
 \item{dj}{spacing between successive scales}
 \item{sigma2}{variance of time series}
 \item{mother}{mother wavelet used}
-\item{type}{type of \code{biwavelet} object created (\code{wt})}
+\item{type}{type of \code{biwavelet} object created (\code{\link{wt}})}
 \item{signif}{matrix containg significance levels}
 }
 \description{

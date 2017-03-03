@@ -7,23 +7,23 @@
 check.data(y, x1 = NULL, x2 = NULL)
 }
 \arguments{
-\item{y}{time series y in matrix format (\code{n} rows x 2 columns). The
-first column should contain the time steps and the second column should
+\item{y}{Time series \code{y} in matrix format (\code{n} rows x 2 columns).
+The first column should contain the time steps and the second column should
 contain the values.}
 
-\item{x1}{time series x1 in matrix format (\code{n} rows x 2 columns). The
-first column should contain the time steps and the second column should
+\item{x1}{Time series \code{x1} in matrix format (\code{n} rows x 2 columns).
+The first column should contain the time steps and the second column should
 contain the values.}
 
-\item{x2}{time series x2 in matrix format (\code{n} rows x 2 columns). The
-first column should contain the time steps and the second column should
+\item{x2}{Time series \code{x2} in matrix format (\code{n} rows x 2 columns).
+The first column should contain the time steps and the second column should
 contain the values.}
 }
 \value{
 Returns a named list containing:
-\item{t}{time steps}
-\item{dt}{size of a time step}
-\item{n.obs}{number of observations}
+\item{t}{Time steps}
+\item{dt}{Size of a time step}
+\item{n.obs}{Number of observations}
 }
 \description{
 Check the format of time series

@@ -6,6 +6,13 @@
 #' a boxcar function of width 0.6, which corresponds to the decorrelation scale
 #' of the Morlet wavelet.
 #'
+#' @param wave wavelet coefficients
+#' @param dt size of time steps
+#' @param dj number of octaves per scale
+#' @param scale wavelet scales
+#'
+#' @return Returns the smoothed wavelet.
+#'
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #'
 #' Code based on WTC MATLAB package written by Aslak Grinsted.
@@ -20,13 +27,6 @@
 #'
 #' @examples
 #' # Not run: smooth.wt1 <- smooth.wavelet(wave, dt, dj, scale)
-#'
-#' @param wave wavelet coefficients
-#' @param dt size of time steps
-#' @param dj number of octaves per scale
-#' @param scale wavelet scales
-#'
-#' @return Returns the smoothed wavelet.
 smooth.wavelet <- function(wave, dt, dj, scale) {
 
   m <- NCOL(wave)

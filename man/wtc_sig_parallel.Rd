@@ -2,42 +2,42 @@
 % Please edit documentation in R/wtc_sig_parallel.R
 \name{wtc_sig_parallel}
 \alias{wtc_sig_parallel}
-\title{Parallelized Monte Carlo simulation using \code{doParallel} package.}
+\title{Parallel \code{\link{wtc.sig}}}
 \usage{
 wtc_sig_parallel(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   dj = 1/12, s0, J1, max.scale = NULL, mother = "morlet",
   sig.level = 0.95, quiet = TRUE)
 }
 \arguments{
-\item{nrands}{number of Monte Carlo randomizations. Default is 300.}
+\item{nrands}{Number of Monte Carlo randomizations.}
 
-\item{lag1}{vector containing the AR(1) coefficient of each time series.}
+\item{lag1}{Vector containing the AR(1) coefficient of each time series.}
 
-\item{dt}{length of a time step.}
+\item{dt}{Length of a time step.}
 
-\item{ntimesteps}{number of time steps in time series.}
+\item{ntimesteps}{Number of time steps in time series.}
 
-\item{pad}{pad the values will with zeros to increase the speed of the
-transform. Default is \code{TRUE}.}
+\item{pad}{Pad the values will with zeros to increase the speed of the
+transform.}
 
-\item{dj}{spacing between successive scales. Default is 1/12.}
+\item{dj}{Spacing between successive scales.}
 
-\item{s0}{smallest scale of the wavelet. Default is \code{2*dt}}
+\item{s0}{Smallest scale of the wavelet.}
 
-\item{J1}{number of scales - 1.}
+\item{J1}{Number of scales - 1.}
 
-\item{max.scale}{maximum scale}
+\item{max.scale}{Maximum scale.}
 
-\item{mother}{type of mother wavelet function to use. Can be set to
-\code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
+\item{mother}{Type of mother wavelet function to use. Can be set to
+\code{morlet}, \code{dog}, or \code{paul}.
 Significance testing is only available for \code{morlet} wavelet.}
 
-\item{sig.level}{significance level to compute. Default is \code{0.95}}
+\item{sig.level}{Significance level to compute.}
 
-\item{quiet}{Do not display progress bar. Default is \code{FALSE}}
+\item{quiet}{Do not display progress bar.}
 }
 \description{
-Equivalent to \code{wtc.sig}
+Parallelized Monte Carlo simulation equivalent to \code{\link{wtc.sig}}.
 }
 \examples{
 # Not run: library(foreach)
@@ -47,4 +47,9 @@ Equivalent to \code{wtc.sig}
 # wtc_sig_parallel(your parameters go here)
 # stopCluster(cl)
 
+}
+\seealso{
+\code{\link[foreach]{foreach}}
+
+\code{\link{wtc.sig}}
 }

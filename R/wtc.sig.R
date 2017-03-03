@@ -4,21 +4,21 @@
 #'
 #' Code based on WTC MATLAB package written by Aslak Grinsted.
 #'
-#' @param nrands number of Monte Carlo randomizations. Default is 300.
-#' @param lag1 vector containing the AR(1) coefficient of each time series.
-#' @param dt length of a time step.
-#' @param ntimesteps number of time steps in time series.
-#' @param pad pad the values will with zeros to increase the speed of the
-#'   transform. Default is \code{TRUE}.
-#' @param dj spacing between successive scales. Default is 1/12.
-#' @param s0 smallest scale of the wavelet. Default is \code{2*dt}
-#' @param J1 number of scales - 1.
-#' @param max.scale maximum scale
-#' @param mother type of mother wavelet function to use. Can be set to
-#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
+#' @param nrands Number of Monte Carlo randomizations.
+#' @param lag1 Vector containing the AR(1) coefficient of each time series.
+#' @param dt Length of a time step.
+#' @param ntimesteps Number of time steps in time series.
+#' @param pad Pad the values will with zeros to increase the speed of the
+#'   transform.
+#' @param dj Spacing between successive scales.
+#' @param s0 Smallest scale of the wavelet.
+#' @param J1 Number of scales - 1.
+#' @param max.scale Maximum scale.
+#' @param mother Type of mother wavelet function to use. Can be set to
+#'   \code{morlet}, \code{dog}, or \code{paul}.
 #'   Significance testing is only available for \code{morlet} wavelet.
-#' @param sig.level significance level to compute. Default is \code{0.95}
-#' @param quiet Do not display progress bar. Default is \code{FALSE}
+#' @param sig.level Significance level to compute.
+#' @param quiet Do not display progress bar.
 #'
 #' @return Returns significance matrix containing the \code{sig.level}
 #'   percentile of wavelet coherence at each time step and scale.
@@ -105,6 +105,7 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
 
   # The original slow implementation was using "apply" and "quantile" functions
   # apply(rand.rsq, MARGIN = c(1,2), quantile, sig.level, na.rm = TRUE)
+
   # This has been replaced with a C++ implementation taken from WGCNA package
   result <- matrix(nrow = nrow(rand.rsq), ncol = ncol(rand.rsq))
   for (i in seq_len(ncol(rand.rsq))) {
@@ -114,19 +115,21 @@ wtc.sig <- function(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
   return(result)
 }
 
-#' Helper function
+#' Helper function (not exported)
 #' @param ar The 'ar' part of AR(1)
 #' @return double
 get_minroots <- function(ar) {
   min(Mod(polyroot(c(1, -ar))))
 }
 
-#' Slightly faster arima.sim implementation which assumes AR(1) and ma=0.
+#' Slightly faster \code{\link{arima.sim}} implementation which assumes AR(1)
+#' and \code{ma=0}.
 #'
-#' @param minroots Output from \code{get_minroots} function.
+#' @param minroots Output from \code{\link{get_minroots}} function.
 #' @param ar The 'ar' part of AR(1)
-#' @param n Length of output series, before un-differencing. A strictly positive integer.
-#' @seealso arima.sim
+#' @param n Length of output series, before un-differencing. A strictly positive
+#'   integer.
+#' @seealso \code{\link{arima.sim}}
 ar1_ma0_sim <- function(minroots, ar, n) {
 
   if (minroots <= 1) {

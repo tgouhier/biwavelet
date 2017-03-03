@@ -5,24 +5,24 @@
 #' Code based on wavelet MATLAB program written by Christopher Torrence
 #' and Gibert P. Compo.
 #'
-#' @param d time series in matrix format (\code{n} rows x 2 columns). The first
+#' @param d Time series in matrix format (\code{n} rows x 2 columns). The first
 #'   column should contain the time steps and the second column should contain
 #'   the values.
-#' @param dt length of a time step.
-#' @param scale the wavelet scale.
-#' @param sig.test type of significance test. If set to 0, use a regular
-#'   \eqn{\chi^2} test. If set to 1, then perform a time-average test.
-#'   If set to 2, then do a scale-average test.
-#' @param sig.level significance level. Default is 0.95.
-#' @param dof degrees of freedom for each point in wavelet power.
+#' @param dt Length of a time step.
+#' @param scale The wavelet scale.
+#' @param sig.test Type of significance test. If set to 0, use a regular
+#'   \eqn{\chi^2} test. If set to 1, then perform a time-average test. If set to
+#'   2, then do a scale-average test.
+#' @param sig.level Significance level.
+#' @param dof Degrees of freedom for each point in wavelet power.
 #' @param lag1 AR(1) coefficient of time series used to test for significant
 #'   patterns.
-#' @param mother type of mother wavelet function to use. Can be set to
-#'   \code{morlet}, \code{dog}, or \code{paul}. Default is \code{morlet}.
-#' @param param nondimensional parameter specific to the wavelet function.
-#' @param sigma2 variance of time series
+#' @param mother Type of mother wavelet function to use. Can be set to
+#'   \code{morlet}, \code{dog}, or \code{paul}.
+#' @param param Nondimensional parameter specific to the wavelet function.
+#' @param sigma2 Variance of time series
 #' @param arima.method Fitting method. This parameter is passed as the
-#' \code{method} parameter to the \link{arima} function.
+#'   \code{method} Parameter to the \code{\link{arima}} function.
 #'
 #' @return Returns a list containing:
 #' \item{signif}{vector containing significance level for each scale}
