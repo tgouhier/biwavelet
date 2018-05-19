@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rcpp_row_quantile
 NumericVector rcpp_row_quantile(NumericMatrix data, const double q);
-RcppExport SEXP biwavelet_rcpp_row_quantile(SEXP dataSEXP, SEXP qSEXP) {
+RcppExport SEXP _biwavelet_rcpp_row_quantile(SEXP dataSEXP, SEXP qSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -19,7 +19,7 @@ END_RCPP
 }
 // rcpp_wt_bases_dog
 List rcpp_wt_bases_dog(const NumericVector k, const double scale, const int param);
-RcppExport SEXP biwavelet_rcpp_wt_bases_dog(SEXP kSEXP, SEXP scaleSEXP, SEXP paramSEXP) {
+RcppExport SEXP _biwavelet_rcpp_wt_bases_dog(SEXP kSEXP, SEXP scaleSEXP, SEXP paramSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -32,7 +32,7 @@ END_RCPP
 }
 // rcpp_wt_bases_morlet
 List rcpp_wt_bases_morlet(const NumericVector k, const double scale, const int param);
-RcppExport SEXP biwavelet_rcpp_wt_bases_morlet(SEXP kSEXP, SEXP scaleSEXP, SEXP paramSEXP) {
+RcppExport SEXP _biwavelet_rcpp_wt_bases_morlet(SEXP kSEXP, SEXP scaleSEXP, SEXP paramSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -45,7 +45,7 @@ END_RCPP
 }
 // rcpp_wt_bases_paul
 List rcpp_wt_bases_paul(const NumericVector k, const double scale, const int param);
-RcppExport SEXP biwavelet_rcpp_wt_bases_paul(SEXP kSEXP, SEXP scaleSEXP, SEXP paramSEXP) {
+RcppExport SEXP _biwavelet_rcpp_wt_bases_paul(SEXP kSEXP, SEXP scaleSEXP, SEXP paramSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -55,4 +55,17 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(rcpp_wt_bases_paul(k, scale, param));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_biwavelet_rcpp_row_quantile", (DL_FUNC) &_biwavelet_rcpp_row_quantile, 2},
+    {"_biwavelet_rcpp_wt_bases_dog", (DL_FUNC) &_biwavelet_rcpp_wt_bases_dog, 3},
+    {"_biwavelet_rcpp_wt_bases_morlet", (DL_FUNC) &_biwavelet_rcpp_wt_bases_morlet, 3},
+    {"_biwavelet_rcpp_wt_bases_paul", (DL_FUNC) &_biwavelet_rcpp_wt_bases_paul, 3},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_biwavelet(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

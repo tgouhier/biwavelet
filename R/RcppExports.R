@@ -13,7 +13,7 @@
 #' @return A vector of length \code{nrows(data)}, where each element represents
 #'   row quantile.
 rcpp_row_quantile <- function(data, q) {
-    .Call('biwavelet_rcpp_row_quantile', PACKAGE = 'biwavelet', data, q)
+    .Call('_biwavelet_rcpp_row_quantile', PACKAGE = 'biwavelet', data, q)
 }
 
 #' Optimized "wt.bases.dog" function.
@@ -35,7 +35,7 @@ rcpp_row_quantile <- function(data, q) {
 #'
 #' @note This c++ implementation is approx. 50% faster than the original R code
 rcpp_wt_bases_dog <- function(k, scale, param = -1L) {
-    .Call('biwavelet_rcpp_wt_bases_dog', PACKAGE = 'biwavelet', k, scale, param)
+    .Call('_biwavelet_rcpp_wt_bases_dog', PACKAGE = 'biwavelet', k, scale, param)
 }
 
 #' Optimized "wt.bases.morlet" function.
@@ -57,7 +57,7 @@ rcpp_wt_bases_dog <- function(k, scale, param = -1L) {
 #'
 #' @note This c++ implementation is approx. 60% faster than the original R code
 rcpp_wt_bases_morlet <- function(k, scale, param = -1L) {
-    .Call('biwavelet_rcpp_wt_bases_morlet', PACKAGE = 'biwavelet', k, scale, param)
+    .Call('_biwavelet_rcpp_wt_bases_morlet', PACKAGE = 'biwavelet', k, scale, param)
 }
 
 #' Optimized "wt.bases.paul" function.
@@ -79,6 +79,6 @@ rcpp_wt_bases_morlet <- function(k, scale, param = -1L) {
 #'
 #' @note This c++ implementation is approx. 59% faster than the original R code
 rcpp_wt_bases_paul <- function(k, scale, param = -1L) {
-    .Call('biwavelet_rcpp_wt_bases_paul', PACKAGE = 'biwavelet', k, scale, param)
+    .Call('_biwavelet_rcpp_wt_bases_paul', PACKAGE = 'biwavelet', k, scale, param)
 }
 

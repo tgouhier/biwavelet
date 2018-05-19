@@ -89,7 +89,7 @@
 #'
 #' @seealso \code{\link{image.plot}}
 #'
-#' @example vignettes/example-plot.biwavelet.R
+#' @example inst/doc/example-plot.biwavelet.R
 #' @importFrom fields image.plot
 #' @importFrom grDevices adjustcolor colorRampPalette
 #' @importFrom graphics axTicks axis box contour image par polygon

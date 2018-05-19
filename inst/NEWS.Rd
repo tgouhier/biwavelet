@@ -2,6 +2,15 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.16 (2018-03-26)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed documentation for wtc function
+    }
+  }
+}
+
+
 \section{Changes in biwavelet version 0.20.15 (2017-03-01)}{
   \subsection{fixed}{
     \itemize{
@@ -9,7 +18,6 @@
     }
   }
 }
-
 
 \section{Changes in biwavelet version 0.20.14 (2017-02-24)}{
   \subsection{fixed}{

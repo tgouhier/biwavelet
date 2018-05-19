@@ -29,8 +29,7 @@ transform.}
 \item{max.scale}{Maximum scale. Computed automatically if left unspecified.}
 
 \item{mother}{Type of mother wavelet function to use. Can be set to
-\code{morlet}, \code{dog}, or \code{paul}. Significance testing is only
-available for \code{morlet} wavelet.}
+\code{morlet}, \code{dog}, or \code{paul}.}
 
 \item{param}{Nondimensional parameter specific to the wavelet function.}
 

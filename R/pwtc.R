@@ -82,7 +82,7 @@
 #' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
 #' Code based on WTC MATLAB package written by Aslak Grinsted.
 #'
-#' @example vignettes/example-pwtc.R
+#' @example inst/doc/example-pwtc.R
 #' @export
 pwtc <- function(y, x1, x2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
                  J1 = NULL, max.scale = NULL, mother = "morlet",
