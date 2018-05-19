@@ -35,7 +35,7 @@ timeseries <- t1 + t2 + t3
 plot(ts(timeseries), xlab = NA, ylab = NA)
 ```
 
-![](vignettes/webimg/README-ts_3x_sin-1.png)
+![](inst/doc/webimg/README-ts_3x_sin-1.png)
 
 The wavelet spectrum of the time series should show peaks of identical power at each of the three dominant periods. However, the traditional approach leads to a consistent reduction in power at low periodicities:
 
@@ -46,7 +46,7 @@ plot(wt1, type = "power.corr.norm", main = "Bias-corrected wavelet power")
 plot(wt1, type = "power.norm", main = "Biased wavelet power")
 ```
 
-![](vignettes/webimg/README-wt_bias-1.png)
+![](inst/doc/webimg/README-wt_bias-1.png)
 
 This bias also affects the cross-wavelet, which can be used to determine the time- and frequency-resolved relationship between two time series. The new version of biwavelet implements the bias-correction developed by [Veleda et al. (2012)](#Veleda2012). The bias does not affect the wavelet coherence, however. For instance, MEI and NPGO undergo coherent fluctuations at periodicities of ~64-150 months (5-12 years) between 1966-2010, with peaks in NPGO leading peaks in MEI by one quarter of a cycle. For help interpreting these results, please see the references below and the biwavelet manual.
 
@@ -56,12 +56,12 @@ par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
 ```
 
-![](vignettes/webimg/README-wtc_example-1.png)
+![](inst/doc/webimg/README-wtc_example-1.png)
 
-<!-- Original image: ![MEI and NPGO wavelet coherence](vignettes/webimg/wtc.png) -->
+<!-- Original image: ![MEI and NPGO wavelet coherence](inst/doc/webimg/wtc.png) -->
 The biwavelet package can also be used to compute the (dis)similarity between pairs of time series based on their wavelet spectrum:
 
-![Similarity between pairs of time series based on their wavelet spectrum](vignettes/webimg/wclust.png)
+![Similarity between pairs of time series based on their wavelet spectrum](inst/doc/webimg/wclust.png)
 
 Additional Examples
 -------------------
@@ -80,7 +80,7 @@ plot(xwt_noise12, plot.cb = TRUE, plot.phase = TRUE,
      main = "Cross wavelet power and phase difference (arrows)")
 ```
 
-![](vignettes/webimg/README-xwt_example-1.png)
+![](inst/doc/webimg/README-xwt_example-1.png)
 
 How to cite
 -----------
@@ -89,16 +89,16 @@ The R core development team and the very active community of package authors hav
 
 ``` r
 citation("biwavelet")
-#> 
+#>
 #> To cite biwavelet in publications use:
-#> 
+#>
 #>   Tarik C. Gouhier, Aslak Grinsted, Viliam Simko (2017). R package
 #>   "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses
 #>   (Version 0.20.15). Available from
 #>   https://github.com/tgouhier/biwavelet
-#> 
+#>
 #> A BibTeX entry for LaTeX users is
-#> 
+#>
 #>   @Manual{,
 #>     title = {R package "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses},
 #>     author = {Tarik C. Gouhier and Aslak Grinsted and Viliam Simko},
