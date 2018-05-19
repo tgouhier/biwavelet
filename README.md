@@ -54,8 +54,6 @@ This bias also affects the cross-wavelet, which can be used to determine the tim
 # Make room to the right for the color bar
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
-#> Warning in format.POSIXlt(as.POSIXlt(x), ...): unknown timezone 'zone/tz/
-#> 2018c.1.0/zoneinfo/Europe/Paris'
 ```
 
 ![](inst/doc/webimg/README-wtc_example-1.png)
