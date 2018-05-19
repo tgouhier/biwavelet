@@ -3,4 +3,5 @@
 ^\.travis\.yml$
 ^\.lintr$
 ^README.Rmd$
+^README.md$
 ^README_cache$
