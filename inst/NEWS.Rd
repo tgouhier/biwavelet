@@ -2,6 +2,14 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.17 (2018-05-19)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Updated package by removing benchmarks in vignettes for CRAN submission
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.16 (2018-03-26)}{
   \subsection{fixed}{
     \itemize{
