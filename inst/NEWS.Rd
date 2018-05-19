@@ -6,6 +6,7 @@
   \subsection{fixed}{
     \itemize{
       \item Updated package by removing benchmarks in vignettes for CRAN submission
+      \item yaxis tickmarks should now be accurate (no more rounding issues)
     }
   }
 }

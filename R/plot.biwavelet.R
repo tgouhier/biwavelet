@@ -240,7 +240,7 @@ plot.biwavelet <- function(x, ncol = 64, fill.cols = NULL,
 
   if (yaxt != "n") {
     axis.locs <- axTicks(2)
-    yticklab <- format(2 ^ axis.locs, dig = 1)
+    yticklab <- format(2 ^ axis.locs) #, dig = 1)
     axis(2, at = axis.locs, labels = yticklab, ...)
   }
 
