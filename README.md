@@ -54,14 +54,16 @@ This bias also affects the cross-wavelet, which can be used to determine the tim
 # Make room to the right for the color bar
 par(oma = c(0, 0, 0, 1), mar = c(5, 4, 4, 5) + 0.1)
 plot(wtc.mei.npgo, plot.cb = TRUE, plot.phase = TRUE)
+#> Warning in format.POSIXlt(as.POSIXlt(x), ...): unknown timezone 'zone/tz/
+#> 2018c.1.0/zoneinfo/Europe/Paris'
 ```
 
 ![](inst/doc/webimg/README-wtc_example-1.png)
 
-<!-- Original image: ![MEI and NPGO wavelet coherence](inst/doc/webimg/wtc.png) -->
+<!-- Original image: ![MEI and NPGO wavelet coherence](vignettes/webimg/wtc.png) -->
 The biwavelet package can also be used to compute the (dis)similarity between pairs of time series based on their wavelet spectrum:
 
-![Similarity between pairs of time series based on their wavelet spectrum](inst/doc/webimg/wclust.png)
+![Similarity between pairs of time series based on their wavelet spectrum](vignettes/webimg/wclust.png)
 
 Additional Examples
 -------------------
@@ -89,21 +91,21 @@ The R core development team and the very active community of package authors hav
 
 ``` r
 citation("biwavelet")
-#>
+#> 
 #> To cite biwavelet in publications use:
-#>
-#>   Tarik C. Gouhier, Aslak Grinsted, Viliam Simko (2017). R package
-#>   "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses
-#>   (Version 0.20.15). Available from
+#> 
+#>   Tarik C. Gouhier, Aslak Grinsted, Viliam Simko (2018). R package
+#>   biwavelet: Conduct Univariate and Bivariate Wavelet Analyses
+#>   (Version 0.20.17). Available from
 #>   https://github.com/tgouhier/biwavelet
-#>
+#> 
 #> A BibTeX entry for LaTeX users is
-#>
+#> 
 #>   @Manual{,
-#>     title = {R package "biwavelet": Conduct Univariate and Bivariate Wavelet Analyses},
+#>     title = {R package {biwavelet}: Conduct Univariate and Bivariate Wavelet Analyses},
 #>     author = {Tarik C. Gouhier and Aslak Grinsted and Viliam Simko},
-#>     year = {2017},
-#>     note = {(Version 0.20.15)},
+#>     year = {2018},
+#>     note = {(Version 0.20.17)},
 #>     url = {https://github.com/tgouhier/biwavelet},
 #>   }
 ```
