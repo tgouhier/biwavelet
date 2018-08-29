@@ -2,6 +2,14 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.18 (2018-08-29)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Updated \code{plot.biwavelet} help file with correct phase arrow interpretation
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.17 (2018-05-19)}{
   \subsection{fixed}{
     \itemize{
