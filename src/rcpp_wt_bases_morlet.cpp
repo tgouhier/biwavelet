@@ -1,7 +1,8 @@
+#define STRICT_R_HEADERS
 #include <Rcpp.h>
 using namespace Rcpp;
 
-const double POWPI14 = pow(PI, -0.25);
+const double POWPI14 = pow(M_PI, -0.25);
 const double SQRT_ONE_HALF = sqrt(.5); // NOTE: sqrt(1/2) = 1/sqrt(2)
 
 // Used the following R code to generate:
