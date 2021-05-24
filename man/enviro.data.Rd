@@ -4,7 +4,8 @@
 \name{enviro.data}
 \alias{enviro.data}
 \title{Multivariate ENSO (MEI), NPGO, and PDO indices}
-\format{A data frame with 720 observations on the following 6 variables.
+\format{
+A data frame with 720 observations on the following 6 variables.
 \describe{
  \item{\code{month}}{a numeric vector containing the month}
  \item{\code{year}}{a numeric vector containing the year}
@@ -12,7 +13,8 @@
  \item{\code{mei}}{a numeric vector containing the MEI index}
  \item{\code{npgo}}{a numeric vector containing the NPGO index}
  \item{\code{pdo}}{a numeric vector containing the PDO index}
-}}
+}
+}
 \source{
 MEI: \url{http://www.esrl.noaa.gov/psd/enso/mei}
 NPGO: \url{http://www.o3d.org/npgo}

@@ -4,9 +4,22 @@
 \alias{wt}
 \title{Compute wavelet transform}
 \usage{
-wt(d, pad = TRUE, dt = NULL, dj = 1/12, s0 = 2 * dt, J1 = NULL,
-  max.scale = NULL, mother = "morlet", param = -1, lag1 = NULL,
-  sig.level = 0.95, sig.test = 0, do.sig = TRUE, arima.method = "CSS")
+wt(
+  d,
+  pad = TRUE,
+  dt = NULL,
+  dj = 1/12,
+  s0 = 2 * dt,
+  J1 = NULL,
+  max.scale = NULL,
+  mother = "morlet",
+  param = -1,
+  lag1 = NULL,
+  sig.level = 0.95,
+  sig.test = 0,
+  do.sig = TRUE,
+  arima.method = "CSS"
+)
 }
 \arguments{
 \item{d}{Time series in matrix format (\code{n} rows x 2 columns). The first

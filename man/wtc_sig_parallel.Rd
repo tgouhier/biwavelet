@@ -4,9 +4,20 @@
 \alias{wtc_sig_parallel}
 \title{Parallel \code{\link{wtc.sig}}}
 \usage{
-wtc_sig_parallel(nrands = 300, lag1, dt, ntimesteps, pad = TRUE,
-  dj = 1/12, s0, J1, max.scale = NULL, mother = "morlet",
-  sig.level = 0.95, quiet = TRUE)
+wtc_sig_parallel(
+  nrands = 300,
+  lag1,
+  dt,
+  ntimesteps,
+  pad = TRUE,
+  dj = 1/12,
+  s0,
+  J1,
+  max.scale = NULL,
+  mother = "morlet",
+  sig.level = 0.95,
+  quiet = TRUE
+)
 }
 \arguments{
 \item{nrands}{Number of Monte Carlo randomizations.}

@@ -4,8 +4,14 @@
 \alias{phase.plot}
 \title{Plot phases with arrows}
 \usage{
-phase.plot(x, y, phases, arrow.len = min(par()$pin[2]/30, par()$pin[1]/40),
-  arrow.col = "black", arrow.lwd = arrow.len * 0.3)
+phase.plot(
+  x,
+  y,
+  phases,
+  arrow.len = min(par()$pin[2]/30, par()$pin[1]/40),
+  arrow.col = "black",
+  arrow.lwd = arrow.len * 0.3
+)
 }
 \arguments{
 \item{x}{X-coordinates}

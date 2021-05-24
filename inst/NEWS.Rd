@@ -2,6 +2,15 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.19 (2019-08-01)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Updated \code{rcpp_wt_bases_paul.cpp} to fix array
+      out-of-bounds reading issue
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.18 (2018-08-29)}{
   \subsection{fixed}{
     \itemize{

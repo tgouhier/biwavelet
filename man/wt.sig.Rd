@@ -4,9 +4,19 @@
 \alias{wt.sig}
 \title{Determine significance of wavelet transform}
 \usage{
-wt.sig(d, dt, scale, sig.test = 0, sig.level = 0.95, dof = 2,
-  lag1 = NULL, mother = "morlet", param = -1, sigma2 = NULL,
-  arima.method = "CSS")
+wt.sig(
+  d,
+  dt,
+  scale,
+  sig.test = 0,
+  sig.level = 0.95,
+  dof = 2,
+  lag1 = NULL,
+  mother = "morlet",
+  param = -1,
+  sigma2 = NULL,
+  arima.method = "CSS"
+)
 }
 \arguments{
 \item{d}{Time series in matrix format (\code{n} rows x 2 columns). The first

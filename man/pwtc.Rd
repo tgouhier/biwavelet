@@ -4,9 +4,23 @@
 \alias{pwtc}
 \title{Compute partial wavelet coherence}
 \usage{
-pwtc(y, x1, x2, pad = TRUE, dj = 1/12, s0 = 2 * dt, J1 = NULL,
-  max.scale = NULL, mother = "morlet", param = -1, lag1 = NULL,
-  sig.level = 0.95, sig.test = 0, nrands = 300, quiet = FALSE)
+pwtc(
+  y,
+  x1,
+  x2,
+  pad = TRUE,
+  dj = 1/12,
+  s0 = 2 * dt,
+  J1 = NULL,
+  max.scale = NULL,
+  mother = "morlet",
+  param = -1,
+  lag1 = NULL,
+  sig.level = 0.95,
+  sig.test = 0,
+  nrands = 300,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{y}{Time series \code{y} in matrix format (\code{n} rows x 2 columns).
@@ -80,30 +94,6 @@ partialling out the effect of \code{x2}
 The Monte Carlo randomizations can be extremely slow for large
   datasets. For instance, 1000 randomizations of a dataset consisting of 1000
   samples will take ~30 minutes on a 2.66 GHz dual-core Xeon processor.
-}
-\examples{
-library(biwavelet)
-
-y <- cbind(1:100, rnorm(100))
-x1 <- cbind(1:100, rnorm(100))
-x2 <- cbind(1:100, rnorm(100))
-
-# Partial wavelet coherence of y and x1
-pwtc.yx1 <- pwtc(y, x1, x2, nrands = 0)
-
-# Partial wavelet coherence of y and x2
-pwtc.yx2 <- pwtc(y, x2, x1, nrands = 0)
-
-# Plot partial wavelet coherence and phase difference (arrows)
-# Make room to the right for the color bar
-par(mfrow = c(2,1), oma = c(4, 0, 0, 1),
-    mar = c(1, 4, 4, 5), mgp = c(1.5, 0.5, 0))
-
-plot(pwtc.yx1, xlab = "", plot.cb = TRUE,
-     main = "Partial wavelet coherence of y and x1 | x2")
-
-plot(pwtc.yx2, plot.cb = TRUE,
-     main = "Partial wavelet coherence of y and x2 | x1")
 }
 \references{
 Aguiar-Conraria, L., and M. J. Soares. 2013. The Continuous Wavelet

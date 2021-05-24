@@ -4,8 +4,20 @@
 \alias{wtc.sig}
 \title{Determine significance of wavelet coherence}
 \usage{
-wtc.sig(nrands = 300, lag1, dt, ntimesteps, pad = TRUE, dj = 1/12, s0, J1,
-  max.scale = NULL, mother = "morlet", sig.level = 0.95, quiet = FALSE)
+wtc.sig(
+  nrands = 300,
+  lag1,
+  dt,
+  ntimesteps,
+  pad = TRUE,
+  dj = 1/12,
+  s0,
+  J1,
+  max.scale = NULL,
+  mother = "morlet",
+  sig.level = 0.95,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{nrands}{Number of Monte Carlo randomizations.}

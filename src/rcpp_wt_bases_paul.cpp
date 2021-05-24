@@ -85,13 +85,6 @@ List rcpp_wt_bases_paul(const NumericVector k,
   // }
   // ... but we can precompute the values in a table map_m_to_prod
   const uint64_t prod = map_m_to_prod[m]; // only works for m = 0..10
-
-  // R: sqrt(scale * k[2]) * sqrt(length(k)) * (2^m) / sqrt(m * prod(2:(2 * m - 1)))
-  // Note: k[2] in R is k[1] in c++ because vectors are indexed from 0
-  const double norm =
-    sqrt(scale * k[1]) * sqrt((double) klen) *
-    pow(2.0, m) / sqrt((double) m * prod);
-
   // R: fourier.factor <- 4 * pi / (2 * m + 1)
   // .. we can precompute the values in a table
   const double ffact = map_m_to_ffact[m]; // only works for m = 0..10
@@ -100,6 +93,12 @@ List rcpp_wt_bases_paul(const NumericVector k,
   if(klen < 2) {
     daughter = NA_REAL; // becomes NA_real_ in R
   } else {
+    // R: sqrt(scale * k[2]) * sqrt(length(k)) * (2^m) / sqrt(m * prod(2:(2 * m - 1)))
+    // Note: k[2] in R is k[1] in c++ because vectors are indexed from 0
+    const double norm =
+      sqrt(scale * k[1]) * sqrt((double) klen) *
+      pow(2.0, m) / sqrt((double) m * prod);
+
     // R: daughter = norm * ((scale * k) ^ m) * exp(expnt) * (k > 0)
     daughter = norm * pow(scale * k, m) * exp_expnt_kgtzero;
   }
