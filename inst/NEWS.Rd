@@ -2,11 +2,18 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+<<<<<<< HEAD
 \section{Changes in biwavelet version 0.20.19 (2019-08-01)}{
   \subsection{fixed}{
     \itemize{
       \item Updated \code{rcpp_wt_bases_paul.cpp} to fix array
       out-of-bounds reading issue
+=======
+\section{Changes in biwavelet version 0.20.20 (2021-05-24)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Merged PR from Dirk Eddelbuettel for defining STRICT_R_HEADERS in Rcpp
+>>>>>>> fcd1bdbd9ab3ea43fcfa29aa0fc73ece9e2367b4
     }
   }
 }
