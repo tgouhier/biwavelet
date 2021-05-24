@@ -17,8 +17,10 @@ A data frame with 720 observations on the following 6 variables.
 }
 \source{
 MEI: \url{http://www.esrl.noaa.gov/psd/enso/mei}
+
 NPGO: \url{http://www.o3d.org/npgo}
-PDO: \url{http://jisao.washington.edu/pdo}
+
+PDO: \url{http://research.jisao.washington.edu/pdo}
 }
 \usage{
 data(enviro.data)
