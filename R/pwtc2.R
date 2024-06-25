@@ -162,13 +162,6 @@ pwtc2 <- function(y, x1, x2, x3 pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   smooth.cw_x1x3 <- smooth.wavelet(s.inv*(cw.x1x3), dt, dj, wt.y$scale)
   smooth.cw_x2x3 <- smooth.wavelet(s.inv*(cw.x2x3), dt, dj, wt.y$scale)
 
-  # Computing R^2
-  rsq.yx1 <- abs(smooth.cw_yx1) ^ 2 / (smooth.wt_y * smooth.wt_x1)
-  rsq.yx2 <- abs(smooth.cw_yx2) ^ 2 / (smooth.wt_y * smooth.wt_x2)
-  rsq.x1x2 <- abs(smooth.cw_x1x2) ^ 2 / (smooth.wt_x1 * smooth.wt_x2)
-  norm <- (1 - rsq.yx2) * (1 - rsq.x1x2)
-  rsq <- abs(sqrt(rsq.yx1) - sqrt(rsq.yx2) * Conj(sqrt(rsq.x1x2))) ^ 2 / norm
-
 # Compute the coherences
 rsq.yx1 <- abs(smooth.cw_yx1) ^ 2 / (smooth.wt_y * smooth.wt_x1)
 rsq.yx2 <- abs(smooth.cw_yx2) ^ 2 / (smooth.wt_y * smooth.wt_x2)
