@@ -1,7 +1,7 @@
 #' Compute partial wavelet coherence
 #'
 #' Compute partial wavelet coherence between \code{y} and \code{x1} by
-#' partialling out the effect of \code{x2}
+#' partialling out the effect of \code{x2} and \code{x3}.
 #'
 #' @param y Time series \code{y} in matrix format (\code{n} rows x 2 columns).
 #'   The first column should contain the time steps and the second column should
@@ -12,7 +12,10 @@
 #' @param x2 Time series \code{x2} whose effects should be partialled out in
 #'   matrix format (\code{n} rows x 2 columns). The first column should contain
 #'   the time steps and the second column should contain the values.
-#' @param pad Pad the values will with zeros to increase the speed of the
+#' @param x3 Time series \code{x3} whose effects should be partialled out in
+#'   matrix format (\code{n} rows x 2 columns). The first column should contain
+#'   the time steps and the second column should contain the values.
+#' @param pad Pad the values with zeros to increase the speed of the
 #'   transform.
 #' @param dj Spacing between successive scales.
 #' @param s0 Smallest scale of the wavelet.
@@ -31,11 +34,11 @@
 #' @param quiet Do not display progress bar.
 #'
 #' @return Return a \code{biwavelet} object containing:
-#' \item{coi}{matrix containg cone of influence}
+#' \item{coi}{matrix containing cone of influence}
 #' \item{wave}{matrix containing the cross-wavelet transform of \code{y} and
 #'   \code{x1}}
 #' \item{rsq}{matrix of partial wavelet coherence between \code{y} and \code{x1}
-#'   (with \code{x2} partialled out)}
+#'   after partialling out the effects of \code{x2} and \code{x3}}
 #' \item{phase}{matrix of phases between \code{y} and \code{x1}}
 #' \item{period}{vector of periods}
 #' \item{scale}{vector of scales}
@@ -47,8 +50,8 @@
 #' \item{y.sigma}{standard deviation of \code{y}}
 #' \item{x1.sigma}{standard deviation of \code{x1}}
 #' \item{mother}{mother wavelet used}
-#' \item{type}{type of \code{biwavelet} object created (\code{\link{pwtc}})}
-#' \item{signif}{matrix containg \code{sig.level} percentiles of wavelet
+#' \item{type}{type of \code{biwavelet} object created (e.g., \code{pwtc})}
+#' \item{signif}{matrix containing \code{sig.level} percentiles of wavelet
 #'   coherence based on the Monte Carlo AR(1) time series}
 #'
 #' @references
@@ -76,43 +79,18 @@
 #' Meteorological Society} 124:1985-2004.
 #'
 #' @note The Monte Carlo randomizations can be extremely slow for large
-#'   datasets. For instance, 1000 randomizations of a dataset consisting of 1000
-#'   samples will take ~30 minutes on a 2.66 GHz dual-core Xeon processor.
-#'
-#' @author Tarik C. Gouhier (tarik.gouhier@@gmail.com)
-#' Code based on WTC MATLAB package written by Aslak Grinsted.
-#'
-#' @examples
-#' y <- cbind(1:100, rnorm(100))
-#' x1 <- cbind(1:100, rnorm(100))
-#' x2 <- cbind(1:100, rnorm(100))
-#'
-#' # Partial wavelet coherence of y and x1
-#' pwtc.yx1 <- pwtc(y, x1, x2, nrands = 0)
-#'
-#' # Partial wavelet coherence of y and x2
-#' pwtc.yx2 <- pwtc(y, x2, x1, nrands = 0)
-#'
-#' # Plot partial wavelet coherence and phase difference (arrows)
-#' # Make room to the right for the color bar
-#' par(mfrow = c(2,1), oma = c(4, 0, 0, 1),
-#'     mar = c(1, 4, 4, 5), mgp = c(1.5, 0.5, 0))
-#'
-#' plot(pwtc.yx1, xlab = "", plot.cb = TRUE,
-#'      main = "Partial wavelet coherence of y and x1 | x2")
-#'
-#' plot(pwtc.yx2, plot.cb = TRUE,
-#'      main = "Partial wavelet coherence of y and x2 | x1")
+#'   datasets. For instance, 1000 randomizations of a dataset with 2000
+#'   observations can take several hours.
 #'
 #' @export
-pwtc <- function(y, x1, x2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
+pwtc2 <- function(y, x1, x2, x3 pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
                  J1 = NULL, max.scale = NULL, mother = "morlet",
                  param = -1, lag1 = NULL, sig.level = 0.95,
                  sig.test = 0, nrands = 300, quiet = FALSE) {
 
   mother <- match.arg(tolower(mother), MOTHERS)
 
-  checked <- check.data(y = y, x1 = x1, x2 = x2)
+  checked <- check.data(y = y, x1 = x1, x2 = x2, x3 = x3)
   xaxis <- y[, 1]
   dt <- checked$y$dt
   t <- checked$y$t
@@ -141,6 +119,9 @@ pwtc <- function(y, x1, x2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   wt.x2 <- wt(d = x2, pad = pad, dj = dj, s0 = s0, J1 = J1,
               max.scale = max.scale, mother = mother, param = param,
               sig.level = sig.level, sig.test = sig.test, lag1 = lag1)
+  wt.x3 <- wt(d = x3, pad = pad, dj = dj, s0 = s0, J1 = J1,
+              max.scale = max.scale, mother = mother, param = param,
+              sig.level = sig.level, sig.test = sig.test, lag1 = lag1)
 
   # Standard deviation for each time series
   y.sigma <- sd(y[,2], na.rm = TRUE)
@@ -158,17 +139,28 @@ pwtc <- function(y, x1, x2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   smooth.wt_x2 <- smooth.wavelet(
     s.inv * (abs(wt.x2$wave) ^ 2), dt, dj, wt.x2$scale)
 
-  coi <- pmin(wt.y$coi, wt.x1$coi, wt.x2$coi, na.rm = T)
+  smooth.wt_x3 <- smooth.wavelet(
+    s.inv * (abs(wt.x3$wave) ^ 2), dt, dj, wt.x3$scale)
+
+  coi <- pmin(wt.y$coi, wt.x1$coi, wt.x2$coi, smooth.wt_x3,na.rm = T)
 
   # Cross-wavelet computation
+
   cw.yx1 <- wt.y$wave * Conj(wt.x1$wave)
   cw.yx2 <- wt.y$wave * Conj(wt.x2$wave)
+  cw.yx3 <- wt.y$wave * Conj(wt.x3$wave)
   cw.x1x2 <- wt.x1$wave * Conj(wt.x2$wave)
+  cw.x1x3 <- wt.x1$wave * Conj(wt.x3$wave)
+  cw.x2x3 <- wt.x2$wave * Conj(wt.x3$wave)
 
   # Wavelet coherence
-  smooth.cw_yx1 <- smooth.wavelet(s.inv * (cw.yx1), dt, dj, wt.y$scale)
-  smooth.cw_yx2 <- smooth.wavelet(s.inv * (cw.yx2), dt, dj, wt.y$scale)
-  smooth.cw_x1x2 <- smooth.wavelet(s.inv * (cw.x1x2), dt, dj, wt.y$scale)
+
+  smooth.cw_yx1 <- smooth.wavelet(s.inv*(cw.yx1), dt, dj, wt.y$scale)
+  smooth.cw_yx2 <- smooth.wavelet(s.inv*(cw.yx2), dt, dj, wt.y$scale)
+  smooth.cw_yx3 <- smooth.wavelet(s.inv*(cw.yx3), dt, dj, wt.y$scale)
+  smooth.cw_x1x2 <- smooth.wavelet(s.inv*(cw.x1x2), dt, dj, wt.y$scale)
+  smooth.cw_x1x3 <- smooth.wavelet(s.inv*(cw.x1x3), dt, dj, wt.y$scale)
+  smooth.cw_x2x3 <- smooth.wavelet(s.inv*(cw.x2x3), dt, dj, wt.y$scale)
 
   # Computing R^2
   rsq.yx1 <- abs(smooth.cw_yx1) ^ 2 / (smooth.wt_y * smooth.wt_x1)
@@ -176,6 +168,21 @@ pwtc <- function(y, x1, x2, pad = TRUE, dj = 1 / 12, s0 = 2 * dt,
   rsq.x1x2 <- abs(smooth.cw_x1x2) ^ 2 / (smooth.wt_x1 * smooth.wt_x2)
   norm <- (1 - rsq.yx2) * (1 - rsq.x1x2)
   rsq <- abs(sqrt(rsq.yx1) - sqrt(rsq.yx2) * Conj(sqrt(rsq.x1x2))) ^ 2 / norm
+
+# Compute the coherences
+rsq.yx1 <- abs(smooth.cw_yx1) ^ 2 / (smooth.wt_y * smooth.wt_x1)
+rsq.yx2 <- abs(smooth.cw_yx2) ^ 2 / (smooth.wt_y * smooth.wt_x2)
+rsq.yx3 <- abs(smooth.cw_yx3) ^ 2 / (smooth.wt_y * smooth.wt_x3)
+rsq.x1x2 <- abs(smooth.cw_x1x2) ^ 2 / (smooth.wt_x1 * smooth.wt_x2)
+rsq.x1x3 <- abs(smooth.cw_x1x3) ^ 2 / (smooth.wt_x1 * smooth.wt_x3)
+rsq.x2x3 <- abs(smooth.cw_x2x3) ^ 2 / (smooth.wt_x2 * smooth.wt_x3)
+
+# Compute the normalization factor
+norm <- (1 - rsq.yx2) * (1 - rsq.x1x2) * (1 - rsq.x2x3)
+
+# Compute the partial wavelet coherence
+rsq <- abs(sqrt(rsq.yx1) - sqrt(rsq.yx2) * Conj(sqrt(rsq.x1x2)) - sqrt(rsq.yx3) * Conj(sqrt(rsq.x2x3))) ^ 2 / norm
+  
 
   # Phase difference between y and x1
   phase <- atan2(Im(cw.yx1), Re(cw.yx1))
