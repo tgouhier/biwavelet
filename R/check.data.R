@@ -10,6 +10,8 @@
 #'   The first column should contain the time steps and the second column should
 #'   contain the values.
 #'
+#' @import methods
+#'
 #' @return Returns a named list containing:
 #' \item{t}{Time steps}
 #' \item{dt}{Size of a time step}
@@ -68,7 +70,7 @@ check.datum <- function(x) {
       stop("The step size must be constant ",
            "(see approx function to interpolate)")
     } else {
-      if (class(t) == "Date") {
+      if (is(t, "Date")) {
         t <- seq_len(NROW(t))
         dt <- diff(t)[1]
       }

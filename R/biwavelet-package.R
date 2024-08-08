@@ -1,4 +1,3 @@
-#' @docType package
 #' @name biwavelet-package
 #' @aliases biwavelet
 #' @useDynLib biwavelet
@@ -136,6 +135,8 @@
 #'      ylab = "Dissimilarity", hang = -1)
 NULL
 
+"_PACKAGE"
+
 .onAttach <- function(libname, pkgname) {
 
   # lazily evaluated promise of supported mother wavelets
@@ -171,7 +172,7 @@ MOTHERS <- c("morlet", "paul", "dog")
 #' }
 #'
 #' @source
-#' MEI: \url{http://www.esrl.noaa.gov/psd/enso/mei/}
+#' MEI: \url{https://psl.noaa.gov/enso/mei/}
 #'
 #' NPGO: \url{http://www.o3d.org/npgo/}
 #'

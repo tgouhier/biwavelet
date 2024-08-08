@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // rcpp_row_quantile
 NumericVector rcpp_row_quantile(NumericMatrix data, const double q);
 RcppExport SEXP _biwavelet_rcpp_row_quantile(SEXP dataSEXP, SEXP qSEXP) {

@@ -34,13 +34,24 @@ Arrows pointing to the right mean that \code{x} and \code{y} are in phase.
 
 Arrows pointing to the left mean that \code{x} and \code{y} are in anti-phase.
 
-Arrows pointing up mean that \code{y} leads \code{x} by \eqn{\pi/2}.
+Arrows pointing up mean that \code{x} leads \code{y} by \eqn{\pi/2}.
 
-Arrows pointing down mean that \code{x} leads \code{y} by \eqn{\pi/2}.
+Arrows pointing down mean that \code{y} leads \code{x} by \eqn{\pi/2}.
 }
 \examples{
-# Not run: phase.plot(x, y, phases)
-
+# Code to help interpret arrow direction
+a <- 0.5 * pi # phase difference
+f <- 10
+t <- 1:200
+# x leads y by a = 0.5 * pi
+x <- sin(t / max(t) * f * 2 * pi)
+y <- sin(t / max(t) * f * 2 * pi - a)
+par(mfrow = c(2, 1))
+plot(t, x, t = "l")
+lines(t, y, col = "red")
+my_xwt <- xwt(cbind(t, x), cbind(t, y))
+plot(my_xwt, plot.phase = TRUE)
+# arrows pointing up indicating x leads y
 }
 \author{
 Tarik C. Gouhier (tarik.gouhier@gmail.com)

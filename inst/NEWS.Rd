@@ -2,6 +2,14 @@
 \title{News for Package 'biwavelet'}
 \encoding{UTF-8}
 
+\section{Changes in biwavelet version 0.20.22 (2024-08-08)}{
+  \subsection{fixed}{
+    \itemize{
+      \item Fixed interpretation of arrow directions in the documentation
+    }
+  }
+}
+
 \section{Changes in biwavelet version 0.20.21 (2021-05-24)}{
   \subsection{fixed}{
     \itemize{

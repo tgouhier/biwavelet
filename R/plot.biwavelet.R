@@ -64,9 +64,9 @@
 #'
 #' Arrows pointing to the left mean that \code{x} and \code{y} are in anti-phase.
 #'
-#' Arrows pointing up mean that \code{y} leads \code{x} by \eqn{\pi/2}.
+#' Arrows pointing up mean that \code{x} leads \code{y} by \eqn{\pi/2}.
 #'
-#' Arrows pointing down mean that \code{x} leads \code{y} by \eqn{\pi/2}.
+#' Arrows pointing down mean that \code{y} leads \code{x} by \eqn{\pi/2}.
 #'
 #' @references
 #' Cazelles, B., M. Chavez, D. Berteaux, F. Menard, J. O. Vik, S. Jenouvrier,
